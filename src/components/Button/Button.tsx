@@ -1,0 +1,271 @@
+/**
+ * Button
+ *
+ * A customizable wrapper around React Native's `Pressable` component.
+ * Provides built-in support for variants, sizes, color schemes, loading states,
+ * and optional left/right icons.
+ *
+ * Author: Geeky Hawks FZE LLC
+ */
+
+import React, { useRef } from 'react';
+import {
+    Pressable,
+    PressableProps,
+    StyleProp,
+    StyleSheet,
+    Text,
+    TextStyle,
+    View,
+    ViewStyle,
+    ActivityIndicator,
+    Animated
+} from 'react-native';
+import { DefaultButtonShapes, DefaultButtonSizes, useTheme } from "../../theme";
+
+/**
+ * Props for custom Button component
+ *
+ * - **variant**: choose button style (`solid`, `outline`, `ghost`)
+ * - **size**: choose size from theme-defined `buttonSizeVariants`
+ * - **shape**: choose corner radius from theme-defined `buttonShapeVariants`
+ * - **colorScheme**: choose color from theme palette
+ * - **loading**: show loading indicator instead of text
+ * - **leftIcon / rightIcon**: optional icons before or after text
+ * - **fullWidth**: make the button expand to fill its parent’s width
+ * - **animation**: choose press feedback animation (`scale`, `opacity`, `shadow`, `scaleOpacity`, `none`)
+ *
+ * All standard React Native `PressableProps` can also be applied.
+ */
+export interface Props extends PressableProps {
+    children?: string;
+    containerStyle?: StyleProp<ViewStyle>;
+    textStyle?: StyleProp<TextStyle>;
+
+    disabled?: boolean;
+    loading?: boolean;
+    loadingIndicator?: React.ReactNode;
+
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
+
+    variant?: 'solid' | 'outline' | 'ghost';
+
+    /**
+     * Choose from default sizes (`"sm" | "md" | "lg"`)
+     * or provide the name of a custom size defined in ThemeProvider.
+     */
+    size?: DefaultButtonSizes | (string & {});
+
+    /**
+     * Choose from default shapes (`"sm" | "md" | "lg" | "full"`)
+     * or provide the name of a custom shape defined in ThemeProvider.
+     */
+    shape?: DefaultButtonShapes | (string & {});
+
+    colorScheme?: keyof ReturnType<typeof useTheme>['theme']['colors'];
+
+    animation?: 'scale' | 'opacity' | 'shadow' | 'scaleOpacity' | 'none';
+
+    fullWidth?: boolean;
+
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+}
+
+/**
+ * Button
+ *
+ * A customizable wrapper around React Native's `Pressable`.
+ * Applies default button variants, sizeVariants, theme colors,
+ * and supports loading and icon states.
+ */
+const Button: React.FC<Props> = ({
+    children,
+    onPress,
+    containerStyle,
+    textStyle,
+    disabled = false,
+    loading = false,
+    loadingIndicator,
+    leftIcon,
+    rightIcon,
+    variant = 'solid',
+    size = 'md',
+    shape = 'md',
+    colorScheme = 'primary',
+    animation = 'scale',
+    fullWidth = false,
+    accessibilityLabel,
+    accessibilityHint,
+    ...rest
+}) => {
+    const { theme, buttonSizeVariants, buttonShapeVariants } = useTheme();
+    const colors = theme.colors;
+
+    const backgroundColor =
+        variant === 'solid' ? colors[colorScheme] : 'transparent';
+
+    const borderColor =
+        variant === 'outline' ? colors[colorScheme] : 'transparent';
+
+    const textColor =
+        variant === 'solid' ? colors.background : colors[colorScheme];
+
+    const sizeVariant = buttonSizeVariants[size] || buttonSizeVariants.md;
+    const shapeVariant = buttonShapeVariants[shape] || buttonShapeVariants.md;
+
+    const isIconOnly = !children && (leftIcon || rightIcon);
+
+    const scaleAnim = useRef(new Animated.Value(1)).current;
+    const opacityAnim = useRef(new Animated.Value(1)).current;
+    const shadowAnim = useRef(new Animated.Value(2)).current;
+
+    const handlePressIn = () => {
+        if (animation === 'scale' || animation === 'scaleOpacity') {
+            Animated.spring(scaleAnim, {
+                toValue: 0.96,
+                useNativeDriver: true,
+                speed: 50,
+                bounciness: 0,
+            }).start();
+        }
+        if (animation === 'opacity' || animation === 'scaleOpacity') {
+            Animated.timing(opacityAnim, {
+                toValue: 0.6,
+                duration: 150,
+                useNativeDriver: true,
+            }).start();
+        }
+        if (animation === 'shadow') {
+            Animated.timing(shadowAnim, {
+                toValue: 8,
+                duration: 150,
+                useNativeDriver: false,
+            }).start();
+        }
+    };
+
+    const handlePressOut = () => {
+        if (animation === 'scale' || animation === 'scaleOpacity') {
+            Animated.spring(scaleAnim, {
+                toValue: 1,
+                useNativeDriver: true,
+                speed: 20,
+                bounciness: 6,
+            }).start();
+        }
+        if (animation === 'opacity' || animation === 'scaleOpacity') {
+            Animated.timing(opacityAnim, {
+                toValue: 1,
+                duration: 150,
+                useNativeDriver: true,
+            }).start();
+        }
+        if (animation === 'shadow') {
+            Animated.timing(shadowAnim, {
+                toValue: 2,
+                duration: 150,
+                useNativeDriver: false,
+            }).start();
+        }
+    };
+
+    const shadowStyle = {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: shadowAnim },
+        shadowOpacity: shadowAnim.interpolate({
+            inputRange: [2, 8],
+            outputRange: [0.2, 0.35],
+        }),
+        shadowRadius: shadowAnim.interpolate({
+            inputRange: [2, 8],
+            outputRange: [2, 6],
+        }),
+        elevation: shadowAnim,
+    };
+
+    return (
+        <Pressable
+            onPress={onPress}
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
+            disabled={disabled || loading}
+            accessibilityRole="button"
+            accessibilityLabel={accessibilityLabel || (typeof children === 'string' ? children : "Button")}
+            accessibilityHint={accessibilityHint}
+            {...rest}
+        >
+            <Animated.View
+                style={[
+                    styles.base,
+                    { backgroundColor, borderColor },
+                    isIconOnly && !fullWidth
+                        ? sizeVariant.iconOnlyContainer || sizeVariant.container
+                        : sizeVariant.container,
+                    shapeVariant,
+                    (animation === 'scale' || animation === 'scaleOpacity') && {
+                        transform: [{ scale: scaleAnim }],
+                    },
+                    (animation === 'opacity' || animation === 'scaleOpacity') && {
+                        opacity: opacityAnim,
+                    },
+                    animation === 'shadow' && shadowStyle,
+                    disabled && styles.disabled,
+                    fullWidth ? { alignSelf: 'stretch' } : { alignSelf: 'flex-start' },
+                    containerStyle,
+                ]}
+            >
+                <View style={styles.content}>
+                    {leftIcon && <View style={styles.icon}>{leftIcon}</View>}
+                    {loading ? (
+                        loadingIndicator || (
+                            <ActivityIndicator
+                                color={textColor}
+                                style={{ marginHorizontal: 8 }}
+                            />
+                        )
+                    ) : (
+                        !!children && (
+                            <Text
+                                style={[
+                                    styles.text,
+                                    { color: textColor, fontFamily: theme.fontFamily },
+                                    sizeVariant.text,
+                                    textStyle,
+                                ]}
+                            >
+                                {children}
+                            </Text>
+                        )
+                    )}
+                    {rightIcon && <View style={styles.icon}>{rightIcon}</View>}
+                </View>
+            </Animated.View>
+        </Pressable>
+    );
+};
+
+const styles = StyleSheet.create({
+    base: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+    },
+    content: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    icon: {
+        marginHorizontal: 4,
+    },
+    text: {
+        fontWeight: '600',
+    },
+    disabled: {
+        opacity: 0.5,
+    },
+});
+
+export default Button;

@@ -1,0 +1,58 @@
+{
+  "name": "@geekyhawks/react-native-ui-components",
+  "version": "1.0.0",
+  "description": "A lightweight, reusable React Native UI component library providing customizable Text, TextInput, Button, StatusBar, ActivityIndicator, and more. Fully typed with TypeScript and designed for easy integration in any React Native project.",
+  "author": "Geeky Hawks FZE LLC",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GeekyHawks/react-native-ui-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GeekyHawks/react-native-ui-components/issues"
+  },
+  "homepage": "https://github.com/GeekyHawks/react-native-ui-components#readme",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist",
+    "src",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "react-native",
+    "react-native-components",
+    "ui-components",
+    "react-native-ui",
+    "text",
+    "textinput",
+    "button",
+    "activityindicator",
+    "statusbar",
+    "typescript",
+    "react",
+    "rn"
+  ],
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-native": ">=0.64.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.10",
+    "@types/react-native": "^0.72.8",
+    "react": "^19.1.1",
+    "react-native": "^0.81.0",
+    "typescript": "^5.9.2"
+  }
+}

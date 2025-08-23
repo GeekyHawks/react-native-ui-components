@@ -10,6 +10,7 @@
 import React from 'react';
 import { Text as RNText, TextProps, TextStyle } from 'react-native';
 import { useTheme } from "../../theme/ThemeContext";
+import { DefaultTextVariants } from "../../theme";
 
 /**
  * Props for custom Text component
@@ -23,7 +24,12 @@ import { useTheme } from "../../theme/ThemeContext";
 export interface Props extends TextProps {
     fontFamily?: string;
     color?: string;
-    variant?: string;
+
+    /**
+     * Choose from default variants ("body" | "h1" | "h2" | "caption")
+     * or provide a custom variant defined in ThemeProvider.
+     */
+    variant?: DefaultTextVariants | (string & {});
 }
 
 /**

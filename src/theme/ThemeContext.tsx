@@ -12,6 +12,7 @@ import React, { createContext, useContext } from 'react';
 import { Theme, defaultLightTheme } from './Theme';
 import { TextStyle } from "react-native";
 import { defaultTextVariants } from "./TextVariants";
+import { ButtonShapeVariants, ButtonSizeVariants, defaultButtonShapeVariants, defaultButtonSizeVariants } from "./ButtonVariants";
 
 /**
  * ThemeContextType
@@ -21,6 +22,8 @@ import { defaultTextVariants } from "./TextVariants";
 type ThemeContextType = {
     theme: Theme;
     textVariants: Record<string, Partial<TextStyle>>;
+    buttonSizeVariants: ButtonSizeVariants;
+    buttonShapeVariants: ButtonShapeVariants;
 };
 
 /**
@@ -35,6 +38,8 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType>({
     theme: defaultLightTheme,
     textVariants: defaultTextVariants,
+    buttonSizeVariants: defaultButtonSizeVariants,
+    buttonShapeVariants: defaultButtonShapeVariants,
 });
 
 /**
@@ -48,20 +53,32 @@ export const useTheme = (): ThemeContextType => {
     return context;
 };
 
+type ThemeProviderProps = {
+    theme?: Theme;
+    textVariants?: Record<string, Partial<TextStyle>>;
+    buttonSizeVariants?: ButtonSizeVariants;
+    buttonShapeVariants?: ButtonShapeVariants;
+    children: React.ReactNode;
+};
+
 /**
  * ThemeProvider
  *
  * Wrap your app and optionally pass a custom theme or textVariants.
  * Automatically merges default variants with user overrides.
  */
-export const ThemeProvider: React.FC<{
-    theme?: Theme;
-    textVariants?: Record<string, Partial<TextStyle>>;
-    children: React.ReactNode;
-}> = ({ theme, textVariants, children }) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+    theme,
+    textVariants,
+    buttonSizeVariants,
+    buttonShapeVariants,
+    children,
+}) => {
     const appliedTheme: ThemeContextType = {
         theme: { ...defaultLightTheme, ...theme },
         textVariants: { ...defaultTextVariants, ...textVariants },
+        buttonSizeVariants: { ...defaultButtonSizeVariants, ...buttonSizeVariants },
+        buttonShapeVariants: { ...defaultButtonShapeVariants, ...buttonShapeVariants },
     };
 
     return <ThemeContext.Provider value={appliedTheme}>{children}</ThemeContext.Provider>;

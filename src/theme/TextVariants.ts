@@ -31,8 +31,13 @@ export type TextVariants = Record<string, TextVariant>;
 /**
  * defaultTextVariants
  *
- * Predefined text variants (font size, weight, style).
+ * Predefined text variants with font size, weight, and style.
+ * 
+ * - These are the default variants available: "body", "h1", "h2", "caption".
+ * - You can provide additional custom variants through the ThemeProvider.
  */
+export type DefaultTextVariants = 'body' | 'h1' | 'h2' | 'caption';
+
 export const defaultTextVariants: TextVariants = {
     body: { fontSize: 16 },
     h1: { fontSize: 24, fontWeight: '700' },

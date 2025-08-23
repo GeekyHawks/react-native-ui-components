@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@geekyhawks/react-native-ui-components": "file:../geekyhawks-react-native-ui-components-1.0.0.tgz",
+    "@react-native-vector-icons/material-icons": "^12.3.0",
     "@react-native/new-app-screen": "0.81.0",
     "react": "19.1.0",
     "react-native": "0.81.0",

@@ -25,7 +25,8 @@ import {
   TextVariants,
   Button,
   ButtonSizeVariants,
-  ButtonShapeVariants
+  ButtonShapeVariants,
+  TextInput
 } from '@geekyhawks/react-native-ui-components';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 
@@ -42,10 +43,85 @@ export default function App() {
           backgroundColor: defaultLightTheme.colors.background,
         }}
       >
-        <Text>Hello World (default text)</Text>
-        <Button onPress={() => console.log("Pressed!")}>
-          Default Button
-        </Button>
+        <ScrollView
+          showsVerticalScrollIndicator={false}>
+          <Text>Hello World (default text)</Text>
+
+          <TextInput
+            placeholder="Default InputText"
+            label="Default"
+            containerStyle={{ marginTop: 10 }} />
+
+          <TextInput
+            placeholder="Underline Example"
+            label="Underline"
+            variant="underline"
+            containerStyle={{ marginTop: 10 }} />
+
+          <TextInput
+            placeholder="Filled Example"
+            label="Filled"
+            variant="filled"
+            errorPosition="right"
+            containerStyle={{ marginTop: 10 }} />
+
+          <TextInput
+            label="Password"
+            placeholder="Enter your password"
+            secureTextEntry
+            error="Password must be at least 6 characters"
+            passwordToggleIcons={{
+              show: (
+                <Image
+                  source={require("./src/assets/show-password.png")}
+                  style={{ width: 20, height: 20, tintColor: "#007bff" }}
+                  resizeMode="contain"
+                />
+              ),
+              hide: (
+                <Image
+                  source={require("./src/assets/hide-password.png")}
+                  style={{ width: 20, height: 20, tintColor: "#007bff" }}
+                  resizeMode="contain"
+                />
+              )
+            }}
+            containerStyle={{ marginTop: 10 }}
+          />
+
+          <TextInput
+            label="Username"
+            placeholder="Username"
+            size="md"
+            helperText="Validating..."
+            loading
+            containerStyle={{ marginTop: 20 }}
+          />
+
+          <TextInput
+            label="Email (Disabled)"
+            placeholder="Disabled input"
+            helperText="You cannot edit this field"
+            disabled
+            containerStyle={{ marginTop: 20 }}
+          />
+
+          <TextInput
+            label="Bio"
+            placeholder="Write something about yourself..."
+            size="md"
+            helperText="You can write multiple lines"
+            multiline
+            numberOfLines={4}
+            containerStyle={{ marginTop: 20 }}
+          />
+
+          <Button onPress={() => console.log("One!")}
+            containerStyle={{ marginTop: 10 }}
+            fullWidth>
+            Default Button Here Nice
+          </Button>
+        </ScrollView>
       </SafeAreaView>
     </ThemeProvider>
   );
@@ -96,6 +172,8 @@ export default function App() {
       primary: "#FF6347",
       secondary: "#4B0082",
       error: "#FF0000",
+      border: "#dee2e6",
+      muted: "#6c757d",
     },
   };
 
@@ -200,7 +278,7 @@ export default function App() {
   );
 
   // 👇 Toggle which example to display
-  const exampleToShow: string = "custom"; // "minimal" | "lightDark" | "custom"
+  const exampleToShow: string = "minimal"; // "minimal" | "lightDark" | "custom"
 
   return (
     <SafeAreaProvider>

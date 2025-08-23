@@ -19,6 +19,8 @@ export type ThemeColors = {
     primary: string;
     secondary: string;
     error: string;
+    border: string;
+    muted: string;
 };
 
 /**
@@ -42,6 +44,8 @@ export const defaultLightTheme: Theme = {
         primary: '#007bff',
         secondary: '#6c757d',
         error: '#dc3545',
+        border: "#dee2e6",
+        muted: "#6c757d",
     },
 };
 
@@ -56,5 +60,7 @@ export const defaultDarkTheme: Theme = {
         primary: '#339af0',
         secondary: '#adb5bd',
         error: '#fa5252',
+        border: "#495057",
+        muted: "#ced4da",
     },
 };

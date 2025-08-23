@@ -14,5 +14,6 @@
 
 export * from './Theme';
 export * from './ThemeContext';
-export * from './TextVariants';
-export * from './ButtonVariants';
+export * from './variants/TextVariants';
+export * from './variants/ButtonVariants';
+export * from './variants/TextInputVariants';

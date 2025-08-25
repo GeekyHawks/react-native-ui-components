@@ -5,10 +5,10 @@
  * This allows consumers to import from the component directory directly:
  * 
  * Example:
- * import { Text, TextProps } from '@geekyhawks/react-native-ui-components';
+ * import { Text, TextProps } from "@geekyhawks/react-native-ui-components";
  *
  * Author: Geeky Hawks FZE LLC
  */
 
-export { default } from './Text';
-export type { Props as TextProps } from './Text';
+export { default } from "./Text";
+export type { Props as TextProps } from "./Text";

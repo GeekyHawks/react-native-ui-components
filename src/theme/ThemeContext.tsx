@@ -8,12 +8,13 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import React, { createContext, useContext } from 'react';
-import { Theme, defaultLightTheme } from './Theme';
+import React, { createContext, useContext } from "react";
 import { TextStyle } from "react-native";
+import { Theme, defaultLightTheme } from "./Theme";
 import { defaultTextVariants } from "./variants/TextVariants";
 import { ButtonShapeVariants, ButtonSizeVariants, defaultButtonShapeVariants, defaultButtonSizeVariants } from "./variants/ButtonVariants";
 import { defaultTextInputSizeVariants, defaultTextInputStyleVariants, TextInputSizeVariants, TextInputStyleVariants } from "./variants/TextInputVariants";
+import { defaultFloatingLabelTextInputSizeVariants, defaultFloatingLabelTextInputStyleVariants, FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants } from "./variants/FloatingLabelTextInputVariants";
 
 /**
  * ThemeContextType
@@ -27,6 +28,8 @@ type ThemeContextType = {
     buttonShapeVariants: ButtonShapeVariants;
     textInputStyleVariants: TextInputStyleVariants;
     textInputSizeVariants: TextInputSizeVariants;
+    floatingLabelTextInputStyleVariants: FloatingLabelTextInputStyleVariants;
+    floatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants;
 };
 
 /**
@@ -44,7 +47,9 @@ const ThemeContext = createContext<ThemeContextType>({
     buttonSizeVariants: defaultButtonSizeVariants,
     buttonShapeVariants: defaultButtonShapeVariants,
     textInputStyleVariants: defaultTextInputStyleVariants,
-    textInputSizeVariants: defaultTextInputSizeVariants
+    textInputSizeVariants: defaultTextInputSizeVariants,
+    floatingLabelTextInputStyleVariants: defaultFloatingLabelTextInputStyleVariants,
+    floatingLabelTextInputSizeVariants: defaultFloatingLabelTextInputSizeVariants,
 });
 
 /**
@@ -54,7 +59,7 @@ const ThemeContext = createContext<ThemeContextType>({
  */
 export const useTheme = (): ThemeContextType => {
     const context = useContext(ThemeContext);
-    if (!context) throw new Error('useTheme must be used inside ThemeProvider');
+    if (!context) throw new Error("useTheme must be used inside ThemeProvider");
     return context;
 };
 
@@ -66,6 +71,8 @@ type ThemeProviderProps = {
     textInputStyleVariants?: TextInputStyleVariants;
     textInputSizeVariants?: TextInputSizeVariants;
     children: React.ReactNode;
+    floatingLabelTextInputStyleVariants?: FloatingLabelTextInputStyleVariants;
+    floatingLabelTextInputSizeVariants?: FloatingLabelTextInputSizeVariants;
 };
 
 /**
@@ -81,6 +88,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     buttonShapeVariants,
     textInputStyleVariants,
     textInputSizeVariants,
+    floatingLabelTextInputStyleVariants,
+    floatingLabelTextInputSizeVariants,
     children,
 }) => {
     const appliedTheme: ThemeContextType = {
@@ -90,6 +99,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         buttonShapeVariants: { ...defaultButtonShapeVariants, ...buttonShapeVariants },
         textInputStyleVariants: { ...defaultTextInputStyleVariants, ...textInputStyleVariants },
         textInputSizeVariants: { ...defaultTextInputSizeVariants, ...textInputSizeVariants },
+        floatingLabelTextInputStyleVariants: { ...defaultFloatingLabelTextInputStyleVariants, ...floatingLabelTextInputStyleVariants },
+        floatingLabelTextInputSizeVariants: { ...defaultFloatingLabelTextInputSizeVariants, ...floatingLabelTextInputSizeVariants },
     };
 
     return <ThemeContext.Provider value={appliedTheme}>{children}</ThemeContext.Provider>;

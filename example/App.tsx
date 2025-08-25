@@ -26,7 +26,8 @@ import {
   Button,
   ButtonSizeVariants,
   ButtonShapeVariants,
-  TextInput
+  TextInput,
+  FloatingLabelTextInput
 } from '@geekyhawks/react-native-ui-components';
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 
@@ -113,6 +114,42 @@ export default function App() {
             helperText="You can write multiple lines"
             multiline
             numberOfLines={4}
+            containerStyle={{ marginTop: 20 }}
+          />
+
+          <FloatingLabelTextInput
+            label="Email Address"
+            variant="outline"
+            helperText="We will never share your email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            size="lg"
+            containerStyle={{ marginTop: 20 }}
+          />
+
+          <FloatingLabelTextInput
+            label="Username"
+            variant="underline"
+            helperText="Choose a unique username"
+            autoCapitalize="none"
+            containerStyle={{ marginTop: 20 }}
+          />
+
+          <FloatingLabelTextInput
+            label="Description"
+            variant="outline"
+            multiline
+            numberOfLines={4}
+            helperText="Enter at least 20 characters"
+            containerStyle={{ marginTop: 20 }}
+          />
+
+          <FloatingLabelTextInput
+            label="Description"
+            variant="underline"
+            multiline
+            numberOfLines={4}
+            helperText="Enter at least 20 characters"
             containerStyle={{ marginTop: 20 }}
           />
 

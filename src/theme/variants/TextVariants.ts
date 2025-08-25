@@ -8,7 +8,7 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import { TextStyle } from 'react-native';
+import { TextStyle } from "react-native";
 
 /**
  * TextVariant
@@ -23,10 +23,21 @@ export type TextVariant = Partial<TextStyle>;
  * TextVariants
  *
  * Represents a collection of named text variants.
- * Keys are variant names (e.g., 'body', 'h1', or custom names),
+ * Keys are variant names (e.g., "body", "h1", or custom names),
  * and values are the corresponding TextVariant styles.
  */
 export type TextVariants = Record<string, TextVariant>;
+
+/**
+ * DefaultTextVariants
+ *
+ * Predefined text style options available out-of-the-box:
+ * - "body": standard paragraph or body text
+ * - "h1": largest heading, used for primary titles
+ * - "h2": secondary heading, smaller than h1
+ * - "caption": small text, typically used for hints or footnotes
+ */
+export type DefaultTextVariants = "body" | "h1" | "h2" | "caption";
 
 /**
  * defaultTextVariants
@@ -36,11 +47,9 @@ export type TextVariants = Record<string, TextVariant>;
  * - These are the default variants available: "body", "h1", "h2", "caption".
  * - You can provide additional custom variants through the ThemeProvider.
  */
-export type DefaultTextVariants = 'body' | 'h1' | 'h2' | 'caption';
-
 export const defaultTextVariants: TextVariants = {
     body: { fontSize: 16 },
-    h1: { fontSize: 24, fontWeight: '700' },
-    h2: { fontSize: 20, fontWeight: '600' },
+    h1: { fontSize: 24, fontWeight: "700" },
+    h2: { fontSize: 20, fontWeight: "600" },
     caption: { fontSize: 12 },
 };

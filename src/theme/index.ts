@@ -7,13 +7,14 @@
  * global theming and typography in their app.
  *
  * Example:
- * import { ThemeProvider, useTheme, defaultLightTheme, defaultDarkTheme } from '@geekyhawks/react-native-ui-components';
+ * import { ThemeProvider, useTheme, defaultLightTheme, defaultDarkTheme } from "@geekyhawks/react-native-ui-components";
  * 
  * Author: Geeky Hawks FZE LLC
  */
 
-export * from './Theme';
-export * from './ThemeContext';
-export * from './variants/TextVariants';
-export * from './variants/ButtonVariants';
-export * from './variants/TextInputVariants';
+export * from "./Theme";
+export * from "./ThemeContext";
+export * from "./variants/TextVariants";
+export * from "./variants/ButtonVariants";
+export * from "./variants/TextInputVariants";
+export * from "./variants/FloatingLabelTextInputVariants";

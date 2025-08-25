@@ -8,7 +8,7 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import { TextStyle, ViewStyle } from 'react-native';
+import { TextStyle, ViewStyle } from "react-native";
 
 /**
  * ButtonSizeVariant
@@ -36,7 +36,7 @@ export type ButtonShapeVariant = Partial<ViewStyle>;
  * ButtonSizeVariants
  *
  * Represents a collection of named button size variants.
- * Keys are variant names (e.g., 'sm', 'md', 'lg' or custom),
+ * Keys are variant names (e.g., "sm", "md", "lg" or custom),
  * and values are the corresponding ButtonSizeVariant styles.
  */
 export type ButtonSizeVariants = Record<string, ButtonSizeVariant>;
@@ -45,10 +45,20 @@ export type ButtonSizeVariants = Record<string, ButtonSizeVariant>;
  * ButtonShapeVariants
  *
  * Represents a collection of named button shape variants.
- * Keys are variant names (e.g., 'sm', 'md', 'lg', 'full' or custom),
+ * Keys are variant names (e.g., "sm", "md", "lg", "full" or custom),
  * and values are the corresponding ButtonShapeVariant styles.
  */
 export type ButtonShapeVariants = Record<string, ButtonShapeVariant>;
+
+/**
+ * DefaultButtonSizes
+ *
+ * Predefined button size options available out-of-the-box:
+ * - "sm": compact button with smaller font and padding
+ * - "md": medium button (default), balanced font and spacing
+ * - "lg": large button with bigger font and extra padding
+ */
+export type DefaultButtonSizes = "sm" | "md" | "lg";
 
 /**
  * defaultButtonSizeVariants
@@ -60,8 +70,6 @@ export type ButtonShapeVariants = Record<string, ButtonShapeVariant>;
  * - You can define additional custom sizes through ThemeProvider
  *   and use them via the `size` prop.
  */
-export type DefaultButtonSizes = 'sm' | 'md' | 'lg';
-
 export const defaultButtonSizeVariants: ButtonSizeVariants = {
     sm: {
         container: { paddingVertical: 8, paddingHorizontal: 12 },
@@ -81,6 +89,17 @@ export const defaultButtonSizeVariants: ButtonSizeVariants = {
 };
 
 /**
+ * DefaultButtonShapes
+ *
+ * Predefined button shape options available out-of-the-box:
+ * - "sm": small border radius for subtle rounding
+ * - "md": medium border radius (default)
+ * - "lg": large border radius for pill-like appearance
+ * - "full": fully rounded corners, often used for circular buttons
+ */
+export type DefaultButtonShapes = "sm" | "md" | "lg" | "full";
+
+/**
  * defaultButtonShapeVariants
  *
  * Predefined button shape variants with standardized `borderRadius`
@@ -90,8 +109,6 @@ export const defaultButtonSizeVariants: ButtonSizeVariants = {
  * - You can define additional custom shapes through ThemeProvider
  *   and use them via the `shape` prop.
  */
-export type DefaultButtonShapes = 'sm' | 'md' | 'lg' | 'full';
-
 export const defaultButtonShapeVariants: ButtonShapeVariants = {
     sm: { borderRadius: 4 },
     md: { borderRadius: 8 },

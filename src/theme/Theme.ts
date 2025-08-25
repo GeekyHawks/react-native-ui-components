@@ -37,13 +37,13 @@ export type Theme = {
  * Default light theme
  */
 export const defaultLightTheme: Theme = {
-    fontFamily: 'System',
+    fontFamily: "System",
     colors: {
-        text: '#000000',
-        background: '#ffffff',
-        primary: '#007bff',
-        secondary: '#6c757d',
-        error: '#dc3545',
+        text: "#000000",
+        background: "#ffffff",
+        primary: "#007bff",
+        secondary: "#6c757d",
+        error: "#dc3545",
         border: "#dee2e6",
         muted: "#6c757d",
     },
@@ -53,13 +53,13 @@ export const defaultLightTheme: Theme = {
  * Default dark theme
  */
 export const defaultDarkTheme: Theme = {
-    fontFamily: 'System',
+    fontFamily: "System",
     colors: {
-        text: '#ffffff',
-        background: '#000000',
-        primary: '#339af0',
-        secondary: '#adb5bd',
-        error: '#fa5252',
+        text: "#ffffff",
+        background: "#000000",
+        primary: "#339af0",
+        secondary: "#adb5bd",
+        error: "#fa5252",
         border: "#495057",
         muted: "#ced4da",
     },

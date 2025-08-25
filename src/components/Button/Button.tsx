@@ -8,7 +8,7 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 import {
     Pressable,
     PressableProps,
@@ -19,7 +19,7 @@ import {
     ViewStyle,
     ActivityIndicator,
     Animated
-} from 'react-native';
+} from "react-native";
 import { DefaultButtonShapes, DefaultButtonSizes, useTheme } from "../../theme";
 import Text from "../Text";
 
@@ -49,7 +49,7 @@ export interface Props extends PressableProps {
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
 
-    variant?: 'solid' | 'outline' | 'ghost';
+    variant?: "solid" | "outline" | "ghost";
 
     /**
      * Choose from default sizes (`"sm" | "md" | "lg"`)
@@ -63,9 +63,9 @@ export interface Props extends PressableProps {
      */
     shape?: DefaultButtonShapes | (string & {});
 
-    colorScheme?: keyof ReturnType<typeof useTheme>['theme']['colors'];
+    colorScheme?: keyof ReturnType<typeof useTheme>["theme"]["colors"];
 
-    animation?: 'scale' | 'opacity' | 'shadow' | 'scaleOpacity' | 'none';
+    animation?: "scale" | "opacity" | "shadow" | "scaleOpacity" | "none";
 
     fullWidth?: boolean;
 
@@ -90,11 +90,11 @@ const Button: React.FC<Props> = ({
     loadingIndicator,
     leftIcon,
     rightIcon,
-    variant = 'solid',
-    size = 'md',
-    shape = 'md',
-    colorScheme = 'primary',
-    animation = 'scale',
+    variant = "solid",
+    size = "md",
+    shape = "md",
+    colorScheme = "primary",
+    animation = "scale",
     fullWidth = false,
     accessibilityLabel,
     accessibilityHint,
@@ -104,13 +104,13 @@ const Button: React.FC<Props> = ({
     const colors = theme.colors;
 
     const backgroundColor =
-        variant === 'solid' ? colors[colorScheme] : 'transparent';
+        variant === "solid" ? colors[colorScheme] : "transparent";
 
     const borderColor =
-        variant === 'outline' ? colors[colorScheme] : 'transparent';
+        variant === "outline" ? colors[colorScheme] : "transparent";
 
     const textColor =
-        variant === 'solid' ? colors.background : colors[colorScheme];
+        variant === "solid" ? colors.background : colors[colorScheme];
 
     const sizeVariant = buttonSizeVariants[size] || buttonSizeVariants.md;
     const shapeVariant = buttonShapeVariants[shape] || buttonShapeVariants.md;
@@ -122,7 +122,7 @@ const Button: React.FC<Props> = ({
     const shadowAnim = useRef(new Animated.Value(2)).current;
 
     const handlePressIn = () => {
-        if (animation === 'scale' || animation === 'scaleOpacity') {
+        if (animation === "scale" || animation === "scaleOpacity") {
             Animated.spring(scaleAnim, {
                 toValue: 0.96,
                 useNativeDriver: true,
@@ -130,14 +130,14 @@ const Button: React.FC<Props> = ({
                 bounciness: 0,
             }).start();
         }
-        if (animation === 'opacity' || animation === 'scaleOpacity') {
+        if (animation === "opacity" || animation === "scaleOpacity") {
             Animated.timing(opacityAnim, {
                 toValue: 0.6,
                 duration: 150,
                 useNativeDriver: true,
             }).start();
         }
-        if (animation === 'shadow') {
+        if (animation === "shadow") {
             Animated.timing(shadowAnim, {
                 toValue: 8,
                 duration: 150,
@@ -147,7 +147,7 @@ const Button: React.FC<Props> = ({
     };
 
     const handlePressOut = () => {
-        if (animation === 'scale' || animation === 'scaleOpacity') {
+        if (animation === "scale" || animation === "scaleOpacity") {
             Animated.spring(scaleAnim, {
                 toValue: 1,
                 useNativeDriver: true,
@@ -155,14 +155,14 @@ const Button: React.FC<Props> = ({
                 bounciness: 6,
             }).start();
         }
-        if (animation === 'opacity' || animation === 'scaleOpacity') {
+        if (animation === "opacity" || animation === "scaleOpacity") {
             Animated.timing(opacityAnim, {
                 toValue: 1,
                 duration: 150,
                 useNativeDriver: true,
             }).start();
         }
-        if (animation === 'shadow') {
+        if (animation === "shadow") {
             Animated.timing(shadowAnim, {
                 toValue: 2,
                 duration: 150,
@@ -172,7 +172,7 @@ const Button: React.FC<Props> = ({
     };
 
     const shadowStyle = {
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: shadowAnim },
         shadowOpacity: shadowAnim.interpolate({
             inputRange: [2, 8],
@@ -192,10 +192,10 @@ const Button: React.FC<Props> = ({
             onPressOut={handlePressOut}
             disabled={disabled || loading}
             accessibilityRole="button"
-            accessibilityLabel={accessibilityLabel || (typeof children === 'string' ? children : "Button")}
+            accessibilityLabel={accessibilityLabel || (typeof children === "string" ? children : "Button")}
             accessibilityHint={accessibilityHint}
             style={({ pressed }) => [
-                fullWidth ? { alignSelf: 'stretch' } : { alignSelf: 'flex-start' },
+                fullWidth ? { alignSelf: "stretch" } : { alignSelf: "flex-start" },
             ]}
             {...rest}
         >
@@ -207,13 +207,13 @@ const Button: React.FC<Props> = ({
                         ? sizeVariant.iconOnlyContainer || sizeVariant.container
                         : sizeVariant.container,
                     shapeVariant,
-                    (animation === 'scale' || animation === 'scaleOpacity') && {
+                    (animation === "scale" || animation === "scaleOpacity") && {
                         transform: [{ scale: scaleAnim }],
                     },
-                    (animation === 'opacity' || animation === 'scaleOpacity') && {
+                    (animation === "opacity" || animation === "scaleOpacity") && {
                         opacity: opacityAnim,
                     },
-                    animation === 'shadow' && shadowStyle,
+                    animation === "shadow" && shadowStyle,
                     disabled && styles.disabled,
                     containerStyle,
                 ]}
@@ -247,20 +247,20 @@ const Button: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
     base: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
         borderWidth: 1,
     },
     content: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
     },
     icon: {
         marginHorizontal: 4,
     },
     text: {
-        fontWeight: '600',
+        fontWeight: "600",
     },
     disabled: {
         opacity: 0.5,

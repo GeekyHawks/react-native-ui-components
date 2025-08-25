@@ -10,16 +10,20 @@
  */
 
 // Theme exports
-export * from './theme';
+export * from "./theme";
 
 // Text Component
-export { default as Text } from './components/Text';
-export type { TextProps } from './components/Text';
+export { default as Text } from "./components/Text";
+export type { TextProps } from "./components/Text";
 
 // TextInput Component
-export { default as TextInput } from './components/TextInput';
-export type { TextInputProps } from './components/TextInput';
+export { default as TextInput } from "./components/TextInput";
+export type { TextInputProps } from "./components/TextInput";
+
+// FloatingLabelTextInput Component
+export { default as FloatingLabelTextInput } from "./components/FloatingLabelTextInput";
+export type { FloatingLabelTextInputProps } from "./components/FloatingLabelTextInput";
 
 // Button Component
-export { default as Button } from './components/Button';
-export type { ButtonProps } from './components/Button';
+export { default as Button } from "./components/Button";
+export type { ButtonProps } from "./components/Button";

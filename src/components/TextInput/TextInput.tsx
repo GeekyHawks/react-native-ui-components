@@ -1,3 +1,13 @@
+/**
+ * TextInput
+ *
+ * A customizable wrapper around React Native's `TextInput` component.
+ * Provides support for predefined style variants (outline, filled, underline),
+ * size variants (sm, md, lg), and theme integration.
+ *
+ * Author: Geeky Hawks FZE LLC
+ */
+
 import React, { useRef, useState } from "react";
 import {
     ActivityIndicator,
@@ -13,6 +23,18 @@ import {
 import { DefaultTextInputSizes, DefaultTextInputStyles, useTheme } from "../../theme";
 import Text from "../Text";
 
+/**
+ * Props for custom TextInput component
+ *
+ * - **variant**: choose style variant ("outline" | "filled" | "underline")
+ * - **size**: choose size variant ("sm" | "md" | "lg")
+ * - **error**: optional error message to display below the input
+ * - **helperText**: optional helper text to show below the input
+ * - **leftIcon / rightIcon**: optional React nodes rendered inside the input
+ * - **disabled / loading**: disable input or show loading state
+ * 
+ * All standard React Native `TextInputProps` can also be applied.
+ */
 export interface Props extends RNTextInputProps {
     label?: string;
     helperText?: string;
@@ -22,7 +44,24 @@ export interface Props extends RNTextInputProps {
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
 
+    /**
+     * Variants
+     *
+     * Choose from default style variants:
+     * - "outline": bordered box input
+     * - "filled": filled background input
+     * - "underline": single underline input
+     */
     variant?: DefaultTextInputStyles | (string & {});
+
+    /**
+     * Sizes
+     *
+     * Choose from default size variants:
+     * - "sm": small text input (compact)
+     * - "md": medium text input (default)
+     * - "lg": large text input (spacious)
+     */
     size?: DefaultTextInputSizes | (string & {});
 
     fullWidth?: boolean;
@@ -51,6 +90,12 @@ export interface Props extends RNTextInputProps {
     numberOfLines?: number;
 }
 
+/**
+ * TextInput
+ *
+ * A customizable wrapper around React Native's `TextInput`.
+ * Applies default styleVariants, sizeVariants, theme colors, and error/helper text handling.
+ */
 const TextInput: React.FC<Props> = ({
     label,
     helperText,
@@ -74,6 +119,9 @@ const TextInput: React.FC<Props> = ({
     multiline = false,
     numberOfLines = 1,
     style,
+    accessible = true,
+    accessibilityLabel,
+    accessibilityState,
     ...rest
 }) => {
     const { theme, textInputStyleVariants, textInputSizeVariants } = useTheme();
@@ -126,7 +174,7 @@ const TextInput: React.FC<Props> = ({
     return (
         <View
             style={[{ width: fullWidth ? "100%" : undefined }, containerStyle]}
-            accessible={true}
+            accessible={accessible}
             accessibilityLabel={label || rest.placeholder}
             accessibilityState={{ disabled, ...(error ? { invalid: true } : {}) } as any}
         >

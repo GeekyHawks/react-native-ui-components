@@ -7,8 +7,8 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import React from 'react';
-import { Text as RNText, TextProps, TextStyle } from 'react-native';
+import React from "react";
+import { Text as RNText, TextProps, TextStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import { DefaultTextVariants } from "../../theme";
 
@@ -41,7 +41,7 @@ export interface Props extends TextProps {
 const Text: React.FC<Props> = ({
     fontFamily,
     color,
-    variant = 'body',
+    variant = "body",
     style,
     children,
     ...rest

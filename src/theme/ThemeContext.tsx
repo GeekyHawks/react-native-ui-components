@@ -11,8 +11,9 @@
 import React, { createContext, useContext } from 'react';
 import { Theme, defaultLightTheme } from './Theme';
 import { TextStyle } from "react-native";
-import { defaultTextVariants } from "./TextVariants";
-import { ButtonShapeVariants, ButtonSizeVariants, defaultButtonShapeVariants, defaultButtonSizeVariants } from "./ButtonVariants";
+import { defaultTextVariants } from "./variants/TextVariants";
+import { ButtonShapeVariants, ButtonSizeVariants, defaultButtonShapeVariants, defaultButtonSizeVariants } from "./variants/ButtonVariants";
+import { defaultTextInputSizeVariants, defaultTextInputStyleVariants, TextInputSizeVariants, TextInputStyleVariants } from "./variants/TextInputVariants";
 
 /**
  * ThemeContextType
@@ -24,6 +25,8 @@ type ThemeContextType = {
     textVariants: Record<string, Partial<TextStyle>>;
     buttonSizeVariants: ButtonSizeVariants;
     buttonShapeVariants: ButtonShapeVariants;
+    textInputStyleVariants: TextInputStyleVariants;
+    textInputSizeVariants: TextInputSizeVariants;
 };
 
 /**
@@ -40,6 +43,8 @@ const ThemeContext = createContext<ThemeContextType>({
     textVariants: defaultTextVariants,
     buttonSizeVariants: defaultButtonSizeVariants,
     buttonShapeVariants: defaultButtonShapeVariants,
+    textInputStyleVariants: defaultTextInputStyleVariants,
+    textInputSizeVariants: defaultTextInputSizeVariants
 });
 
 /**
@@ -58,6 +63,8 @@ type ThemeProviderProps = {
     textVariants?: Record<string, Partial<TextStyle>>;
     buttonSizeVariants?: ButtonSizeVariants;
     buttonShapeVariants?: ButtonShapeVariants;
+    textInputStyleVariants?: TextInputStyleVariants;
+    textInputSizeVariants?: TextInputSizeVariants;
     children: React.ReactNode;
 };
 
@@ -72,6 +79,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     textVariants,
     buttonSizeVariants,
     buttonShapeVariants,
+    textInputStyleVariants,
+    textInputSizeVariants,
     children,
 }) => {
     const appliedTheme: ThemeContextType = {
@@ -79,6 +88,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         textVariants: { ...defaultTextVariants, ...textVariants },
         buttonSizeVariants: { ...defaultButtonSizeVariants, ...buttonSizeVariants },
         buttonShapeVariants: { ...defaultButtonShapeVariants, ...buttonShapeVariants },
+        textInputStyleVariants: { ...defaultTextInputStyleVariants, ...textInputStyleVariants },
+        textInputSizeVariants: { ...defaultTextInputSizeVariants, ...textInputSizeVariants },
     };
 
     return <ThemeContext.Provider value={appliedTheme}>{children}</ThemeContext.Provider>;

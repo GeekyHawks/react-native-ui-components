@@ -14,7 +14,6 @@ import {
     PressableProps,
     StyleProp,
     StyleSheet,
-    Text,
     TextStyle,
     View,
     ViewStyle,
@@ -22,6 +21,7 @@ import {
     Animated
 } from 'react-native';
 import { DefaultButtonShapes, DefaultButtonSizes, useTheme } from "../../theme";
+import Text from "../Text";
 
 /**
  * Props for custom Button component
@@ -194,6 +194,9 @@ const Button: React.FC<Props> = ({
             accessibilityRole="button"
             accessibilityLabel={accessibilityLabel || (typeof children === 'string' ? children : "Button")}
             accessibilityHint={accessibilityHint}
+            style={({ pressed }) => [
+                fullWidth ? { alignSelf: 'stretch' } : { alignSelf: 'flex-start' },
+            ]}
             {...rest}
         >
             <Animated.View
@@ -212,7 +215,6 @@ const Button: React.FC<Props> = ({
                     },
                     animation === 'shadow' && shadowStyle,
                     disabled && styles.disabled,
-                    fullWidth ? { alignSelf: 'stretch' } : { alignSelf: 'flex-start' },
                     containerStyle,
                 ]}
             >
@@ -228,12 +230,9 @@ const Button: React.FC<Props> = ({
                     ) : (
                         !!children && (
                             <Text
-                                style={[
-                                    styles.text,
-                                    { color: textColor, fontFamily: theme.fontFamily },
-                                    sizeVariant.text,
-                                    textStyle,
-                                ]}
+                                color={textColor}
+                                fontFamily={theme.fontFamily}
+                                style={[styles.text, sizeVariant.text, textStyle]}
                             >
                                 {children}
                             </Text>

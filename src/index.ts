@@ -16,6 +16,10 @@ export * from './theme';
 export { default as Text } from './components/Text';
 export type { TextProps } from './components/Text';
 
+// TextInput Component
+export { default as TextInput } from './components/TextInput';
+export type { TextInputProps } from './components/TextInput';
+
 // Button Component
 export { default as Button } from './components/Button';
 export type { ButtonProps } from './components/Button';

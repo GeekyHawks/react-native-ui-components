@@ -1,6 +1,6 @@
 # Geeky Hawks React Native UI Components
 
-A lightweight and reusable React Native component library by [**Geeky Hawks**](https://www.geekyhawks.com), including customizable `Text`, `TextInput`, `Button`, `StatusBar`, and more. Fully built with **TypeScript**, theme support, and easy integration into any React Native project.
+A lightweight and reusable React Native component library by [**Geeky Hawks**](https://www.geekyhawks.com), including customizable `Text`, `TextInput`, `Button`, `FloatingLabelTextInput`, and more. Fully built with **TypeScript**, theme support, and easy integration into any React Native project.
 
 [![npm version](https://img.shields.io/npm/v/@geekyhawks/react-native-ui-components.svg)](https://www.npmjs.com/package/@geekyhawks/react-native-ui-components)
 [![License](https://img.shields.io/npm/l/@geekyhawks/react-native-ui-components.svg)](LICENSE)
@@ -8,8 +8,8 @@ A lightweight and reusable React Native component library by [**Geeky Hawks**](h
 
 ## Features
 
-- Customizable **Text**, **TextInput**, **Button**, **ActivityIndicator**, and more
-- Custom **StatusBar** that *actually* works consistently on iOS and Android
+- Customizable **Text**, **TextInput**, **Button**, **FloatingLabelTextInput**, and more
+- Custom **StatusBar** that *actually* works consistently on iOS and Android (coming soon)
 - TypeScript support with type definitions
 - Lightweight and easy to integrate
 
@@ -32,7 +32,7 @@ yarn add @geekyhawks/react-native-ui-components
 ```tsx
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ThemeProvider, Text } from '@geekyhawks/react-native-ui-components';
+import { ThemeProvider, Text, TextInput, FloatingLabelTextInput, Button } from '@geekyhawks/react-native-ui-components';
 
 export default function App() {
   return (
@@ -42,6 +42,18 @@ export default function App() {
         <Text style={{ fontSize: 20 }}>Styled Text</Text>
         <Text variant="h1">Heading Text</Text>
         <Text variant="body">Body Text</Text>
+
+        <TextInput placeholder="Default Input" label="Default" />
+        <TextInput placeholder="Underline Input" label="Underline" variant="underline" />
+
+        <FloatingLabelTextInput
+          label="Email Address"
+          variant="outline"
+          helperText="We will never share your email"
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+
         <Button onPress={() => console.log("Pressed!")}>
           Default Button
         </Button>
@@ -186,7 +198,7 @@ const customButtonShapeVariants: ButtonShapeVariants = {
 - **Text**: Customizable wrapper around React Native's `Text`  
 - **Button**: Enhanced button component with default styles and theme support  
 - **TextInput**: Styled input field with theme support  
-- **ActivityIndicator**: Custom loader component  
+- **FloatingLabelTextInput**: Input field with floating label  
 
 Each component supports style overrides and common React Native props.
 

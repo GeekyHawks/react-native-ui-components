@@ -24,12 +24,9 @@ import {
   Theme,
   TextVariants,
   Button,
-  ButtonSizeVariants,
-  ButtonShapeVariants,
   TextInput,
   FloatingLabelTextInput
 } from '@geekyhawks/react-native-ui-components';
-import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 
 export default function App() {
   const isDarkMode = useColorScheme() === "dark";
@@ -44,33 +41,29 @@ export default function App() {
           backgroundColor: defaultLightTheme.colors.background,
         }}
       >
-        <ScrollView
-          showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ gap: 16 }}>
           <Text>Hello World (default text)</Text>
 
-          <TextInput
-            placeholder="Default InputText"
-            label="Default"
-            containerStyle={{ marginTop: 10 }} />
+          <TextInput placeholder="Default Input" label="Default" />
 
           <TextInput
-            placeholder="Underline Example"
+            placeholder="Underline Input"
             label="Underline"
             variant="underline"
-            containerStyle={{ marginTop: 10 }} />
+          />
 
           <TextInput
-            placeholder="Filled Example"
+            placeholder="Filled Input with error"
             label="Filled"
             variant="filled"
+            error="Invalid input"
             errorPosition="right"
-            containerStyle={{ marginTop: 10 }} />
+          />
 
           <TextInput
             label="Password"
-            placeholder="Enter your password"
+            placeholder="Enter password"
             secureTextEntry
-            error="Password must be at least 6 characters"
             passwordToggleIcons={{
               show: (
                 <Image
@@ -85,36 +78,15 @@ export default function App() {
                   style={{ width: 20, height: 20, tintColor: "#007bff" }}
                   resizeMode="contain"
                 />
-              )
+              ),
             }}
-            containerStyle={{ marginTop: 10 }}
-          />
-
-          <TextInput
-            label="Username"
-            placeholder="Username"
-            size="md"
-            helperText="Validating..."
-            loading
-            containerStyle={{ marginTop: 20 }}
-          />
-
-          <TextInput
-            label="Email (Disabled)"
-            placeholder="Disabled input"
-            helperText="You cannot edit this field"
-            disabled
-            containerStyle={{ marginTop: 20 }}
           />
 
           <TextInput
             label="Bio"
             placeholder="Write something about yourself..."
-            size="md"
-            helperText="You can write multiple lines"
             multiline
             numberOfLines={4}
-            containerStyle={{ marginTop: 20 }}
           />
 
           <FloatingLabelTextInput
@@ -124,46 +96,17 @@ export default function App() {
             keyboardType="email-address"
             autoCapitalize="none"
             size="lg"
-            containerStyle={{ marginTop: 20 }}
           />
 
-          <FloatingLabelTextInput
-            label="Username"
-            variant="underline"
-            helperText="Choose a unique username"
-            autoCapitalize="none"
-            containerStyle={{ marginTop: 20 }}
-          />
-
-          <FloatingLabelTextInput
-            label="Description"
-            variant="outline"
-            multiline
-            numberOfLines={4}
-            helperText="Enter at least 20 characters"
-            containerStyle={{ marginTop: 20 }}
-          />
-
-          <FloatingLabelTextInput
-            label="Description"
-            variant="underline"
-            multiline
-            numberOfLines={4}
-            helperText="Enter at least 20 characters"
-            containerStyle={{ marginTop: 20 }}
-          />
-
-          <Button onPress={() => console.log("One!")}
-            containerStyle={{ marginTop: 10 }}
-            fullWidth>
-            Default Button Here Nice
+          <Button onPress={() => console.log("Pressed!")} fullWidth>
+            Default Button
           </Button>
         </ScrollView>
       </SafeAreaView>
     </ThemeProvider>
   );
 
-  // 2️⃣ Light / Dark Example
+  // 2️⃣ Light / Dark Theme Example
   const lightDarkExample = (
     <ThemeProvider theme={isDarkMode ? defaultDarkTheme : defaultLightTheme}>
       <StatusBar
@@ -184,23 +127,31 @@ export default function App() {
         }}
       >
         <ScrollView contentContainerStyle={{ gap: 16 }}>
-          <Text variant="h1">Heading (h1)</Text>
-          <Text variant="h2">Subheading (h2)</Text>
-          <Text variant="body">Body text</Text>
-          <Text variant="caption">Caption text</Text>
+          <Text variant="h1">Heading</Text>
+          <Text variant="body">Body text example</Text>
 
           <View style={{ gap: 12 }}>
             <Button>Solid</Button>
             <Button variant="outline">Outline</Button>
-            <Button variant="ghost">Ghost</Button>
             <Button fullWidth>Full Width</Button>
           </View>
+
+          <TextInput placeholder="Default Input" label="Default" />
+
+          <FloatingLabelTextInput
+            label="Email Address"
+            variant="outline"
+            helperText="We will never share your email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            size="lg"
+          />
         </ScrollView>
       </SafeAreaView>
     </ThemeProvider>
   );
 
-  // 3️⃣ Custom Example
+  // 3️⃣ Custom Theme Example
   const customTheme: Theme = {
     fontFamily: "Roboto",
     colors: {
@@ -217,33 +168,11 @@ export default function App() {
   const customTextVariants: TextVariants = {
     ...defaultTextVariants,
     body: { fontSize: 20 },
-    customTitle: {
-      fontSize: 22,
-      fontStyle: "italic",
-      color: "#4B0082",
-    },
-  };
-
-  const customButtonSizeVariants: ButtonSizeVariants = {
-    bigButton: {
-      container: { paddingVertical: 18, paddingHorizontal: 24 },
-      text: { fontSize: 18 },
-    },
-  };
-
-  const customButtonShapeVariants: ButtonShapeVariants = {
-    rounded: {
-      borderRadius: 20,
-    },
+    customTitle: { fontSize: 22, fontStyle: "italic", color: "#4B0082" },
   };
 
   const customExample = (
-    <ThemeProvider
-      theme={customTheme}
-      textVariants={customTextVariants}
-      buttonSizeVariants={customButtonSizeVariants}
-      buttonShapeVariants={customButtonShapeVariants}
-    >
+    <ThemeProvider theme={customTheme} textVariants={customTextVariants}>
       <SafeAreaView
         style={{
           flex: 1,
@@ -253,69 +182,43 @@ export default function App() {
       >
         <ScrollView contentContainerStyle={{ gap: 16 }}>
           <Text variant="body">Custom Body Text</Text>
-          <Text variant="customTitle">Custom Title Variant</Text>
+          <Text variant="customTitle">Custom Title</Text>
 
           <Button size="bigButton" shape="rounded" colorScheme="secondary">
             Custom Button
           </Button>
 
           <Button
-            size="bigButton"
-            shape="rounded"
-            colorScheme="secondary"
-            loading
-          >
-            Loading Button
-          </Button>
-
-          <Button
             size="md"
             variant="solid"
             colorScheme="secondary"
-            onPress={() => console.log('Pressed!')}
-            containerStyle={{ marginTop: 10 }}
             leftIcon={
               <Image
                 source={require("./src/assets/press-button.png")}
-                tintColor={"white"}
                 style={{ width: 20, height: 20, marginRight: 6 }}
               />
             }
-            animation="shadow"
           >
             Left Icon
           </Button>
 
-          <Button
-            size="sm"
-            variant="outline"
-            colorScheme="secondary"
-            containerStyle={{ marginTop: 20 }}
-            animation="scale"
-            rightIcon={
-              <Image
-                source={require("./src/assets/send.png")}
-                tintColor={"#4B0082"}
-                style={{ width: 20, height: 20, marginRight: 6 }}
-              />
-            }
-          >
-            Right Icon
-          </Button>
+          <TextInput placeholder="Default Input" label="Default" />
 
-          {/* Make sure to setup MaterialIcons (or your preferred icon library) before using */}
-          <Button
-            leftIcon={<MaterialIcons name="home" color="white" size={20} />}
-          >
-            Left Material Icon
-          </Button>
+          <FloatingLabelTextInput
+            label="Email Address"
+            variant="outline"
+            helperText="We will never share your email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            size="lg"
+          />
         </ScrollView>
       </SafeAreaView>
     </ThemeProvider>
   );
 
   // 👇 Toggle which example to display
-  const exampleToShow: string = "minimal"; // "minimal" | "lightDark" | "custom"
+  const exampleToShow: string = "custom"; // "minimal" | "lightDark" | "custom"
 
   return (
     <SafeAreaProvider>

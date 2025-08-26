@@ -1,6 +1,8 @@
 # Geeky Hawks React Native UI Components
 
-A lightweight and reusable React Native component library by [**Geeky Hawks**](https://www.geekyhawks.com), including customizable `Text`, `TextInput`, `Button`, `FloatingLabelTextInput`, and more. Fully built with **TypeScript**, theme support, and easy integration into any React Native project.
+A lightweight and reusable React Native UI components library with Text, TextInput, FloatingLabelTextInput, Button, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.
+
+✨ Developed & Maintained by [Geeky Hawks](https://www.geekyhawks.com).
 
 [![npm version](https://img.shields.io/npm/v/@geekyhawks/react-native-ui-components.svg)](https://www.npmjs.com/package/@geekyhawks/react-native-ui-components)
 [![License](https://img.shields.io/npm/l/@geekyhawks/react-native-ui-components.svg)](LICENSE)

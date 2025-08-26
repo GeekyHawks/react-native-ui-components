@@ -24,7 +24,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import TextDemoScreen from "./src/screens/TextDemoScreen";
 import ButtonDemoScreen from "./src/screens/ButtonDemoScreen";
 import TextInputDemoScreen from "./src/screens/TextInputDemoScreen";
-import FloatingLabelTextInputDemo from "./src/screens/FloatingLabelTextInputDemo";
+import FloatingLabelDemoScreen from "./src/screens/FloatingLabelDemoScreen";
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -46,7 +46,7 @@ export default function App() {
 				<Stack.Screen name="Text" component={TextDemoScreen} />
 				<Stack.Screen name="Button" component={ButtonDemoScreen} />
 				<Stack.Screen name="TextInput" component={TextInputDemoScreen} />
-				<Stack.Screen name="FloatingLabelTextInput" component={FloatingLabelTextInputDemo} />
+				<Stack.Screen name="FloatingLabelTextInput" component={FloatingLabelDemoScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

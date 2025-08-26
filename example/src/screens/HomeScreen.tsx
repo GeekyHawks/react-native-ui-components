@@ -51,7 +51,7 @@ export default function HomeScreen() {
 
             <Button
                 style={styles.button}
-                onPress={() => navigation.navigate("TextInput")}
+                onPress={() => navigation.navigate("FloatingLabelTextInput")}
             >
                 FloatingLabelTextInput
             </Button>

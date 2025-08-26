@@ -23,7 +23,8 @@ import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-na
 import HomeScreen from "./src/screens/HomeScreen";
 import TextDemoScreen from "./src/screens/TextDemoScreen";
 import ButtonDemoScreen from "./src/screens/ButtonDemoScreen";
-import TextInputDemo from "./src/screens/TextInputDemo";
+import TextInputDemoScreen from "./src/screens/TextInputDemoScreen";
+import FloatingLabelTextInputDemo from "./src/screens/FloatingLabelTextInputDemo";
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -44,8 +45,8 @@ export default function App() {
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Text" component={TextDemoScreen} />
 				<Stack.Screen name="Button" component={ButtonDemoScreen} />
-				<Stack.Screen name="TextInput" component={TextInputDemo} />
-				<Stack.Screen name="FloatingLabelTextInput" component={TextInputDemo} />
+				<Stack.Screen name="TextInput" component={TextInputDemoScreen} />
+				<Stack.Screen name="FloatingLabelTextInput" component={FloatingLabelTextInputDemo} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

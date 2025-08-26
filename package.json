@@ -1,7 +1,7 @@
 {
   "name": "@geekyhawks/react-native-ui-components",
   "version": "0.1.0",
-  "description": "A lightweight, reusable React Native UI component library providing customizable Text, TextInput, Button, StatusBar, ActivityIndicator, and more. Fully typed with TypeScript and designed for easy integration in any React Native project.",
+  "description": "A lightweight and reusable React Native UI components library with customizable Text, TextInput, FloatingLabelTextInput, Button, and more. Built with TypeScript, fully typed, and designed for easy integration into any React Native project.",
   "author": "Geeky Hawks FZE LLC",
   "license": "MIT",
   "main": "dist/index.js",
@@ -42,7 +42,11 @@
     "statusbar",
     "typescript",
     "react",
-    "rn"
+    "rn",
+    "floating-label",
+    "floating-label-text-input",
+    "floatinglabeltextinput",
+    "floating label text input"
   ],
   "peerDependencies": {
     "react": ">=17.0.0",

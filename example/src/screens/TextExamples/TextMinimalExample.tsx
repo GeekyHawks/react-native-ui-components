@@ -1,5 +1,5 @@
 /**
- * TextMinimalExample.tsx
+ * TextMinimalExample
  *
  * This screen shows **minimal examples** of the `Text` component.
  *

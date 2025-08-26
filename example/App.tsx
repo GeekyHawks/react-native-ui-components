@@ -22,7 +22,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import TextDemoScreen from "./src/screens/TextDemoScreen";
-import ButtonDemo from "./src/screens/ButtonDemo";
+import ButtonDemoScreen from "./src/screens/ButtonDemoScreen";
 import TextInputDemo from "./src/screens/TextInputDemo";
 
 export type RootStackParamList = {
@@ -43,7 +43,7 @@ export default function App() {
 			<Stack.Navigator initialRouteName="Home">
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Text" component={TextDemoScreen} />
-				<Stack.Screen name="Button" component={ButtonDemo} />
+				<Stack.Screen name="Button" component={ButtonDemoScreen} />
 				<Stack.Screen name="TextInput" component={TextInputDemo} />
 				<Stack.Screen name="FloatingLabelTextInput" component={TextInputDemo} />
 			</Stack.Navigator>

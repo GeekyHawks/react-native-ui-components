@@ -10,10 +10,11 @@ A lightweight and reusable React Native UI components library with Text, TextInp
 
 ## Features
 
-- Customizable **Text**, **TextInput**, **Button**, **FloatingLabelTextInput**, and more
-- Custom **StatusBar** that *actually* works consistently on iOS and Android (coming soon)
-- TypeScript support with type definitions
-- Lightweight and easy to integrate
+- Pre-styled, customizable components: **Text**, **Button**, **TextInput**, **FloatingLabelTextInput**, and more coming soon.
+- Custom **StatusBar** that *actually* works consistently on iOS and Android (coming soon).
+- Built with **TypeScript** for type safety.
+- **Theme support** for global customization.
+- Lightweight and easy to integrate into existing projects.
 
 
 ## Installation
@@ -26,10 +27,20 @@ npm install @geekyhawks/react-native-ui-components
 yarn add @geekyhawks/react-native-ui-components
 ```
 
+## Available Components
 
-## Usage
+- **Text**: Customizable wrapper around React Native's `Text`.  
+- **Button**: Enhanced button component with default styles and theme support.  
+- **TextInput**: Styled input field with theme support.  
+- **FloatingLabelTextInput**: Input field with floating label.  
 
-### Minimal Usage
+Each component supports style overrides and common React Native props.
+
+> 🖌️ All components are **theme-ready** — you can customize fonts, colors, and variants globally using the [ThemeProvider](./docs/Theme.md).
+
+⚠️ **Important:** The `ThemeProvider` should wrap your entire app (usually in `App.tsx`), so that all components can access the theme consistently.
+
+## Quick Usage Examples
 
 ```tsx
 import React from 'react';
@@ -41,16 +52,12 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider>
         <Text>Hello, World!</Text>
-        <Text style={{ fontSize: 20 }}>Styled Text</Text>
         <Text variant="h1">Heading Text</Text>
-        <Text variant="body">Body Text</Text>
 
         <TextInput placeholder="Default Input" label="Default" />
-        <TextInput placeholder="Underline Input" label="Underline" variant="underline" />
 
         <FloatingLabelTextInput
           label="Email Address"
-          variant="outline"
           helperText="We will never share your email"
           keyboardType="email-address"
           autoCapitalize="none"
@@ -65,144 +72,19 @@ export default function App() {
 }
 ```
 
-### With custom theme
 
-```tsx
-import React from 'react';
-import { Image } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ThemeProvider, Text, defaultTextVariants, Theme, TextVariants, ButtonSizeVariants, ButtonShapeVariants, Button } from '@geekyhawks/react-native-ui-components';
-import { MaterialIcons } from '@react-native-vector-icons/material-icons';
+## Documentation
 
-const customTheme: Theme = {
-  fontFamily: 'Roboto',
-  colors: {
-    text: '#222222',
-    background: '#FAFAFA',
-    primary: '#FF6347',
-    secondary: '#4B0082',
-    error: '#FF0000',
-  },
-};
+Detailed documentation for each component (props, advanced examples, and customization) lives in the docs
+ folder:
 
-const customTextVariants: TextVariants = {
-  ...defaultTextVariants,
-  body: { fontSize: 26 },
-  customTitle: { fontSize: 22, fontStyle: 'italic', color: '#4B0082' },
-};
+- [Theme](./docs/Theme.md)
+- [Text](./docs/Text.md)
+- [Button](./docs/Button.md)
+- [TextInput](./docs/TextInput.md)
+- [FloatingLabelTextInput](./docs/FloatingLabelTextInput.md)
 
-const customButtonSizeVariants: ButtonSizeVariants = {
-  bigButton: {
-    container: { paddingVertical: 18, paddingHorizontal: 24 },
-    text: { fontSize: 18 },
-  },
-};
-
-const customButtonShapeVariants: ButtonShapeVariants = {
-  rounded: {
-    borderRadius: 20,
-  },
-};
-
-export default function App() {
-  return (
-    <SafeAreaProvider>
-      <ThemeProvider
-        theme={customTheme}
-        textVariants={customTextVariants}
-        buttonSizeVariants={customButtonSizeVariants}
-        buttonShapeVariants={customButtonShapeVariants}>
-        <Text variant="h1">Heading Text</Text>
-        <Text variant="body">Body Text</Text>
-        <Text variant="customTitle">Custom Text</Text>
-        <Button size="bigButton" shape="rounded" colorScheme="secondary">
-          Custom Button
-        </Button>
-        <Button
-          size="md"
-          variant="solid"
-          colorScheme="secondary"
-          onPress={() => console.log('Pressed!')}
-          containerStyle={{ marginTop: 10 }}
-          leftIcon={
-            <Image
-              source={require("./src/assets/press-button.png")}
-              tintColor={"white"}
-              style={{ width: 20, height: 20, marginRight: 6 }}
-            />
-          }
-          animation="shadow"
-        >
-          Left Icon
-        </Button>
-
-        {/* Make sure to setup MaterialIcons (or your preferred icon library) before using */}
-        <Button
-          leftIcon={<MaterialIcons name="home" color="white" size={20} />}
-        >
-          Left Material Icon
-        </Button>
-      </ThemeProvider>
-    </SafeAreaProvider>
-  );
-}
-```
-
-
-## Theme & Text, Button Variants
-
-You can customize your theme globally using the `ThemeProvider`. It supports the following options:
-
-- **fontFamily**: Default font for all components  
-- **colors**: Object containing `text`, `background`, `primary`, `secondary`, `error`  
-- **textVariants**: Define custom text styles like `h1`, `body`, or your own variant. You can keep defaults or override specific variants.
-- **buttonSizeVariants**: Define custom button sizes with padding, font size, and icon dimensions. Keep defaults (sm, md, lg) or override/add your own.
-- **buttonShapeVariants**: Define custom button shapes with corner radius values. Keep defaults (sm, md, lg, full) or override/add your own.
-### Example
-
-```ts
-import { Theme, TextVariants, defaultTextVariants, ButtonSizeVariants, ButtonShapeVariants } from '@geekyhawks/react-native-ui-components';
-
-const customTheme: Theme = {
-  fontFamily: 'Roboto',
-  colors: {
-    text: '#222222',
-    background: '#FAFAFA',
-    primary: '#FF6347',
-    secondary: '#4B0082',
-    error: '#FF0000',
-  },
-};
-
-const customTextVariants: TextVariants = {
-  ...defaultTextVariants, // keeps defaults like body, h1, h2, caption
-  body: { fontSize: 26 },
-  customTitle: { fontSize: 22, fontStyle: 'italic', color: '#4B0082' },
-};
-
-const customButtonSizeVariants: ButtonSizeVariants = {
-  bigButton: {
-    container: { paddingVertical: 18, paddingHorizontal: 24 },
-    text: { fontSize: 18 },
-  },
-};
-
-const customButtonShapeVariants: ButtonShapeVariants = {
-  rounded: {
-    borderRadius: 20,
-  },
-};
-```
-
-
-## Available Components
-
-- **Text**: Customizable wrapper around React Native's `Text`  
-- **Button**: Enhanced button component with default styles and theme support  
-- **TextInput**: Styled input field with theme support  
-- **FloatingLabelTextInput**: Input field with floating label  
-
-Each component supports style overrides and common React Native props.
+Each file includes props, usage, and customization examples.
 
 
 ## Contributing

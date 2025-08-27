@@ -1,0 +1,221 @@
+# FloatingLabelTextInput
+
+The `FloatingLabelTextInput` adds a floating label to `TextInput` that animates above the field when focused or when a value is present.
+
+## ✨ Why use the `FloatingLabelTextInput` component?
+
+React Native’s built-in TextInput provides raw input functionality but lacks advanced UX features like floating labels (where the placeholder animates into a label once you type). Developers often end up building custom animated wrappers, leading to inconsistent experiences across screens.
+
+Our FloatingLabelTextInput solves this by:
+
+- ✅ **Consistent UX** – Floating label behavior works out of the box.
+- ✅ **Theme Integration** – Colors, font sizes, and borders adapt to your theme automatically.
+- ✅ **Variants for Consistency** – Define input sizes and label styles via theme variants.
+- ✅ **Error & Helper Text** – Easily display validation errors and helper messages.
+- ✅ **Icon Support** – Add left/right icons for enhanced usability.
+- ✅ **Extendable** – Customize label animation, colors, or completely override styles.
+
+
+## Usage
+
+**Basic**
+
+```tsx
+import { Image } from "react-native";
+import { FloatingLabelTextInput, ThemeProvider } from '@geekyhawks/react-native-ui-components';
+
+export default function Example() {
+  return (
+    <ThemeProvider>
+      {/* FloatingLabelTextInput Variants */}
+      <FloatingLabelTextInput label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput variant="underline" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+
+      {/* FloatingLabelTextInput Size Variants */}
+      <FloatingLabelTextInput size="sm" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput size="md" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput size="lg" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+
+      {/* Password FloatingLabelTextInput with toggle */}
+      <FloatingLabelTextInput
+        label="Password"
+        placeholder="Enter your password"
+        secureTextEntry
+        passwordToggleIcons={{
+          show: (
+            <Image
+              source={require("../../assets/show-password.png")}
+              style={{ width: 20, height: 20, tintColor: "#007bff" }}
+              resizeMode="contain"
+            />
+          ),
+          hide: (
+            <Image
+              source={require("../../assets/hide-password.png")}
+              style={{ width: 20, height: 20, tintColor: "#007bff" }}
+              resizeMode="contain"
+            />
+          ),
+        }}
+        containerStyle={{ marginTop: 20 }}
+      />
+
+      {/* FloatingLabelTextInput with helperText and loading state */}
+      <FloatingLabelTextInput
+        label="Username"
+        placeholder="Username"
+        size="md"
+        helperText="Validating..."
+        value="johndoe"
+        loading
+        containerStyle={{ marginTop: 20 }}
+      />
+
+      {/* Disabled FloatingLabelTextInput */}
+      <FloatingLabelTextInput
+        label="Email (Disabled)"
+        placeholder="Disabled input"
+        helperText="You cannot edit this field"
+        disabled
+        containerStyle={{ marginTop: 20 }}
+      />
+
+      {/* Default FloatingLabelTextInput with Error */}
+      <FloatingLabelTextInput
+        label="Name"
+        placeholder="Your Name"
+        error="This is error"
+        errorPosition="right"
+        containerStyle={{ marginTop: 20 }}
+      />
+
+      {/* Default Multiline FloatingLabelTextInput */}
+      <FloatingLabelTextInput
+        label="Description"
+        multiline
+        numberOfLines={4}
+        helperText="Enter at least 20 characters"
+        containerStyle={{ marginTop: 20 }}
+      />
+    </ThemeProvider>
+  );
+}
+```
+
+**Light / Dark Theme**
+
+```tsx
+import { useColorScheme } from "react-native";
+import { defaultDarkTheme, defaultLightTheme, FloatingLabelTextInput, ThemeProvider } from "@geekyhawks/react-native-ui-components";
+
+export default function Example() {
+  const isDarkMode = useColorScheme() === "dark";
+
+  return (
+    <ThemeProvider theme={isDarkMode ? defaultDarkTheme : defaultLightTheme}>
+      <FloatingLabelTextInput label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput variant="underline" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+    </ThemeProvider>
+  );
+}
+```
+
+
+## Props
+
+| Prop         | Type                     | Default   | Description |
+|--------------|--------------------------|-----------|-------------|
+| `label`      | `string`                 | —         | Floating label text |
+| `variant`    | `"default" \| "outline"` | `"default"` | Input style variant |
+| `error`      | `string`                 | —         | Error message displayed below input |
+| `helperText` | `string`                 | —         | Helper text displayed below input |
+| `...props`   | `TextInputProps` (RN)    | —         | All native RN `TextInput` props |
+
+
+## 🎨 Variants
+
+FloatingLabelTextInput Style and Size Variants come from your theme configuration, ensuring consistent typography and styles across the app.
+
+### 1. Style Variants
+
+Control the visual style of the TextInput itself. Available options are:
+
+- **outline** → Text input with a visible border (default gray or themed color), transparent background.
+- **underline** → Text input with only a bottom border/underline, giving a lightweight look.
+
+Example
+
+```tsx
+<FloatingLabelTextInput variant="outline" />
+<FloatingLabelTextInput variant="underline" />
+```
+
+### 2 Size Variants
+
+Control the overall padding and font size and label font size of the text input.
+
+#### Default FloatingLabelTextInput Size Variants
+
+By default, the library ships with a set of default text input size variants:
+
+```tsx
+export const defaultFloatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants = {
+  sm: { fontSize: 14, paddingVertical: 6, labelFontSize: 11 },
+  md: { fontSize: 16, paddingVertical: 8, labelFontSize: 12 },
+  lg: { fontSize: 18, paddingVertical: 10, labelFontSize: 14 },
+};
+```
+
+You can use them directly:
+
+```tsx
+<FloatingLabelTextInput size="sm" />
+<FloatingLabelTextInput size="md" />
+<FloatingLabelTextInput size="lg" />
+```
+
+### 🔧 Customizing Variants
+
+You’re not limited to the defaults — you can extend them or define your own completely:
+
+#### Extend Default Variants
+
+```tsx
+const customFloatingSizeVariants: FloatingLabelTextInputSizeVariants = {
+  ...defaultFloatingLabelTextInputSizeVariants,  // extend existing ones
+  xl: { fontSize: 20, paddingVertical: 14, labelFontSize: 16 },
+};
+```
+
+#### Custom Variants
+
+```tsx
+const customFloatingSizeVariants: FloatingLabelTextInputSizeVariants = {
+  sm: { fontSize: 18, paddingVertical: 6, labelFontSize: 11 },
+  md: { fontSize: 20, paddingVertical: 8, labelFontSize: 12 },
+  lg: { fontSize: 22, paddingVertical: 10, labelFontSize: 14 },
+  xl: { fontSize: 24, paddingVertical: 14, labelFontSize: 16 },
+};
+```
+
+Then you can use:
+
+```tsx
+import { TextInput, ThemeProvider } from "@geekyhawks/react-native-ui-components";
+
+export default function Example() {
+  return (
+    <ThemeProvider floatingLabelTextInputSizeVariants={customFloatingSizeVariants}>
+      <FloatingLabelTextInput size="xl" label="XL Floating Label" placeholder="XL Floating Label" />
+    </ThemeProvider>
+  );
+}
+```
+
+## 📓 Notes
+
+- Theming ensures your floating labels, borders, and colors remain consistent across the app.
+- Especially useful in forms where multiple inputs need the same animated label behavior.
+- You can still pass all regular React Native TextInput props like secureTextEntry, keyboardType, autoCapitalize, etc.
+- Supports helper text, error messages, and icons without requiring extra wrappers.
+- Floating label animation is automatically triggered when the input is focused or contains a value.

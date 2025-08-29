@@ -29,7 +29,7 @@ export type TextInputStyleVariant = {
  * Keys are variant names (e.g., "outline", "filled", "underline", or custom),
  * and values are the corresponding `TextInputStyleVariant`.
  */
-export type TextInputStyleVariants = Record<string, TextInputStyleVariant>;
+export type TextInputStyleVariants = Record<DefaultTextInputStyles, TextInputStyleVariant> & Record<string, TextInputStyleVariant>;
 
 /**
  * DefaultTextInputStyles
@@ -103,7 +103,7 @@ export type TextInputSizeVariant = {
  * Keys are size names (e.g., "sm", "md", "lg", or custom),
  * and values are the corresponding `TextInputSizeVariant`.
  */
-export type TextInputSizeVariants = Record<string, TextInputSizeVariant>;
+export type TextInputSizeVariants = Record<DefaultTextInputSizes, TextInputSizeVariant> & Record<string, TextInputSizeVariant>;
 
 /**
  * DefaultTextInputSizes

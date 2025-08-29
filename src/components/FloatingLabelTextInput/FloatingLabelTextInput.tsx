@@ -18,7 +18,7 @@ import {
     TextStyle,
     View,
     TouchableOpacity,
-    ActivityIndicator,
+    ActivityIndicator
 } from "react-native";
 import {
     DefaultFloatingLabelTextInputStyles,
@@ -30,30 +30,57 @@ import Text from "../Text";
 /**
  * Props for FloatingLabelTextInput component
  *
- * - **label**: text for the floating label
- * - **variant**: choose style variant ("outline" | "underline")
- * - **size**: choose size variant ("sm" | "md" | "lg")
+ * - **containerStyle**: style for the outermost container
+ * - **disabled / loading**: disable input or show loading state
  * - **error**: optional error message to display below the input
  * - **errorPosition**: alignment of error text ("left" | "center" | "right")
+ * - **fullWidth**: make input expand to full width
  * - **helperText**: optional helper text to show below the input
- * - **disabled / loading**: disable input or show loading state
- * - **secureTextEntry**: toggle password visibility
+ * - **inputContainerStyle**: style for inner input container
+ * - **inputStyle**: style for TextInput itself
+ * - **label**: text for the floating label
+ * - **labelStyle**: style for the label text
+ * - **loading**: show loading state
  * - **multiline / numberOfLines**: enable multi-line text entry
- * 
+ * - **passwordToggleIcons**: icons for show/hide password
+ * - **rightIcon / leftIcon**: optional icons
+ * - **secureTextEntry**: toggle password visibility
+ * - **size**: choose size variant ("sm" | "md" | "lg")
+ * - **style**: additional TextStyle
+ * - **variant**: choose style variant ("outline" | "underline")
+ *
  * All standard React Native `TextInputProps` can also be applied.
  */
 export interface Props extends RNTextInputProps {
+    /** Style for the outermost container (margin, flex, etc.) */
+    containerStyle?: StyleProp<ViewStyle>;
+    /** Disable the input */
+    disabled?: boolean;
+    /** Error message to display below the input */
+    error?: string;
+    /** Error text alignment */
+    errorPosition?: "left" | "center" | "right";
+    /** Make input expand to fill parent width */
+    fullWidth?: boolean;
+    /** Optional helper text below the input */
+    helperText?: string;
+    /** Style for the inner input container (border, padding, etc.) */
+    inputContainerStyle?: StyleProp<ViewStyle>;
+    /** Style for the actual TextInput */
+    inputStyle?: StyleProp<TextStyle>;
+    /** Label for the input field */
     label: string;
-
-    /**
-     * Variants
-     *
-     * Choose from default style variants:
-     * - "outline": bordered box input with floating label
-     * - "underline": single underline input with floating label
-     */
-    variant?: DefaultFloatingLabelTextInputStyles | (string & {});
-
+    /** Style for the label */
+    labelStyle?: StyleProp<TextStyle>;
+    /** Show a loading indicator */
+    loading?: boolean;
+    /** Icons for password toggle, if not passed then Default Text "Show"/"Hide" will be shown */
+    passwordToggleIcons?: {
+        hide?: React.ReactNode; // To hide password
+        show?: React.ReactNode; // To show password
+    };
+    /** Show text as secure (password) */
+    secureTextEntry?: boolean;
     /**
      * Sizes
      *
@@ -63,27 +90,16 @@ export interface Props extends RNTextInputProps {
      * - "lg": large font, more padding, larger label
      */
     size?: DefaultFloatingLabelTextInputSizes | (string & {});
-
-    fullWidth?: boolean;
-
-    containerStyle?: StyleProp<ViewStyle>;
-    inputContainerStyle?: StyleProp<ViewStyle>;
-    inputStyle?: StyleProp<TextStyle>;
-    labelStyle?: StyleProp<TextStyle>;
-
-    error?: string;
-    /** Error text alignment */
-    errorPosition?: "left" | "center" | "right";
-    helperText?: string;
-
-    secureTextEntry?: boolean;
-    passwordToggleIcons?: {
-        show?: React.ReactNode;
-        hide?: React.ReactNode;
-    };
-
-    disabled?: boolean;
-    loading?: boolean;
+    /** Style prop for the TextInput itself */
+    style?: StyleProp<TextStyle>;
+    /**
+     * Variants
+     *
+     * Choose from default style variants:
+     * - "outline": bordered box input with floating label
+     * - "underline": single underline input with floating label
+     */
+    variant?: DefaultFloatingLabelTextInputStyles | (string & {});
 }
 
 /**
@@ -94,25 +110,25 @@ export interface Props extends RNTextInputProps {
  * and supports multiline input.
  */
 const FloatingLabelTextInput: React.FC<Props> = ({
-    label,
-    variant = "outline",
-    size = "md",
-    fullWidth = true,
-    containerStyle,
-    inputContainerStyle,
-    inputStyle,
-    labelStyle,
-    error,
-    errorPosition = "left",
-    helperText,
-    secureTextEntry,
-    passwordToggleIcons,
-    disabled = false,
-    loading = false,
-    style,
     accessible = true,
     accessibilityLabel,
     accessibilityState,
+    containerStyle,
+    disabled = false,
+    error,
+    errorPosition = "left",
+    fullWidth = true,
+    helperText,
+    inputContainerStyle,
+    inputStyle,
+    label,
+    labelStyle,
+    loading = false,
+    passwordToggleIcons,
+    secureTextEntry,
+    size = "md",
+    style,
+    variant = "outline",
     ...rest
 }) => {
     const {
@@ -120,6 +136,8 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         floatingLabelTextInputStyleVariants,
         floatingLabelTextInputSizeVariants,
     } = useTheme();
+
+    const AnimatedText = Animated.createAnimatedComponent(Text);
 
     const [isFocused, setFocused] = useState(false);
     const [value, setValue] = useState(rest.value?.toString() || "");
@@ -182,13 +200,23 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                         opacity: disabled ? 0.6 : 1,
                         flexDirection: "row",
                         alignItems: rest.multiline ? "flex-start" : "center",
+                        borderColor: variant === "outline"
+                            ? isError
+                                ? theme.colors.error
+                                : styleVariant.container?.borderColor || theme.colors.muted
+                            : undefined,
+                        borderBottomColor: variant === "underline"
+                            ? isError
+                                ? theme.colors.error
+                                : styleVariant.container?.borderColor || theme.colors.muted
+                            : undefined,
                     },
                     fullWidth && { width: "100%" },
                     inputContainerStyle,
                 ]}
             >
                 {/* Floating Label */}
-                <Animated.Text
+                <AnimatedText
                     style={[
                         {
                             position: "absolute",
@@ -207,7 +235,7 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                     ]}
                 >
                     {label}
-                </Animated.Text>
+                </AnimatedText>
 
                 <RNTextInput
                     {...rest}

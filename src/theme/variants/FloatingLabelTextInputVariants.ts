@@ -31,7 +31,7 @@ export type FloatingLabelTextInputStyleVariant = {
  * Keys are variant names (e.g., "outline", "underline", or custom),
  * and values are the corresponding `FloatingLabelTextInputStyleVariant`.
  */
-export type FloatingLabelTextInputStyleVariants = Record<string, FloatingLabelTextInputStyleVariant>;
+export type FloatingLabelTextInputStyleVariants = Record<DefaultFloatingLabelTextInputStyles, FloatingLabelTextInputStyleVariant> & Record<string, FloatingLabelTextInputStyleVariant>;
 
 /**
  * DefaultFloatingLabelTextInputStyles
@@ -106,7 +106,7 @@ export type FloatingLabelTextInputSizeVariant = {
  * Keys are size names (e.g., "sm", "md", "lg", or custom),
  * and values are the corresponding `FloatingLabelTextInputSizeVariant`.
  */
-export type FloatingLabelTextInputSizeVariants = Record<string, FloatingLabelTextInputSizeVariant>;
+export type FloatingLabelTextInputSizeVariants = Record<DefaultFloatingLabelTextInputSizes, FloatingLabelTextInputSizeVariant> & Record<string, FloatingLabelTextInputSizeVariant>;
 
 /**
  * DefaultFloatingLabelTextInputSizes

@@ -22,14 +22,14 @@ import { defaultFloatingLabelTextInputSizeVariants, defaultFloatingLabelTextInpu
  * Contains theme and textVariants for consumption in components.
  */
 type ThemeContextType = {
-    theme: Theme;
-    textVariants: Record<string, Partial<TextStyle>>;
-    buttonSizeVariants: ButtonSizeVariants;
     buttonShapeVariants: ButtonShapeVariants;
-    textInputStyleVariants: TextInputStyleVariants;
-    textInputSizeVariants: TextInputSizeVariants;
-    floatingLabelTextInputStyleVariants: FloatingLabelTextInputStyleVariants;
+    buttonSizeVariants: ButtonSizeVariants;
     floatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants;
+    floatingLabelTextInputStyleVariants: FloatingLabelTextInputStyleVariants;
+    textInputSizeVariants: TextInputSizeVariants;
+    textInputStyleVariants: TextInputStyleVariants;
+    textVariants: Record<string, Partial<TextStyle>>;
+    theme: Theme;
 };
 
 /**
@@ -37,19 +37,19 @@ type ThemeContextType = {
  *
  * Provides the current theme and text variants to all components
  * within the app. Components can consume this context to access
- * font family, colors, and text styles.
+ * font family, colors, spacing, and text styles.
  *
  * Default values are `defaultLightTheme` and `defaultTextVariants`.
  */
 const ThemeContext = createContext<ThemeContextType>({
-    theme: defaultLightTheme,
-    textVariants: defaultTextVariants,
-    buttonSizeVariants: defaultButtonSizeVariants,
     buttonShapeVariants: defaultButtonShapeVariants,
-    textInputStyleVariants: defaultTextInputStyleVariants,
-    textInputSizeVariants: defaultTextInputSizeVariants,
-    floatingLabelTextInputStyleVariants: defaultFloatingLabelTextInputStyleVariants,
+    buttonSizeVariants: defaultButtonSizeVariants,
     floatingLabelTextInputSizeVariants: defaultFloatingLabelTextInputSizeVariants,
+    floatingLabelTextInputStyleVariants: defaultFloatingLabelTextInputStyleVariants,
+    textInputSizeVariants: defaultTextInputSizeVariants,
+    textInputStyleVariants: defaultTextInputStyleVariants,
+    textVariants: defaultTextVariants,
+    theme: defaultLightTheme,
 });
 
 /**
@@ -64,43 +64,44 @@ export const useTheme = (): ThemeContextType => {
 };
 
 type ThemeProviderProps = {
-    theme?: Theme;
-    textVariants?: Record<string, Partial<TextStyle>>;
-    buttonSizeVariants?: ButtonSizeVariants;
-    buttonShapeVariants?: ButtonShapeVariants;
-    textInputStyleVariants?: TextInputStyleVariants;
-    textInputSizeVariants?: TextInputSizeVariants;
     children: React.ReactNode;
-    floatingLabelTextInputStyleVariants?: FloatingLabelTextInputStyleVariants;
     floatingLabelTextInputSizeVariants?: FloatingLabelTextInputSizeVariants;
+    floatingLabelTextInputStyleVariants?: FloatingLabelTextInputStyleVariants;
+    textInputSizeVariants?: TextInputSizeVariants;
+    textInputStyleVariants?: TextInputStyleVariants;
+    textVariants?: Record<string, Partial<TextStyle>>;
+    theme?: Theme;
+    buttonShapeVariants?: ButtonShapeVariants;
+    buttonSizeVariants?: ButtonSizeVariants;
 };
 
 /**
  * ThemeProvider
  *
- * Wrap your app and optionally pass a custom theme or textVariants.
- * Automatically merges default variants with user overrides.
+ * Wrap your app and optionally pass a custom theme, variants, or spacing.
+ * Only **replaces** the default values — no automatic merging.
+ * If users want defaults, they need to explicitly spread them.
  */
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-    theme,
-    textVariants,
-    buttonSizeVariants,
-    buttonShapeVariants,
-    textInputStyleVariants,
-    textInputSizeVariants,
-    floatingLabelTextInputStyleVariants,
-    floatingLabelTextInputSizeVariants,
     children,
+    floatingLabelTextInputSizeVariants,
+    floatingLabelTextInputStyleVariants,
+    textInputSizeVariants,
+    textInputStyleVariants,
+    textVariants,
+    theme,
+    buttonShapeVariants,
+    buttonSizeVariants,
 }) => {
     const appliedTheme: ThemeContextType = {
-        theme: { ...defaultLightTheme, ...theme },
-        textVariants: { ...defaultTextVariants, ...textVariants },
-        buttonSizeVariants: { ...defaultButtonSizeVariants, ...buttonSizeVariants },
-        buttonShapeVariants: { ...defaultButtonShapeVariants, ...buttonShapeVariants },
-        textInputStyleVariants: { ...defaultTextInputStyleVariants, ...textInputStyleVariants },
-        textInputSizeVariants: { ...defaultTextInputSizeVariants, ...textInputSizeVariants },
-        floatingLabelTextInputStyleVariants: { ...defaultFloatingLabelTextInputStyleVariants, ...floatingLabelTextInputStyleVariants },
-        floatingLabelTextInputSizeVariants: { ...defaultFloatingLabelTextInputSizeVariants, ...floatingLabelTextInputSizeVariants },
+        buttonShapeVariants: buttonShapeVariants ?? defaultButtonShapeVariants,
+        buttonSizeVariants: buttonSizeVariants ?? defaultButtonSizeVariants,
+        floatingLabelTextInputSizeVariants: floatingLabelTextInputSizeVariants ?? defaultFloatingLabelTextInputSizeVariants,
+        floatingLabelTextInputStyleVariants: floatingLabelTextInputStyleVariants ?? defaultFloatingLabelTextInputStyleVariants,
+        textInputSizeVariants: textInputSizeVariants ?? defaultTextInputSizeVariants,
+        textInputStyleVariants: textInputStyleVariants ?? defaultTextInputStyleVariants,
+        textVariants: textVariants ?? defaultTextVariants,
+        theme: theme ?? defaultLightTheme,
     };
 
     return <ThemeContext.Provider value={appliedTheme}>{children}</ThemeContext.Provider>;

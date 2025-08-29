@@ -26,7 +26,7 @@ export type TextVariant = Partial<TextStyle>;
  * Keys are variant names (e.g., "body", "h1", or custom names),
  * and values are the corresponding TextVariant styles.
  */
-export type TextVariants = Record<string, TextVariant>;
+export type TextVariants = Record<DefaultTextVariants, TextVariant> & Record<string, TextVariant>;
 
 /**
  * DefaultTextVariants

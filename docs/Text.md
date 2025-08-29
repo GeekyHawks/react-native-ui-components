@@ -57,15 +57,15 @@ export default function Example() {
 
 ## 🔧 Props
 
-| Prop         | Type                  | Default   | Description |
-|--------------|-----------------------|-----------|-------------|
-| `variant`    | `keyof TextVariants`  | `"body"`  | Predefined text style (from theme). `"h1"`, `"h2"`, `"body"`, `"caption"`. |
-| `color`      | `string`              | Theme default | Text color, overrides theme. |
-| `style`      | `TextStyle`           | —         | Custom style override. |
-| `children`   | `React.ReactNode`     | —         | Text content. |
-| `numberOfLines` | `number`           | —         | Limits number of lines (truncates with ellipsis). |
-| `ellipsizeMode` | `"head" \| "middle" \| "tail" \| "clip"` | `"tail"` | Defines ellipsis position when truncated. |
-| `...props`   | All RN `Text` props   | —         | Any additional native Text props. |
+
+| Prop         | Type                 | Default       | Description                                                                |
+| ------------ | -------------------- | ------------- | -------------------------------------------------------------------------- |
+| `children`   | `React.ReactNode`    | —             | Text content.                                                              |
+| `color`      | `string`             | Theme default | Text color, overrides theme.                                               |
+| `fontFamily` | `string`             | Theme default | Font family applied to the text.                                           |
+| `style`      | `TextStyle`          | —             | Custom style override.                                                     |
+| `variant`    | `keyof TextVariants` | `"body"`      | Predefined text style (from theme). `"h1"`, `"h2"`, `"body"`, `"caption"`. You can also extend the theme with custom variants and pass their keys here. |
+| `...props`   | All RN `Text` props  | —             | Any additional native Text props.                                          |
 
 
 ## 🎨 Variants

@@ -124,18 +124,26 @@ export default function Example() {
 
 ## 🔧 Props
 
-| Prop           | Type                       | Default   | Description |
-|----------------|----------------------------|-----------|-------------|
-| `variant`      | `"solid" \| "outline" \| "ghost"` | `"solid"` | Button style variant |
-| `size`         | keyof `ButtonSizeVariants` | `"md"`    | Button size (`sm`, `md`, `lg`, or custom) |
-| `shape`        | keyof `ButtonShapeVariants`| `"md"`    | Button shape (`sm`, `md`, `lg`, `full`, or custom) |
-| `colorScheme`  | `"primary" \| "secondary" \| "error"` | `"primary"` | Color scheme from theme |
-| `leftIcon`     | `React.ReactNode`          | —         | Icon or element on the left |
-| `rightIcon`    | `React.ReactNode`          | —         | Icon or element on the right |
-| `loading`      | `boolean`                  | `false`   | Shows loading state |
-| `disabled`     | `boolean`                  | `false`   | Disables the button |
-| `animation`    | `"none" \| "shadow" \| "scale"` | `"none"` | Animation effect on press |
-| `...props`     | `PressableProps`           | —         | All native RN `Pressable` props |
+| Prop                 | Type                                                                   | Default     | Description                                          |
+| -------------------- | ---------------------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `accessibilityHint`  | `string`                                                               | —           | Accessibility hint for screen readers.               |
+| `accessibilityLabel` | `string`                                                               | —           | Accessibility label for screen readers.              |
+| `animation`          | `"scale" \| "opacity" \| "shadow" \| "scaleOpacity" \| "none"`         | `"scale"`   | Animation effect on press.                           |
+| `children`           | `React.ReactNode`                                                      | —           | Button label or content.                             |
+| `colorScheme`        | `keyof ReturnType<typeof useTheme>["theme"]["colors"]`                 | `"primary"` | Color scheme from theme (extendable via theme).      |
+| `containerStyle`     | `StyleProp<ViewStyle>`                                                 | —           | Custom style override for the button container.      |
+| `disabled`           | `boolean`                                                              | `false`     | Disables the button.                                 |
+| `fullWidth`          | `boolean`                                                              | `false`     | Makes the button stretch to full container width.    |
+| `leftIcon`           | `React.ReactNode`                                                      | —           | Icon or element on the left.                         |
+| `loading`            | `boolean`                                                              | `false`     | Shows loading state.                                 |
+| `loadingIndicator`   | `React.ReactNode`                                                      | —           | Custom loading indicator (replaces default spinner). |
+| `onPress`            | `(event: GestureResponderEvent) => void`                               | —           | Callback when button is pressed.                     |
+| `rightIcon`          | `React.ReactNode`                                                      | —           | Icon or element on the right.                        |
+| `shape`              | `DefaultButtonShapes \| (string & {})` <br> *(sm \| md \| lg \| full)* | `"md"`      | Button shape (predefined or custom).                 |
+| `size`               | `DefaultButtonSizes \| (string & {})` <br> *(sm \| md \| lg)*          | `"md"`      | Button size (predefined or custom).                  |
+| `textStyle`          | `StyleProp<TextStyle>`                                                 | —           | Custom style override for the button text.           |
+| `variant`            | `"solid" \| "outline" \| "ghost"`                                      | `"solid"`   | Button style variant.                                |
+| `...props`           | `PressableProps`                                                       | —           | All native RN `Pressable` props.                     |
 
 
 ## 🎨 Variants & Theming

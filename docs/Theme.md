@@ -16,6 +16,12 @@ It ensures consistency, reduces repeated styles, and makes your app easier to ma
 
 Wrap your app with the `ThemeProvider` to enable theme support.
 
+👉 The library ships with basic built-in themes: `defaultLightTheme` and `defaultDarkTheme`.
+
+```tsx
+import { defaultLightTheme, defaultDarkTheme } from "@geekyhawks/react-native-ui-components";
+```
+
 👉 If you don’t provide a `theme` prop, the library will automatically use the built-in **`defaultLightTheme`**.
 
 ⚠️ **Important:** The `ThemeProvider` should wrap your entire app (usually in `App.tsx`), so that all components can access the theme consistently.
@@ -33,6 +39,7 @@ export default function App() {
   );
 }
 ```
+
 👆 This uses the `defaultLightTheme` under the hood.
 
 ### With Light / Dark Mode
@@ -53,6 +60,8 @@ export default function App() {
   );
 }
 ```
+
+👉 You’re not limited to the built-in light and dark themes — you can also define and pass your own custom themes to fully match your brand or design system.
 
 
 ## 🔧 Theme Structure
@@ -88,30 +97,9 @@ export const defaultDarkTheme: Theme = {
 ```
 
 
-## 🎨 Accessing the Theme in Components
+## 🛠 Custom Theme
 
-All built-in components (Text, Button, TextInput, FloatingLabelTextInput) automatically pull values from the theme.
-
-You can also access the theme in your custom components using the `useTheme` hook:
-
-```tsx
-import { useTheme, Text } from "@geekyhawks/react-native-ui-components";
-
-export default function ThemedBox() {
-  const { theme } = useTheme();
-
-  return (
-    <View style={{ backgroundColor: theme.colors.background }}>
-      <Text color={theme.colors.text}>This box uses theme values!</Text>
-    </View>
-  );
-}
-```
-
-
-## 🛠 Extending the Theme
-
-You can override or extend the default theme to fit your design system.
+You can override or extend the default theme to create Custom Theme to fit your design system.
 
 ### Override Default Theme
 
@@ -160,6 +148,27 @@ export default function App() {
 ```
 
 
+## 🎨 Accessing the Theme in Components
+
+All built-in components (Text, Button, TextInput, FloatingLabelTextInput) automatically pull values from the theme.
+
+You can also access the theme in your custom components using the `useTheme` hook:
+
+```tsx
+import { useTheme, Text } from "@geekyhawks/react-native-ui-components";
+
+export default function ThemedBox() {
+  const { theme } = useTheme();
+
+  return (
+    <View style={{ backgroundColor: theme.colors.background }}>
+      <Text color={theme.colors.text}>This box uses theme values!</Text>
+    </View>
+  );
+}
+```
+
+
 ## 🔧 ThemeProvider & ThemeContext
 
 The `ThemeProvider` internally manages a `ThemeContext`, which provides consistent styling across all components.  
@@ -168,12 +177,12 @@ By default, the context includes:
 
 - **theme** → The color palette (light, dark, or custom).
 - **textVariants** → Predefined font sizes, weights, and styles (`h1`, `h2`, `body`, `caption`).
-- **buttonSizeVariants** → Standard button sizes (`sm`, `md`, `lg`).
-- **buttonShapeVariants** → Shape options (`sm`, `md`, `lg`, `full`).
-- **textInputStyleVariants** → Variants for the `TextInput` (`outline`, `filled`, `underline`).
-- **textInputSizeVariants** → Sizes for the `TextInput` (`sm`, `md`, `lg`).
-- **floatingLabelTextInputStyleVariants** → Variants specific to the `FloatingLabelTextInput` (`outline`, `underline`).
-- **floatingLabelTextInputSizeVariants** → Sizes specific to the `FloatingLabelTextInput` (`sm`, `md`, `lg`).
+- **buttonSizeVariants** → Defines consistent sizing for buttons by controlling padding, text font size, and icon-only button dimensions (`sm`, `md`, `lg`).
+- **buttonShapeVariants** → Defines the corner radius of buttons for consistent shapes (`sm`, `md`, `lg`, `full`).
+- **textInputStyleVariants** → Predefined visual styles for the `TextInput` (`outline`, `filled`, `underline`). Controls border, background, and underline appearance.
+- **textInputSizeVariants** → Defines consistent sizing for `TextInput` by controlling font size and vertical padding (`sm`, `md`, `lg`).
+- **floatingLabelTextInputStyleVariants** → Visual styles specific to the `FloatingLabelTextInput` (`outline`, `underline`). Controls how the border/underline and floating label behave.
+- **floatingLabelTextInputSizeVariants** → Sizes specific to `FloatingLabelTextInput` that adjust font size, padding, and label size (`sm`, `md`, `lg`).
 
 This makes it easy to maintain consistent design tokens across your app.
 
@@ -196,6 +205,7 @@ export default function App() {
   );
 }
 ```
+
 This way, you can define and customize **any kind of variant** (text, buttons, inputs, etc.) and pass it into your theme.  
 Once provided to the `ThemeProvider`, it becomes available **throughout your entire app**, ensuring consistency without repeating styles in every component.
 

@@ -135,13 +135,34 @@ export default function Example() {
 
 ## 🔧 Props
 
-| Prop         | Type                     | Default   | Description |
-|--------------|--------------------------|-----------|-------------|
-| `label`      | `string`                 | —         | Optional label above the input |
-| `variant`    | `"default" \| "underline" \| "outline"` | `"default"` | Input style variant |
-| `error`      | `string`                 | —         | Error message displayed below input |
-| `helperText` | `string`                 | —         | Helper text displayed below input |
-| `...props`   | `TextInputProps` (RN)    | —         | All native RN `TextInput` props |
+| Prop                  | Type                                                                              | Default     | Description                                        |
+| --------------------- | --------------------------------------------------------------------------------- | ----------- | -------------------------------------------------- |
+| `accessible`          | `boolean`                                                                         | `true`      | Whether the input is accessible to screen readers. |
+| `accessibilityLabel`  | `string`                                                                          | —           | Accessibility label for screen readers.            |
+| `accessibilityState`  | `AccessibilityState` (RN)                                                         | —           | Accessibility state for screen readers.            |
+| `containerStyle`      | `StyleProp<ViewStyle>`                                                            | —           | Custom style for the outer container.              |
+| `disabled`            | `boolean`                                                                         | `false`     | Disables the input.                                |
+| `error`               | `string`                                                                          | —           | Error message displayed below the input.           |
+| `errorPosition`       | `"left" \| "center" \| "right"`                                                   | `"left"`    | Position of the error message.                     |
+| `errorTextStyle`      | `StyleProp<TextStyle>`                                                            | —           | Custom style for the error text.                   |
+| `fullWidth`           | `boolean`                                                                         | `true`      | Makes the input take full width of its container.  |
+| `helperText`          | `string`                                                                          | —           | Helper text displayed below the input.             |
+| `helperTextStyle`     | `StyleProp<TextStyle>`                                                            | —           | Custom style for the helper text.                  |
+| `inputContainerStyle` | `StyleProp<ViewStyle>`                                                            | —           | Custom style for the input wrapper/container.      |
+| `inputStyle`          | `StyleProp<TextStyle>`                                                            | —           | Custom style for the input text.                   |
+| `label`               | `string`                                                                          | —           | Label text displayed above the input.              |
+| `labelStyle`          | `StyleProp<TextStyle>`                                                            | —           | Custom style for the label text.                   |
+| `leftIcon`            | `React.ReactNode`                                                                 | —           | Icon or element displayed on the left.             |
+| `loading`             | `boolean`                                                                         | `false`     | Shows a loading indicator inside the input.        |
+| `multiline`           | `boolean`                                                                         | `false`     | Enables multiline text input.                      |
+| `numberOfLines`       | `number`                                                                          | `1`         | Number of visible lines (when multiline).          |
+| `passwordToggleIcons` | `{ show?: React.ReactNode; hide?: React.ReactNode }`                              | `"Show"` / `"Hide"`           | Custom icons for showing/hiding password. If not provided, default text `"Show"` / `"Hide"` is displayed.          |
+| `rightIcon`           | `React.ReactNode`                                                                 | —           | Icon or element displayed on the right.            |
+| `secureTextEntry`     | `boolean`                                                                         | —           | Hides the input text (for passwords).              |
+| `size`                | `DefaultTextInputSizes \| (string & {})` <br> *(sm \| md \| lg)*                  | `"md"`      | Input size (predefined or custom).                 |
+| `style`               | `StyleProp<TextStyle>`                                                            | —           | Custom style for the root `TextInput` element.     |
+| `variant`             | `DefaultTextInputStyles \| (string & {})` <br> *(outline \| filled \| underline)* | `"outline"` | Input style variant (predefined or custom).        |
+| `...props`            | `TextInputProps` (RN)                                                             | —           | All native RN `TextInput` props.                   |
 
 
 ## 🎨 Variants

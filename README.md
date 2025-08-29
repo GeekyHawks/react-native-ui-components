@@ -1,6 +1,6 @@
 # Geeky Hawks React Native UI Components
 
-A lightweight and reusable React Native UI components library with Text, TextInput, FloatingLabelTextInput, Button, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.
+A lightweight and reusable React Native UI components library with `Text`, `TextInput`, `FloatingLabelTextInput`, `Button`, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.
 
 ✨ Developed & Maintained by [Geeky Hawks](https://www.geekyhawks.com).
 
@@ -36,16 +36,16 @@ yarn add @geekyhawks/react-native-ui-components
 
 Each component supports style overrides and common React Native props.
 
-> 🖌️ All components are **theme-ready** — you can customize fonts, colors, and variants globally using the [ThemeProvider](./docs/Theme.md).
+> 🖌️ All components are **theme-ready** — you can customize fonts, colors, and variants globally using the [ThemeProvider](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Theme.md).
 
 ⚠️ **Important:** The `ThemeProvider` should wrap your entire app (usually in `App.tsx`), so that all components can access the theme consistently.
 
 ## Quick Usage Examples
 
 ```tsx
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ThemeProvider, Text, TextInput, FloatingLabelTextInput, Button } from '@geekyhawks/react-native-ui-components';
+import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ThemeProvider, Text, TextInput, FloatingLabelTextInput, Button } from "@geekyhawks/react-native-ui-components";
 
 export default function App() {
   return (
@@ -78,11 +78,11 @@ export default function App() {
 Detailed documentation for each component (props, advanced examples, and customization) lives in the docs
  folder:
 
-- [Theme](./docs/Theme.md)
-- [Text](./docs/Text.md)
-- [Button](./docs/Button.md)
-- [TextInput](./docs/TextInput.md)
-- [FloatingLabelTextInput](./docs/FloatingLabelTextInput.md)
+- [Theme](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Theme.md)
+- [Text](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Text.md)
+- [Button](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Button.md)
+- [TextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/TextInput.md)
+- [FloatingLabelTextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/FloatingLabelTextInput.md)
 
 Each file includes props, usage, and customization examples.
 
@@ -97,4 +97,4 @@ Each file includes props, usage, and customization examples.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.

@@ -123,13 +123,29 @@ export default function Example() {
 
 ## Props
 
-| Prop         | Type                     | Default   | Description |
-|--------------|--------------------------|-----------|-------------|
-| `label`      | `string`                 | —         | Floating label text |
-| `variant`    | `"default" \| "outline"` | `"default"` | Input style variant |
-| `error`      | `string`                 | —         | Error message displayed below input |
-| `helperText` | `string`                 | —         | Helper text displayed below input |
-| `...props`   | `TextInputProps` (RN)    | —         | All native RN `TextInput` props |
+| Prop                  | Type                                                     | Default             | Description                                                                                                    |
+| --------------------- | -------------------------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `accessible`          | `boolean`                                                | `true`              | Whether the input is accessible for screen readers                                                             |
+| `accessibilityLabel`  | `string`                                                 | —                   | Accessibility label for screen readers                                                                         |
+| `accessibilityState`  | `AccessibilityState` (RN)                                | —                   | Accessibility state for screen readers                                                                         |
+| `containerStyle`      | `StyleProp<ViewStyle>`                                   | —                   | Style for the outer container                                                                                  |
+| `disabled`            | `boolean`                                                | `false`             | Disables the input field                                                                                       |
+| `error`               | `string`                                                 | —                   | Error message displayed below input                                                                            |
+| `errorPosition`       | `"left"` \| `"center"` \| `"right"`                      | `"left"`            | Position of the error message                                                                                  |
+| `fullWidth`           | `boolean`                                                | `true`              | Makes the input take full width of its container                                                               |
+| `helperText`          | `string`                                                 | —                   | Helper text displayed below input                                                                              |
+| `helperTextStyle`     | `StyleProp<TextStyle>`                                   | —                   | Style for the helper text                                                                                      |
+| `inputContainerStyle` | `StyleProp<ViewStyle>`                                   | —                   | Style for the input wrapper container                                                                          |
+| `inputStyle`          | `StyleProp<TextStyle>`                                   | —                   | Style for the text input                                                                                       |
+| `label`               | `string`                                                 | —                   | Floating label text                                                                                            |
+| `labelStyle`          | `StyleProp<TextStyle>`                                   | —                   | Style for the floating label                                                                                   |
+| `loading`             | `boolean`                                                | `false`             | Shows loading state                                                                                            |
+| `passwordToggleIcons` | `{ show?: React.ReactNode; hide?: React.ReactNode }`     | `"Show"` / `"Hide"` | Custom icons for toggling password visibility. If not provided, default text `"Show"` / `"Hide"` is displayed. |
+| `secureTextEntry`     | `boolean`                                                | —                   | Hides input text for password fields                                                                           |
+| `size`                | `DefaultFloatingLabelTextInputSizes` \| `(string & {})`  <br> *(sm \| md \| lg)*  | `"md"`              | Input size (predefined or custom)                                                                       |
+| `style`               | `StyleProp<ViewStyle>`                                   | —                   | Style for the root component                                                                                   |
+| `variant`             | `DefaultFloatingLabelTextInputStyles` \| `(string & {})` <br> *(outline \| underline)* | `"outline"`         | Input style variant (predefined or custom)                                                        |
+| `...props`            | `TextInputProps` (RN)                                    | —                   | All native RN `TextInput` props                                                                                |
 
 
 ## 🎨 Variants

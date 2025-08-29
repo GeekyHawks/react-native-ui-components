@@ -1,9 +1,9 @@
 /**
  * Theme Definitions
  *
- * Provides default light and dark themes.
- * Users can override the themes to customize fonts, colors, and text styles
- * throughout the app.
+ * Provides default light and dark themes with colors, spacing, and fontFamily.
+ * Users can override these themes to create a custom design system for their app.
+ * Supports optional user-defined extensions for colors and spacing.
  *
  * Author: Geeky Hawks FZE LLC
  */
@@ -11,56 +11,137 @@
 /**
  * ThemeColors
  *
- * Defines all color tokens for the theme.
+ * Required color tokens for the theme.
  */
 export type ThemeColors = {
-    text: string;
     background: string;
+    border: string;
+    error: string;
+    muted: string;
     primary: string;
     secondary: string;
-    error: string;
-    border: string;
-    muted: string;
+    text: string;
+};
+
+/**
+ * ThemeSpacing
+ *
+ * Spacing scale for padding, margin, gap, etc.
+ * Keys are semantically named for clarity.
+ */
+export type ThemeSpacing = {
+    none: number;
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
 };
 
 /**
  * Theme
  *
- * Theme configuration containing colors, optional fontFamily.
+ * Theme config with colors, spacing, fontFamily,
+ * and support for user-defined extensions.
  */
 export type Theme = {
     fontFamily?: string;
-    colors: ThemeColors;
+    colors: ThemeColors & Record<string, string>;
+    spacing: ThemeSpacing & Record<string, number>;
 };
+
+/**
+ * createTheme
+ *
+ * Helper function to define a theme object with proper TypeScript typing.
+ * Users can pass colors, spacing, fontFamily, and optional custom extensions.
+ * 
+ * Example usage:
+ * 
+ * const myTheme = createTheme({
+ *   fontFamily: "Inter",
+ *   colors: {
+ *     background: "#fff",
+ *     border: "#dee2e6",
+ *     error: "#dc3545",
+ *     muted: "#6c757d",
+ *     primary: "#007bff",
+ *     secondary: "#6c757d",
+ *     text: "#111",
+ *   },
+ *   spacing: {
+ *     none: 0,
+ *     xs: 4,
+ *     sm: 8,
+ *     md: 16,
+ *     lg: 24,
+ *     xl: 32,
+ *   },
+ * });
+ */
+export function createTheme<T extends Theme>(theme: T): T {
+    return theme;
+}
+
+/**
+ * Default Font Family
+ * Can be overridden per theme if needed.
+ */
+export const defaultFontFamily = "System";
+
+/**
+ * Default spacing scale
+ * Can be overridden per theme if needed.
+ */
+export const defaultSpacing: ThemeSpacing = {
+    none: 0,
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+};
+
+/**
+ * Default light colors
+ */
+export const defaultLightColors: ThemeColors = {
+    background: "#ffffff",
+    border: "#dee2e6",
+    error: "#dc3545",
+    muted: "#6c757d",
+    primary: "#007bff",
+    secondary: "#6c757d",
+    text: "#000000",
+}
+
+/**
+ * Default dark colors
+ */
+export const defaultDarkColors: ThemeColors = {
+    background: "#000000",
+    border: "#495057",
+    error: "#fa5252",
+    muted: "#ced4da",
+    primary: "#339af0",
+    secondary: "#adb5bd",
+    text: "#ffffff",
+}
 
 /**
  * Default light theme
  */
-export const defaultLightTheme: Theme = {
-    fontFamily: "System",
-    colors: {
-        text: "#000000",
-        background: "#ffffff",
-        primary: "#007bff",
-        secondary: "#6c757d",
-        error: "#dc3545",
-        border: "#dee2e6",
-        muted: "#6c757d",
-    },
-};
+export const defaultLightTheme = createTheme({
+    fontFamily: defaultFontFamily,
+    colors: defaultLightColors,
+    spacing: defaultSpacing,
+});
 
 /**
  * Default dark theme
  */
-export const defaultDarkTheme: Theme = {
-    fontFamily: "System",
-    colors: {
-        text: "#ffffff",
-        background: "#000000",
-        primary: "#339af0",
-        secondary: "#adb5bd",
-        error: "#fa5252",
-        border: "#495057",
-        muted: "#ced4da",
-    },
-};
+export const defaultDarkTheme = createTheme({
+    fontFamily: defaultFontFamily,
+    colors: defaultDarkColors,
+    spacing: defaultSpacing,
+});

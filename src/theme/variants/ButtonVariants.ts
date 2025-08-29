@@ -39,7 +39,7 @@ export type ButtonShapeVariant = Partial<ViewStyle>;
  * Keys are variant names (e.g., "sm", "md", "lg" or custom),
  * and values are the corresponding ButtonSizeVariant styles.
  */
-export type ButtonSizeVariants = Record<string, ButtonSizeVariant>;
+export type ButtonSizeVariants = Record<DefaultButtonSizes, ButtonSizeVariant> & Record<string, ButtonSizeVariant>;
 
 /**
  * ButtonShapeVariants
@@ -48,7 +48,7 @@ export type ButtonSizeVariants = Record<string, ButtonSizeVariant>;
  * Keys are variant names (e.g., "sm", "md", "lg", "full" or custom),
  * and values are the corresponding ButtonShapeVariant styles.
  */
-export type ButtonShapeVariants = Record<string, ButtonShapeVariant>;
+export type ButtonShapeVariants = Record<DefaultButtonShapes, ButtonShapeVariant> & Record<string, ButtonShapeVariant>;
 
 /**
  * DefaultButtonSizes

@@ -15,17 +15,20 @@ import { DefaultTextVariants } from "../../theme";
 /**
  * Props for custom Text component
  *
- * - **fontFamily**: override theme font
  * - **color**: override theme text color
+ * - **fontFamily**: override theme font
  * - **variant**: select text variant from default or custom
  * 
  * All standard React Native `TextProps` can also be applied.
  */
 export interface Props extends TextProps {
-    fontFamily?: string;
+    /** Optional color for the text */
     color?: string;
-
+    /** Optional font family for the text */
+    fontFamily?: string;
     /**
+     * Variant
+     *
      * Choose from default variants ("body" | "h1" | "h2" | "caption")
      * or provide a custom variant defined in ThemeProvider.
      */
@@ -39,11 +42,11 @@ export interface Props extends TextProps {
  * Applies default textVariants, theme fontFamily, and theme color.
  */
 const Text: React.FC<Props> = ({
-    fontFamily,
-    color,
-    variant = "body",
-    style,
     children,
+    color,
+    fontFamily,
+    style,
+    variant = "body",
     ...rest
 }) => {
     const { theme, textVariants } = useTheme();
@@ -54,9 +57,11 @@ const Text: React.FC<Props> = ({
         <RNText
             {...rest}
             style={[
-                variantStyle,
-                { fontFamily: fontFamily ?? theme.fontFamily, color: color ?? theme.colors.text },
-                style,
+                { fontFamily: theme.fontFamily, color: theme.colors.text }, // theme defaults
+                variantStyle,                                               // variant overrides theme
+                fontFamily ? { fontFamily } : {},                           // prop overrides variant
+                color ? { color } : {},                                     // prop overrides variant
+                style,                                                       // inline style overrides everything
             ]}
         >
             {children}

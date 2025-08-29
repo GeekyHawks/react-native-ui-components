@@ -26,51 +26,64 @@ import Text from "../Text";
 /**
  * Props for custom Button component
  *
- * - **variant**: choose button style (`solid`, `outline`, `ghost`)
- * - **size**: choose size from theme-defined `buttonSizeVariants`
- * - **shape**: choose corner radius from theme-defined `buttonShapeVariants`
- * - **colorScheme**: choose color from theme palette
- * - **loading**: show loading indicator instead of text
- * - **leftIcon / rightIcon**: optional icons before or after text
- * - **fullWidth**: make the button expand to fill its parent’s width
  * - **animation**: choose press feedback animation (`scale`, `opacity`, `shadow`, `scaleOpacity`, `none`)
+ * - **children**: content of the button (text)
+ * - **colorScheme**: choose color from theme palette
+ * - **containerStyle**: style for the outer container
+ * - **disabled**: disable the button
+ * - **fullWidth**: make the button expand to fill its parent’s width
+ * - **leftIcon / rightIcon**: optional icons before or after text
+ * - **loading**: show loading indicator instead of text
+ * - **loadingIndicator**: custom loading indicator node
+ * - **onPress**: callback for button press
+ * - **shape**: choose corner radius from theme-defined `buttonShapeVariants`
+ * - **size**: choose size from theme-defined `buttonSizeVariants`
+ * - **textStyle**: style for the text inside the button
+ * - **variant**: choose button style (`solid`, `outline`, `ghost`)
  *
  * All standard React Native `PressableProps` can also be applied.
  */
 export interface Props extends PressableProps {
+    /** Press feedback animation (`scale`, `opacity`, `shadow`, `scaleOpacity`, `none`) */
+    animation?: "scale" | "opacity" | "shadow" | "scaleOpacity" | "none";
+    /** Content of the button (text) */
     children?: string;
+    /** Optional color from theme palette */
+    colorScheme?: keyof ReturnType<typeof useTheme>["theme"]["colors"];
+    /** Style for the outer container */
     containerStyle?: StyleProp<ViewStyle>;
-    textStyle?: StyleProp<TextStyle>;
-
+    /** Disable the button */
     disabled?: boolean;
-    loading?: boolean;
-    loadingIndicator?: React.ReactNode;
-
+    /** Make the button expand to fill parent width */
+    fullWidth?: boolean;
+    /** Icon to show before text */
     leftIcon?: React.ReactNode;
-    rightIcon?: React.ReactNode;
-
-    variant?: "solid" | "outline" | "ghost";
-
+    /** Loading indicator shown instead of text */
+    loading?: boolean;
+    /** Custom loading indicator node */
+    loadingIndicator?: React.ReactNode;
+    /** Callback for button press */
+    onPress?: () => void;
     /**
+     * Size
+     *
      * Choose from default sizes (`"sm" | "md" | "lg"`)
      * or provide the name of a custom size defined in ThemeProvider.
      */
     size?: DefaultButtonSizes | (string & {});
-
     /**
+     * Shape
+     *
      * Choose from default shapes (`"sm" | "md" | "lg" | "full"`)
      * or provide the name of a custom shape defined in ThemeProvider.
      */
     shape?: DefaultButtonShapes | (string & {});
-
-    colorScheme?: keyof ReturnType<typeof useTheme>["theme"]["colors"];
-
-    animation?: "scale" | "opacity" | "shadow" | "scaleOpacity" | "none";
-
-    fullWidth?: boolean;
-
-    accessibilityLabel?: string;
-    accessibilityHint?: string;
+    /** Icon to show after text */
+    rightIcon?: React.ReactNode;
+    /** Style for the text inside the button */
+    textStyle?: StyleProp<TextStyle>;
+    /** Variant style of the button (`solid`, `outline`, `ghost`) */
+    variant?: "solid" | "outline" | "ghost";
 }
 
 /**
@@ -81,23 +94,23 @@ export interface Props extends PressableProps {
  * and supports loading and icon states.
  */
 const Button: React.FC<Props> = ({
+    accessibilityHint,
+    accessibilityLabel,
+    animation = "scale",
     children,
-    onPress,
+    colorScheme = "primary",
     containerStyle,
-    textStyle,
     disabled = false,
+    fullWidth = false,
+    leftIcon,
     loading = false,
     loadingIndicator,
-    leftIcon,
+    onPress,
     rightIcon,
-    variant = "solid",
     size = "md",
     shape = "md",
-    colorScheme = "primary",
-    animation = "scale",
-    fullWidth = false,
-    accessibilityLabel,
-    accessibilityHint,
+    textStyle,
+    variant = "solid",
     ...rest
 }) => {
     const { theme, buttonSizeVariants, buttonShapeVariants } = useTheme();

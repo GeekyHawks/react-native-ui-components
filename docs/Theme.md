@@ -69,31 +69,48 @@ export default function App() {
 A typical theme includes:
 
 ```tsx
-export const defaultLightTheme: Theme = {
-    fontFamily: defaultFontFamily,
-    colors: {
-        text: "#000000",
-        background: "#ffffff",
-        primary: "#007bff",
-        secondary: "#6c757d",
-        error: "#dc3545",
-        border: "#dee2e6",
-        muted: "#6c757d",
-    },
+export const defaultFontFamily = "System";
+
+export const defaultLightColors: ThemeColors = {
+    background: "#ffffff",
+    border: "#dee2e6",
+    error: "#dc3545",
+    muted: "#6c757d",
+    primary: "#007bff",
+    secondary: "#6c757d",
+    text: "#000000",
+}
+
+export const defaultDarkColors: ThemeColors = {
+    background: "#000000",
+    border: "#495057",
+    error: "#fa5252",
+    muted: "#ced4da",
+    primary: "#339af0",
+    secondary: "#adb5bd",
+    text: "#ffffff",
+}
+
+export const defaultSpacing: ThemeSpacing = {
+    none: 0,
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
 };
 
-export const defaultDarkTheme: Theme = {
+export const defaultLightTheme = createTheme({
     fontFamily: defaultFontFamily,
-    colors: {
-        text: "#ffffff",
-        background: "#000000",
-        primary: "#339af0",
-        secondary: "#adb5bd",
-        error: "#fa5252",
-        border: "#495057",
-        muted: "#ced4da",
-    },
-};
+    colors: defaultLightColors,
+    spacing: defaultSpacing,
+});
+
+export const defaultDarkTheme = createTheme({
+    fontFamily: defaultFontFamily,
+    colors: defaultDarkColors,
+    spacing: defaultSpacing,
+});
 ```
 
 
@@ -103,24 +120,29 @@ You can override or extend the default theme to create Custom Theme to fit your 
 
 ### Override Default Theme
 
+You can start with a built-in theme (like `defaultLightTheme` or `defaultDarkTheme`) and then spread it to keep all the defaults. From there, you can either override existing keys or add brand-new keys to fit your design system.
+
 ```tsx
-const myTheme: Theme = {
-    ...defaultLightTheme,
-    fontFamily: customFont,
+const myTheme = createTheme({
+    ...defaultLightTheme, // start from the default theme
+
+    // override only fontFamily and colors
+    fontFamily: "YourFont",
     colors: {
-        ...defaultLightTheme.colors,
+        ...defaultLightTheme.colors, // keep defaults
         text: "#4B0082",
         background: "#FFF0F5",
         primary: "#FF6347",
+        myColor: "#FF1234" // New Custom Color
     },
-};
+});
 ```
 
 ### Custom Theme
 
 ```tsx
-const customTheme: Theme = {
-    fontFamily: customFont,
+const myTheme = createTheme({
+    fontFamily: "CustomFont",
     colors: {
         text: "#4B0082",
         background: "#FFF0F5",
@@ -130,7 +152,15 @@ const customTheme: Theme = {
         border: "#dee2e6",
         muted: "#6c757d",
     },
-};
+    spacing: {
+        none: 0,
+        xs: 4,
+        sm: 8,
+        md: 16,
+        lg: 24,
+        xl: 32,
+    }
+});
 ```
 
 ### Usage:

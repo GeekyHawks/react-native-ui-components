@@ -232,7 +232,7 @@ You’re not limited to the defaults — you can extend them or define your own 
 #### Extend Default Variants
 
 ```tsx
-const customButtonSizeVariants = {
+const customButtonSizeVariants: ButtonSizeVariants = {
   ...defaultButtonSizeVariants,  // extend existing ones
   xl: { paddingVertical: 16, paddingHorizontal: 28, fontSize: 20 },
 };

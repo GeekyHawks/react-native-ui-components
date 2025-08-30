@@ -20,7 +20,11 @@
 
 import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet, Switch, View } from "react-native";
-import { ThemeProvider, Text, Theme, ButtonSizeVariants, ButtonShapeVariants, Button } from "@geekyhawks/react-native-ui-components";
+import {
+    ThemeProvider, Text, ButtonSizeVariants, ButtonShapeVariants, Button, defaultButtonSizeVariants,
+    defaultButtonShapeVariants, createTheme, defaultSpacing,
+    defaultLightTheme
+} from "@geekyhawks/react-native-ui-components";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialIcons from "@react-native-vector-icons/material-icons";
 
@@ -31,7 +35,8 @@ const customFonts = "Courier";
  * Custom light theme
  * You can customize colors and optionally use a different fontFamily than the dark theme.
  */
-const customLightTheme: Theme = {
+const customLightTheme = createTheme({
+    ...defaultLightTheme,
     fontFamily: customFonts,
     colors: {
         text: "#4B0082",
@@ -42,13 +47,13 @@ const customLightTheme: Theme = {
         border: "#dee2e6",
         muted: "#6c757d",
     },
-};
+});
 
 /**
  * Custom dark theme
  * You can customize colors and optionally use a different fontFamily than the light theme.
  */
-const customDarkTheme: Theme = {
+const customDarkTheme = createTheme({
     fontFamily: customFonts,
     colors: {
         text: "#FFD700",
@@ -58,14 +63,19 @@ const customDarkTheme: Theme = {
         error: "#FF6B6B",
         border: "#333333",
         muted: "#AAAAAA",
-    }
-};
+    },
+    spacing: {
+        ...defaultSpacing,
+        xxl: 40, // Custom Spacing
+    },
+});
 
 /**
  * Custom button size variants to override default styles like font size, padding.
  * Use these with the `Button` component via the `size` prop.
  */
 const customButtonSizeVariants: ButtonSizeVariants = {
+    ...defaultButtonSizeVariants,
     bigButton: { container: { paddingVertical: 18, paddingHorizontal: 24 }, text: { fontSize: 18 } },
 };
 
@@ -74,6 +84,7 @@ const customButtonSizeVariants: ButtonSizeVariants = {
 * Use these with the `Button` component via the `shape` prop.
 */
 const customButtonShapeVariants: ButtonShapeVariants = {
+    ...defaultButtonShapeVariants,
     rounded: { borderRadius: 20 },
 };
 

@@ -11,7 +11,7 @@
 
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Switch, View } from "react-native";
-import { ThemeProvider, Text, Theme, TextInput } from "@geekyhawks/react-native-ui-components";
+import { ThemeProvider, Text, TextInput, createTheme, defaultSpacing, defaultLightTheme, TextInputSizeVariants, defaultTextInputSizeVariants } from "@geekyhawks/react-native-ui-components";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Example custom font; replace with any font of your choice
@@ -21,7 +21,8 @@ const customFonts = "Courier";
  * Custom light theme
  * You can customize colors and optionally use a different fontFamily than the dark theme.
  */
-const customLightTheme: Theme = {
+const customLightTheme = createTheme({
+	...defaultLightTheme,
 	fontFamily: customFonts,
 	colors: {
 		text: "#4B0082",
@@ -32,23 +33,36 @@ const customLightTheme: Theme = {
 		border: "#dee2e6",
 		muted: "#6c757d",
 	},
-};
+});
 
 /**
  * Custom dark theme
  * You can customize colors and optionally use a different fontFamily than the light theme.
  */
-const customDarkTheme: Theme = {
+const customDarkTheme = createTheme({
 	fontFamily: customFonts,
 	colors: {
 		text: "#FFD700",
 		background: "#2F4F4F",
-		primary: "#FF6347",
-		secondary: "#9370DB",
+		primary: "#FFA07A",
+		secondary: "#FFD700",
 		error: "#FF6B6B",
 		border: "#333333",
 		muted: "#AAAAAA",
-	}
+	},
+	spacing: {
+		...defaultSpacing,
+		xxl: 40, // Custom Spacing
+	},
+});
+
+/**
+ * Custom text input size variants to override default styles like font size, padding.
+ * Use these with the `TextInput` component via the `size` prop.
+ */
+const customTextInputSizeVariants: TextInputSizeVariants = {
+	...defaultTextInputSizeVariants,  // extend existing ones
+	xl: { fontSize: 20, paddingVertical: 12 },
 };
 
 export function TextInputCustomExample() {
@@ -60,7 +74,8 @@ export function TextInputCustomExample() {
 	const theme = isDarkMode ? customDarkTheme : customLightTheme;
 
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={theme}
+			textInputSizeVariants={customTextInputSizeVariants}>
 			<SafeAreaView
 				style={{
 					flex: 1,
@@ -79,6 +94,7 @@ export function TextInputCustomExample() {
 					<TextInput
 						label="Custom Font"
 						placeholder="Courier font example"
+						size="xl"
 					/>
 
 					{/* Underline TextInput with Custom Font */}

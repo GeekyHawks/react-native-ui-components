@@ -17,7 +17,7 @@
 
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Switch, View } from "react-native";
-import { ThemeProvider, Text, TextVariants, defaultTextVariants, Theme } from "@geekyhawks/react-native-ui-components";
+import { ThemeProvider, Text, TextVariants, defaultTextVariants, createTheme, defaultSpacing, defaultLightTheme } from "@geekyhawks/react-native-ui-components";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Example custom font; replace with any font of your choice
@@ -27,7 +27,8 @@ const customFonts = "Courier";
  * Custom light theme
  * You can customize colors and optionally use a different fontFamily than the dark theme.
  */
-const customLightTheme: Theme = {
+const customLightTheme = createTheme({
+    ...defaultLightTheme,
     fontFamily: customFonts,
     colors: {
         text: "#4B0082",
@@ -38,24 +39,28 @@ const customLightTheme: Theme = {
         border: "#dee2e6",
         muted: "#6c757d",
     },
-};
+});
 
 /**
  * Custom dark theme
  * You can customize colors and optionally use a different fontFamily than the light theme.
  */
-const customDarkTheme: Theme = {
+const customDarkTheme = createTheme({
     fontFamily: customFonts,
     colors: {
         text: "#FFD700",
         background: "#2F4F4F",
-        primary: "#FF6347",
-        secondary: "#9370DB",
+        primary: "#FFA07A",
+        secondary: "#FFD700",
         error: "#FF6B6B",
         border: "#333333",
         muted: "#AAAAAA",
-    }
-};
+    },
+    spacing: {
+        ...defaultSpacing,
+        xxl: 40, // Custom Spacing
+    },
+});
 
 /**
  * Custom text variants to override default styles like font size, color, or fontStyle.

@@ -1,12 +1,12 @@
 # Theme System
 
-The `Theme` in this library provides a **centralized design system** for typography, colors, and sizes across all UI components.  
+The `Theme` in this library provides a **centralized design system** for typography, colors, spacing, and sizes across all UI components.  
 It ensures consistency, reduces repeated styles, and makes your app easier to maintain.
 
 
 ## ✨ Why use a theme?
 
-- ✅ **Consistency** – Same font family, font sizes, button sizes and colors across all components.  
+- ✅ **Consistency** – Same font family, font sizes, spacing scale, and colors across all components.  
 - ✅ **Dark Mode / Light Mode** – Automatically adapt components to user’s system preferences or app setting.  
 - ✅ **Customizability** – Override defaults to match your brand’s design system.  
 - ✅ **Scalability** – Add new variants without rewriting styles everywhere.  
@@ -29,12 +29,12 @@ import { defaultLightTheme, defaultDarkTheme } from "@geekyhawks/react-native-ui
 ### Minimal Example
 
 ```tsx
-import { ThemeProvider, Text } from "@geekyhawks/react-native-ui-components";
+import { ThemeProvider } from "@geekyhawks/react-native-ui-components";
 
 export default function App() {
   return (
     <ThemeProvider>
-      <Text variant="h1">Hello World</Text>
+      {/* Your app components here */}
     </ThemeProvider>
   );
 }
@@ -67,6 +67,10 @@ export default function App() {
 ## 🔧 Theme Structure
 
 A typical theme includes:
+
+- **colors** → Centralized palette (background, text, primary, secondary, error, etc.)
+- **spacing** → Standardized spacing scale (none, xs, sm, md, lg, xl)
+- **fontFamily** → Base font family used across text components
 
 ```tsx
 export const defaultFontFamily = "System";
@@ -113,6 +117,35 @@ export const defaultDarkTheme = createTheme({
 });
 ```
 
+## 🏗️ createTheme
+
+The `createTheme` helper makes it easy to define your theme with **full TypeScript support**.
+It ensures your theme is strongly typed, so accessing `theme.colors.primary` or `theme.spacing.md` works with autocompletion.
+
+```tsx
+import { createTheme } from "@geekyhawks/react-native-ui-components";
+
+const customTheme = createTheme({
+  fontFamily: "CustomFont",
+  colors: {
+    text: "#4B0082",
+    background: "#FFF0F5",
+    primary: "#FF6347",
+    secondary: "#4B0082",
+    error: "#FF0000",
+    border: "#dee2e6",
+    muted: "#6c757d",
+  },
+  spacing: {
+    none: 0,
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+  }
+});
+```
 
 ## 🛠 Custom Theme
 
@@ -123,7 +156,7 @@ You can override or extend the default theme to create Custom Theme to fit your 
 You can start with a built-in theme (like `defaultLightTheme` or `defaultDarkTheme`) and then spread it to keep all the defaults. From there, you can either override existing keys or add brand-new keys to fit your design system.
 
 ```tsx
-const myTheme = createTheme({
+const myLightTheme = createTheme({
     ...defaultLightTheme, // start from the default theme
 
     // override only fontFamily and colors
@@ -138,7 +171,10 @@ const myTheme = createTheme({
 });
 ```
 
-### Custom Theme
+### Custom Theme from scratch
+
+If you don’t want to start from the built-in light or dark themes, you can **create your own theme from scratch**. This means you’ll provide all required values (like `colors`, `spacing`, and `fontFamily`) and you can also add **your own custom keys**.  
+This is useful if you have a completely different design system, or you want full control without relying on defaults.  
 
 ```tsx
 const myTheme = createTheme({
@@ -146,6 +182,49 @@ const myTheme = createTheme({
     colors: {
         text: "#4B0082",
         background: "#FFF0F5",
+        primary: "#FF6347",
+        secondary: "#4B0082",
+        error: "#FF0000",
+        border: "#dee2e6",
+        muted: "#6c757d",
+        accent: "#AA1245", // Custom Color
+    },
+    spacing: {
+        none: 0,
+        xs: 4,
+        sm: 8,
+        md: 16,
+        lg: 24,
+        xl: 32,
+        xxl: 40, // Custom Spacing
+    }
+});
+```
+
+### Usage:
+
+```tsx
+import { ThemeProvider } from "@geekyhawks/react-native-ui-components";
+
+export default function App() {
+  return (
+    <ThemeProvider theme={myTheme}>
+      {/* Your app components here */}
+    </ThemeProvider>
+  );
+}
+```
+
+#### Custom Light & Dark Themes
+
+You can also define **two separate custom themes** for light and dark mode. This allows your app to switch between them just like with `defaultLightTheme` and `defaultDarkTheme`, while still keeping full control over your design system.
+
+```tsx
+const customLightTheme = createTheme({
+    fontFamily: "CustomFont",
+    colors: {
+        text: "#222222",
+        background: "#FFFFFF",
         primary: "#FF6347",
         secondary: "#4B0082",
         error: "#FF0000",
@@ -161,16 +240,40 @@ const myTheme = createTheme({
         xl: 32,
     }
 });
+
+const customDarkTheme = createTheme({
+    fontFamily: "CustomFont",
+    colors: {
+        text: "#FFFFFF",
+        background: "#1E1E1E",
+        primary: "#FF6347",
+        secondary: "#9B59B6",
+        error: "#E74C3C",
+        border: "#333333",
+        muted: "#AAAAAA",
+    },
+    spacing: {
+        none: 0,
+        xs: 4,
+        sm: 8,
+        md: 16,
+        lg: 24,
+        xl: 32,
+    }
+});
 ```
 
-### Usage:
+And use them in your app:
 
 ```tsx
+import { useColorScheme } from "react-native";
 import { ThemeProvider } from "@geekyhawks/react-native-ui-components";
 
 export default function App() {
+  const isDark = useColorScheme() === "dark";
+
   return (
-    <ThemeProvider theme={customTheme}>
+    <ThemeProvider theme={isDark ? customDarkTheme : customLightTheme}>
       {/* Your app components here */}
     </ThemeProvider>
   );
@@ -197,6 +300,36 @@ export default function ThemedBox() {
   );
 }
 ```
+
+
+## 🎨 makeStyles
+
+The `makeStyles` utility lets you create **theme-aware stylesheets** for your custom components.
+
+It works like `StyleSheet.create`, but automatically injects your current theme.  
+
+```tsx
+import { makeStyles, Text } from "@geekyhawks/react-native-ui-components";
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+    padding: theme.spacing.md,
+  },
+  title: {
+    color: theme.colors.primary,
+    fontFamily: theme.fontFamily,
+  },
+}));
+
+export default function MyComponent() {
+  const styles = useStyles();
+  return <Text style={styles.title}>Hello with Theme Styles</Text>;
+}
+```
+
+👆 This ensures your styles automatically update if the user switches between light/dark mode or you provide a custom theme.
 
 
 ## 🔧 ThemeProvider & ThemeContext
@@ -243,5 +376,8 @@ Once provided to the `ThemeProvider`, it becomes available **throughout your ent
 ## 📓 Notes
 
 - Themes are fully typed with TypeScript – so you get autocompletion for colors, textVariants, buttonSizeVariants etc.
+- `createTheme` helps you define themes with type safety and autocompletion.
+- `makeStyles` returns a hook, so it must be used inside a React component.
+- `spacing` is fully typed, so you get autocompletion for values like `theme.spacing.md`.
 - Dark mode is optional – you can provide only a single theme if your app doesn’t need it.
 - Works seamlessly with all built-in components.

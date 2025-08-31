@@ -55,6 +55,13 @@ export default function Example() {
 ```
 
 
+## 📱 Live Example
+
+For a full showcase of all text variants, sizes, and weights, check out the [TextDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/TextDemoScreen.tsx) inside the **Example App**.
+
+This screen demonstrates how all props work together in a real-world context.
+
+
 ## 🔧 Props
 
 

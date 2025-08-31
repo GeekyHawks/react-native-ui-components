@@ -22,13 +22,19 @@ Our FloatingLabelTextInput solves this by:
 
 ```tsx
 import { Image } from "react-native";
-import { FloatingLabelTextInput, ThemeProvider } from '@geekyhawks/react-native-ui-components';
+import { FloatingLabelTextInput, ThemeProvider } from "@geekyhawks/react-native-ui-components";
 
 export default function Example() {
   return (
     <ThemeProvider>
       {/* FloatingLabelTextInput Variants */}
-      <FloatingLabelTextInput label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput
+        label="Email Address"
+        placeholder="john@doe.com"
+        containerStyle={{ marginTop: 10 }}
+        onChangeText={(text) => {
+          // Do something with text
+        }} />
       <FloatingLabelTextInput variant="underline" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
 
       {/* FloatingLabelTextInput Size Variants */}
@@ -119,6 +125,13 @@ export default function Example() {
   );
 }
 ```
+
+
+## 📱 Live Example
+
+For a full showcase of all floating label input variants, states, and sizes, check out the [FloatingLabelDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/FloatingLabelDemoScreen.tsx) inside the **Example App**.
+
+This screen demonstrates how all props work together in a real-world context.
 
 
 ## Props

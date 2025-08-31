@@ -129,7 +129,7 @@ export default function Example() {
 
 ## 📱 Live Example
 
-For a full showcase of all floating label input variants, states, and sizes, check out the [FloatingLabelDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/FloatingLabelDemoScreen.tsx) inside the **Example App**.
+For a full showcase of all floating label text input variants, states, and sizes, check out the [FloatingLabelDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/FloatingLabelDemoScreen.tsx) inside the **Example App**.
 
 This screen demonstrates how all props work together in a real-world context.
 

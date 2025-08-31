@@ -231,6 +231,24 @@ export function ButtonMinimalExample() {
                         </View>
 
                         <Text>
+                            In a Row
+                        </Text>
+
+                        <View style={{ flexDirection: "row", gap: 5 }}>
+                            <Button
+                                containerStyle={{ flex: 1 }}
+                                onPress={() => console.log("Pressed!")}>
+                                One
+                            </Button>
+
+                            <Button
+                                containerStyle={{ flex: 1 }}
+                                onPress={() => console.log("Pressed!")}>
+                                Two
+                            </Button>
+                        </View>
+
+                        <Text>
                             Full Width
                         </Text>
 

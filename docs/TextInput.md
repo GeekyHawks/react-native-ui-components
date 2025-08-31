@@ -28,7 +28,12 @@ export default function Example() {
   return (
     <ThemeProvider>
       {/* TextInput Variants */}
-      <TextInput label="Default" placeholder="Defaut TextInput" />
+      <TextInput
+        label="Default"
+        placeholder="Defaut TextInput"
+        onChangeText={(text) => {
+          // Do something with text
+        }} />
       <TextInput variant="underline" label="Underline" placeholder="Underline Example" />
       <TextInput variant="filled" label="Filled" placeholder="Filled Example" />
 
@@ -131,6 +136,13 @@ export default function Example() {
   );
 }
 ```
+
+
+## 📱 Live Example
+
+For a full showcase of all text input variants, states, and configurations, check out the [TextInputDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/TextInputDemoScreen.tsx) inside the **Example App**.
+
+This screen demonstrates how all props work together in a real-world context.
 
 
 ## 🔧 Props

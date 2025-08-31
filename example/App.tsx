@@ -9,6 +9,8 @@
  * - Using default and custom `Text` variants
  * - Navigating between multiple component examples:
  *   - Home Screen (overview)
+ *   - Theme Demo
+ *   - Make Styles Demo
  *   - Text Component Demo
  *   - Button Component Demo
  *   - TextInput Component Demo
@@ -21,6 +23,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
+import ThemeDemoScreen from "./src/screens/ThemeDemoScreen";
+import MakeStylesDemoScreen from "./src/screens/MakeStylesDemoScreen";
 import TextDemoScreen from "./src/screens/TextDemoScreen";
 import ButtonDemoScreen from "./src/screens/ButtonDemoScreen";
 import TextInputDemoScreen from "./src/screens/TextInputDemoScreen";
@@ -28,6 +32,8 @@ import FloatingLabelDemoScreen from "./src/screens/FloatingLabelDemoScreen";
 
 export type RootStackParamList = {
 	Home: undefined;
+	Theme: undefined;
+	Styles: undefined;
 	Text: undefined;
 	Button: undefined;
 	TextInput: undefined;
@@ -43,6 +49,8 @@ export default function App() {
 		<NavigationContainer>
 			<Stack.Navigator initialRouteName="Home">
 				<Stack.Screen name="Home" component={HomeScreen} />
+				<Stack.Screen name="Theme" component={ThemeDemoScreen} />
+				<Stack.Screen name="Styles" component={MakeStylesDemoScreen} />
 				<Stack.Screen name="Text" component={TextDemoScreen} />
 				<Stack.Screen name="Button" component={ButtonDemoScreen} />
 				<Stack.Screen name="TextInput" component={TextInputDemoScreen} />

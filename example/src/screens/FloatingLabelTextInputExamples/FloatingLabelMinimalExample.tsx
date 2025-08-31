@@ -38,6 +38,7 @@ export function FloatingLabelMinimalExample() {
 							label="Email Address"
 							size="lg"
 							containerStyle={{ marginTop: 20 }}
+							onChangeText={(text) => {}}
 						/>
 
 						{/* Underline FloatingLabelTextInput */}

@@ -6,7 +6,7 @@
  * Demonstrates usage of the following props:
  * - `variant`: Solid, Outline, Ghost
  * - `colorScheme`: Changing button colors based on theme
- * - `containerStyle` / `textStyle`: Custom colors per button
+ * - `buttonStyle` / `textStyle`: Custom colors per button
  * - Theme integration: Shows switching between light and dark modes using a toggle
  *
  * Purpose:
@@ -71,9 +71,9 @@ export function ButtonLightDarkExample() {
                                 Outline
                             </Button>
 
-                            {/* Change containerStyle, textStyle */}
+                            {/* Change buttonStyle, textStyle */}
                             <Button
-                                containerStyle={{ backgroundColor: isDarkMode ? "#333333" : "#FF6347" }}
+                                buttonStyle={{ backgroundColor: isDarkMode ? "#333333" : "#FF6347" }}
                                 textStyle={{ color: isDarkMode ? "#FAFAFA" : "#ffffff" }}>
                                 Custom
                             </Button>

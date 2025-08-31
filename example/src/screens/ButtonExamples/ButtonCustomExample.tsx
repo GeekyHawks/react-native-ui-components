@@ -8,7 +8,7 @@
  * - `size` / `shape`: Custom button sizes and shapes
  * - `colorScheme`: Apply different colors based on theme
  * - `leftIcon` / `rightIcon`: Adding icons to buttons
- * - `containerStyle` / `textStyle`: Override styles per button
+ * - `buttonStyle` / `containerStyle` / `textStyle`: Override styles per button
  * - Theme integration: Switching between light and dark custom themes
  *
  * Purpose:
@@ -130,7 +130,6 @@ export function ButtonCustomExample() {
                             size="bigButton"
                             colorScheme="secondary"
                             onPress={() => console.log("Pressed!")}
-                            containerStyle={{ marginTop: 10 }}
                             leftIcon={
                                 <Image
                                     source={require("../../assets/press-button.png")}
@@ -147,7 +146,6 @@ export function ButtonCustomExample() {
                             shape="rounded"
                             variant="outline"
                             colorScheme="secondary"
-                            containerStyle={{ marginTop: 20 }}
                             animation="scale"
                             rightIcon={
                                 <Image

@@ -38,6 +38,7 @@ export function TextInputMinimalExample() {
 						<TextInput
 							label="Default"
 							placeholder="Default InputText"
+							onChangeText={(text) => {}}
 						/>
 
 						{/* Underline TextInput */}

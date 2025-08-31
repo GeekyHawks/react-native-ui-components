@@ -5,6 +5,8 @@
  * 
  * Features:
  * - Provides navigation buttons to the different component demo screens:
+ *   - Theme Demo
+ *   - Make Styles Demo
  *   - Text Component Demo
  *   - Button Component Demo
  *   - TextInput Component Demo
@@ -28,6 +30,20 @@ export default function HomeScreen() {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("Theme")}
+            >
+                Theme
+            </Button>
+
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("Styles")}
+            >
+                Make Styles
+            </Button>
+
             <Button
                 style={styles.button}
                 onPress={() => navigation.navigate("Text")}

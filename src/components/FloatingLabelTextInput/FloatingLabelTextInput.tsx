@@ -163,14 +163,12 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         }).start();
     }, [isFocused, hasText]);
 
-    // Adjusted label position (vertically centered when unfocused)
+    const containerHeight = Number(styleVariant.container?.minHeight ?? 48);
     const labelY = labelAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [
-            sizeVariant.paddingVertical +
-            sizeVariant.fontSize / 2 -
-            sizeVariant.labelFontSize / 2,
-            -8,
+            (containerHeight / 2 - sizeVariant.fontSize / 2) - (sizeVariant.paddingVertical / 2),
+            -8
         ],
     });
 

@@ -46,11 +46,19 @@ import Text from "../Text";
 export interface Props extends PressableProps {
     /** Press feedback animation (`scale`, `opacity`, `shadow`, `scaleOpacity`, `none`) */
     animation?: "scale" | "opacity" | "shadow" | "scaleOpacity" | "none";
+    /**
+     * buttonStyle - Style for the inner button surface
+     * Example: background color, border radius, shadow, padding
+     */
+    buttonStyle?: StyleProp<ViewStyle>;
     /** Content of the button (text) */
     children?: string;
     /** Optional color from theme palette */
     colorScheme?: keyof ReturnType<typeof useTheme>["theme"]["colors"];
-    /** Style for the outer container */
+    /** 
+     * containerStyle - Style for the outer container
+     * Example: layout-related styles like flex, margin, alignment
+     */
     containerStyle?: StyleProp<ViewStyle>;
     /** Disable the button */
     disabled?: boolean;
@@ -58,19 +66,18 @@ export interface Props extends PressableProps {
     fullWidth?: boolean;
     /** Icon to show before text */
     leftIcon?: React.ReactNode;
+    /** Style for the left icon container */
+    leftIconStyle?: StyleProp<ViewStyle>;
     /** Loading indicator shown instead of text */
     loading?: boolean;
     /** Custom loading indicator node */
     loadingIndicator?: React.ReactNode;
     /** Callback for button press */
     onPress?: () => void;
-    /**
-     * Size
-     *
-     * Choose from default sizes (`"sm" | "md" | "lg"`)
-     * or provide the name of a custom size defined in ThemeProvider.
-     */
-    size?: DefaultButtonSizes | (string & {});
+    /** Icon to show after text */
+    rightIcon?: React.ReactNode;
+    /** Style for the right icon container */
+    rightIconStyle?: StyleProp<ViewStyle>;
     /**
      * Shape
      *
@@ -78,8 +85,13 @@ export interface Props extends PressableProps {
      * or provide the name of a custom shape defined in ThemeProvider.
      */
     shape?: DefaultButtonShapes | (string & {});
-    /** Icon to show after text */
-    rightIcon?: React.ReactNode;
+    /**
+     * Size
+     *
+     * Choose from default sizes (`"sm" | "md" | "lg"`)
+     * or provide the name of a custom size defined in ThemeProvider.
+     */
+    size?: DefaultButtonSizes | (string & {});
     /** Style for the text inside the button */
     textStyle?: StyleProp<TextStyle>;
     /** Variant style of the button (`solid`, `outline`, `ghost`) */
@@ -97,18 +109,21 @@ const Button: React.FC<Props> = ({
     accessibilityHint,
     accessibilityLabel,
     animation = "scale",
+    buttonStyle,
     children,
     colorScheme = "primary",
     containerStyle,
     disabled = false,
     fullWidth = false,
     leftIcon,
+    leftIconStyle,
     loading = false,
     loadingIndicator,
     onPress,
     rightIcon,
-    size = "md",
+    rightIconStyle,
     shape = "md",
+    size = "md",
     textStyle,
     variant = "solid",
     ...rest
@@ -207,8 +222,9 @@ const Button: React.FC<Props> = ({
             accessibilityRole="button"
             accessibilityLabel={accessibilityLabel || (typeof children === "string" ? children : "Button")}
             accessibilityHint={accessibilityHint}
-            style={({ pressed }) => [
-                fullWidth ? { alignSelf: "stretch" } : { alignSelf: "flex-start" },
+            style={[
+                { alignSelf: fullWidth ? "stretch" : "flex-start" },
+                containerStyle,
             ]}
             {...rest}
         >
@@ -228,11 +244,11 @@ const Button: React.FC<Props> = ({
                     },
                     animation === "shadow" && shadowStyle,
                     disabled && styles.disabled,
-                    containerStyle,
+                    buttonStyle,
                 ]}
             >
                 <View style={styles.content}>
-                    {leftIcon && <View style={styles.icon}>{leftIcon}</View>}
+                    {leftIcon && <View style={[styles.icon, leftIconStyle]}>{leftIcon}</View>}
                     {loading ? (
                         loadingIndicator || (
                             <ActivityIndicator
@@ -251,7 +267,7 @@ const Button: React.FC<Props> = ({
                             </Text>
                         )
                     )}
-                    {rightIcon && <View style={styles.icon}>{rightIcon}</View>}
+                    {rightIcon && <View style={[styles.icon, rightIconStyle]}>{rightIcon}</View>}
                 </View>
             </Animated.View>
         </Pressable>

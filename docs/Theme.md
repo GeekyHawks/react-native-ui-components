@@ -281,6 +281,15 @@ export default function App() {
 ```
 
 
+### 🚀 Live Example
+
+Open the [Theme Demo Screen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/ThemeDemoScreen.tsx) in the example app to explore:
+
+- **Single Theme** – using only the default light theme.  
+- **Light/Dark Mode** – toggle between built-in light and dark themes.  
+- **Custom Themes** – switch between your own custom light and dark themes.  
+
+
 ## 🎨 Accessing the Theme in Components
 
 All built-in components (Text, Button, TextInput, FloatingLabelTextInput) automatically pull values from the theme.
@@ -330,6 +339,15 @@ export default function MyComponent() {
 ```
 
 👆 This ensures your styles automatically update if the user switches between light/dark mode or you provide a custom theme.
+
+
+### 🚀 Live Example
+
+Check out the [MakeStyles Demo Screen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/MakeStylesDemoScreen.tsx) in the example app to see:
+
+- **Basic Example** – defining and using theme-aware styles.  
+- **Light/Dark Example** – switching between default light/dark themes.  
+- **Custom Theme Example** – toggling between your own custom light/dark themes.  
 
 
 ## 🔧 ThemeProvider & ThemeContext

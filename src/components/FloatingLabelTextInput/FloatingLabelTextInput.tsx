@@ -60,6 +60,8 @@ export interface Props extends RNTextInputProps {
     error?: string;
     /** Error text alignment */
     errorPosition?: "left" | "center" | "right";
+    /** Optional font family for the input text */
+    fontFamily?: string;
     /** Make input expand to fill parent width */
     fullWidth?: boolean;
     /** Optional helper text below the input */
@@ -79,6 +81,8 @@ export interface Props extends RNTextInputProps {
         hide?: React.ReactNode; // To hide password
         show?: React.ReactNode; // To show password
     };
+    /** Text Color for the Placeholder */
+    placeholderTextColor?: string;
     /** Show text as secure (password) */
     secureTextEntry?: boolean;
     /**
@@ -117,6 +121,7 @@ const FloatingLabelTextInput: React.FC<Props> = ({
     disabled = false,
     error,
     errorPosition = "left",
+    fontFamily,
     fullWidth = true,
     helperText,
     inputContainerStyle,
@@ -125,6 +130,7 @@ const FloatingLabelTextInput: React.FC<Props> = ({
     labelStyle,
     loading = false,
     passwordToggleIcons,
+    placeholderTextColor,
     secureTextEntry,
     size = "md",
     style,
@@ -254,20 +260,23 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                         {
                             flex: 1,
                             color: theme.colors.text,
+                            fontFamily: theme.fontFamily,
                             fontSize: sizeVariant.fontSize,
                             paddingVertical: sizeVariant.paddingVertical,
+                            paddingHorizontal: 0,
                             textAlignVertical: rest.multiline ? "top" : "center",
                             minHeight: rest.multiline
                                 ? (rest.numberOfLines ?? 3) * (sizeVariant.fontSize + sizeVariant.paddingVertical * 1.5)
                                 : undefined,
                         },
                         styleVariant.input,
+                        fontFamily ? { fontFamily } : {},
                         inputStyle,
                         style,
                     ]}
                     secureTextEntry={secureTextEntry && !showPassword}
                     placeholder={""} // placeholder handled by floating label
-                    placeholderTextColor={theme.colors.muted}
+                    placeholderTextColor={placeholderTextColor ?? theme.colors.muted}
                     editable={!disabled && !loading}
                     value={rest.value ?? value}
                     onChangeText={(text) => {

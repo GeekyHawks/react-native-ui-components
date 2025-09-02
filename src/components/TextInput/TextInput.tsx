@@ -60,6 +60,8 @@ export interface Props extends RNTextInputProps {
     errorPosition?: "left" | "center" | "right";
     /** Style for error text */
     errorTextStyle?: StyleProp<TextStyle>;
+    /** Optional font family for the input text */
+    fontFamily?: string;
     /** Make input expand to fill parent width */
     fullWidth?: boolean;
     /** Optional helper text below the input */
@@ -87,6 +89,8 @@ export interface Props extends RNTextInputProps {
         hide?: React.ReactNode; // To hide password
         show?: React.ReactNode; // To show password
     };
+    /** Text Color for the Placeholder */
+    placeholderTextColor?: string;
     /** Optional icon rendered on the right side */
     rightIcon?: React.ReactNode;
     /** Show text as secure (password) */
@@ -128,6 +132,7 @@ const TextInput: React.FC<Props> = ({
     error,
     errorPosition = "left",
     errorTextStyle,
+    fontFamily,
     fullWidth = true,
     helperText,
     helperTextStyle,
@@ -140,6 +145,7 @@ const TextInput: React.FC<Props> = ({
     multiline = false,
     numberOfLines = 1,
     passwordToggleIcons,
+    placeholderTextColor,
     rightIcon,
     secureTextEntry,
     size = "md",
@@ -226,7 +232,7 @@ const TextInput: React.FC<Props> = ({
                 <RNTextInput
                     {...rest}
                     style={[
-                        { flex: 1, color: theme.colors.text },
+                        { flex: 1, color: theme.colors.text, fontFamily: theme.fontFamily },
                         {
                             fontSize: sizeVariant.fontSize,
                             paddingVertical: sizeVariant.paddingVertical,
@@ -235,11 +241,12 @@ const TextInput: React.FC<Props> = ({
                                 : undefined,
                         },
                         styleVariant.input,
+                        fontFamily ? { fontFamily } : {},
                         multiline && { textAlignVertical: "top" },
                         inputStyle,
                     ]}
                     secureTextEntry={secureTextEntry && !showPassword}
-                    placeholderTextColor={theme.colors.muted}
+                    placeholderTextColor={placeholderTextColor ?? theme.colors.muted}
                     editable={!disabled && !loading}
                     multiline={multiline}
                     numberOfLines={numberOfLines}

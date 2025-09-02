@@ -8,7 +8,7 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     Animated,
     TextInput as RNTextInput,
@@ -143,8 +143,6 @@ const FloatingLabelTextInput: React.FC<Props> = ({
     const [value, setValue] = useState(rest.value?.toString() || "");
     const [showPassword, setShowPassword] = useState(false);
 
-    const labelAnim = useRef(new Animated.Value(value ? 1 : 0)).current;
-
     const sizeVariant =
         floatingLabelTextInputSizeVariants[size] || floatingLabelTextInputSizeVariants.md;
     const styleVariant =
@@ -153,17 +151,12 @@ const FloatingLabelTextInput: React.FC<Props> = ({
 
     const isError = !!error;
     const hasText = value.length > 0;
-
-    // Animate label up/down
-    useEffect(() => {
-        Animated.timing(labelAnim, {
-            toValue: isFocused || hasText ? 1 : 0,
-            duration: 200,
-            useNativeDriver: false,
-        }).start();
-    }, [isFocused, hasText]);
-
     const containerHeight = Number(styleVariant.container?.minHeight ?? 48);
+
+    const labelAnim = useRef(new Animated.Value(hasText ? 1 : 0)).current;
+    const focusAnim = useRef(new Animated.Value(isFocused || isError ? 1 : 0)).current;
+
+    // Animate label position
     const labelY = labelAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [
@@ -172,11 +165,13 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         ],
     });
 
+    // Animate font size
     const labelFontSize = labelAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [sizeVariant.fontSize, sizeVariant.labelFontSize],
     });
 
+    // Animate label color
     const labelColor = labelAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [
@@ -185,29 +180,45 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         ],
     });
 
+    // Animate border color
+    const borderColor = focusAnim.interpolate({
+        inputRange: [0, 1],
+        outputRange: [
+            (styleVariant.container?.borderColor || theme.colors.muted) as string,
+            (isError ? theme.colors.error : theme.colors.primary) as string,
+        ],
+    });
+
+    useEffect(() => {
+        Animated.parallel([
+            Animated.timing(focusAnim, {
+                toValue: isError || isFocused ? 1 : 0,
+                duration: 200,
+                useNativeDriver: false,
+            }),
+            Animated.timing(labelAnim, {
+                toValue: hasText || isFocused ? 1 : 0,
+                duration: 200,
+                useNativeDriver: false,
+            }),
+        ]).start();
+    }, [hasText, isError, isFocused]);
+
     return (
         <View
             style={[{ width: fullWidth ? "100%" : undefined }, containerStyle]}
             accessible={accessible}
             accessibilityLabel={label || rest.placeholder}
             accessibilityState={{ disabled, ...(error ? { invalid: true } : {}) } as any}>
-            <View
+            <Animated.View
                 style={[
                     styleVariant.container,
                     {
                         opacity: disabled ? 0.6 : 1,
                         flexDirection: "row",
                         alignItems: rest.multiline ? "flex-start" : "center",
-                        borderColor: variant === "outline"
-                            ? isError
-                                ? theme.colors.error
-                                : styleVariant.container?.borderColor || theme.colors.muted
-                            : undefined,
-                        borderBottomColor: variant === "underline"
-                            ? isError
-                                ? theme.colors.error
-                                : styleVariant.container?.borderColor || theme.colors.muted
-                            : undefined,
+                        borderColor: variant === "outline" ? borderColor : undefined,
+                        borderBottomColor: variant === "underline" ? borderColor : undefined,
                     },
                     fullWidth && { width: "100%" },
                     inputContainerStyle,
@@ -258,7 +269,7 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                     placeholder={""} // placeholder handled by floating label
                     placeholderTextColor={theme.colors.muted}
                     editable={!disabled && !loading}
-                    value={value}
+                    value={rest.value ?? value}
                     onChangeText={(text) => {
                         setValue(text);
                         rest.onChangeText?.(text);
@@ -294,7 +305,7 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                         size="small"
                         color={theme.colors.primary} />
                 )}
-            </View>
+            </Animated.View>
 
             {/* Error / helper text */}
             {isError ? (

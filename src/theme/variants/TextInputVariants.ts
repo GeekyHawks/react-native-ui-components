@@ -59,13 +59,15 @@ export const defaultTextInputStyleVariants: TextInputStyleVariants = {
     },
     filled: {
         container: {
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "#3A3A3A",
             borderRadius: 8,
             paddingHorizontal: 12,
             borderWidth: 1,
             borderColor: "#ccc",
         },
-        input: {},
+        input: {
+            color: "#FFFFFF",
+        },
     },
     underline: {
         container: {

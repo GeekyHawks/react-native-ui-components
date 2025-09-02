@@ -17,9 +17,8 @@
  */
 
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, View, Switch } from "react-native";
+import { ScrollView, StyleSheet, View, Switch, KeyboardAvoidingView, Platform } from "react-native";
 import { FloatingLabelTextInput, Text, ThemeProvider, defaultDarkTheme, defaultLightTheme } from "@geekyhawks/react-native-ui-components";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export function FloatingLabelLightDarkExample() {
 	// For testing/demo purposes, we control dark mode manually here.
@@ -30,18 +29,23 @@ export function FloatingLabelLightDarkExample() {
 		<>
 			{/* Using default light/dark themes; see Custom Example for theme customization */}
 			<ThemeProvider theme={isDarkMode ? defaultDarkTheme : defaultLightTheme}>
-				<SafeAreaView
+				<KeyboardAvoidingView
 					style={[styles.container, {
 						// Set background color based on current theme (light or dark)
 						backgroundColor: isDarkMode ? defaultDarkTheme.colors.background
 							: defaultLightTheme.colors.background,
 					}]}
-				>
+					behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+					keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}>
+
 					<View style={styles.toggleContainer}>
 						<Text>Dark Mode:</Text>
 						<Switch value={isDarkMode} onValueChange={setIsDarkMode} />
 					</View>
-					<ScrollView>
+
+					<ScrollView
+						showsVerticalScrollIndicator={false}
+						keyboardShouldPersistTaps={"handled"}>
 
 						{/* Default FloatingLabelTextInput */}
 						<FloatingLabelTextInput
@@ -80,8 +84,17 @@ export function FloatingLabelLightDarkExample() {
 							containerStyle={{ marginTop: 20 }}
 						/>
 
+						{/* Custom Colors TextInput */}
+						<FloatingLabelTextInput
+							label="Custom"
+							labelStyle={{ color: isDarkMode ? "orange" : "red" }}
+							inputStyle={{ color: isDarkMode ? "tomato" : "coral" }}
+							fontFamily={"Courier"}
+							containerStyle={{ marginTop: 20 }}
+						/>
+
 					</ScrollView>
-				</SafeAreaView>
+				</KeyboardAvoidingView>
 			</ThemeProvider>
 		</>
 	);

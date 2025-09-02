@@ -21,7 +21,7 @@
  */
 
 import React from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
 import { ThemeProvider, FloatingLabelTextInput } from "@geekyhawks/react-native-ui-components";
 
 export function FloatingLabelMinimalExample() {
@@ -29,16 +29,20 @@ export function FloatingLabelMinimalExample() {
 		<>
 			{/* Wrap components with ThemeProvider to apply default styling */}
 			<ThemeProvider>
-				<View style={styles.container}>
+				<KeyboardAvoidingView
+					style={styles.container}
+					behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+					keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}>
 					<ScrollView
-						showsVerticalScrollIndicator={false}>
+						showsVerticalScrollIndicator={false}
+						keyboardShouldPersistTaps={"handled"}>
 
 						{/* Default FloatingLabelTextInput */}
 						<FloatingLabelTextInput
 							label="Email Address"
 							size="lg"
 							containerStyle={{ marginTop: 20 }}
-							onChangeText={(text) => {}}
+							onChangeText={(text) => { }}
 						/>
 
 						{/* Underline FloatingLabelTextInput */}
@@ -51,7 +55,6 @@ export function FloatingLabelMinimalExample() {
 						{/* Password FloatingLabelTextInput with toggle */}
 						<FloatingLabelTextInput
 							label="Password"
-							placeholder="Enter your password"
 							secureTextEntry
 							passwordToggleIcons={{
 								show: (
@@ -76,7 +79,6 @@ export function FloatingLabelMinimalExample() {
 						{/* FloatingLabelTextInput with helperText and loading state */}
 						<FloatingLabelTextInput
 							label="Username"
-							placeholder="Username"
 							size="md"
 							helperText="Validating..."
 							value="johndoe"
@@ -87,7 +89,6 @@ export function FloatingLabelMinimalExample() {
 						{/* Disabled FloatingLabelTextInput */}
 						<FloatingLabelTextInput
 							label="Email (Disabled)"
-							placeholder="Disabled input"
 							helperText="You cannot edit this field"
 							disabled
 							containerStyle={{ marginTop: 20 }}
@@ -96,7 +97,6 @@ export function FloatingLabelMinimalExample() {
 						{/* Default FloatingLabelTextInput with Error */}
 						<FloatingLabelTextInput
 							label="Name"
-							placeholder="Your Name"
 							error="This is error"
 							errorPosition="right"
 							containerStyle={{ marginTop: 20 }}
@@ -105,7 +105,6 @@ export function FloatingLabelMinimalExample() {
 						{/* Underline FloatingLabelTextInput with Error */}
 						<FloatingLabelTextInput
 							label="Name"
-							placeholder="Your Name"
 							variant="underline"
 							error="This is error"
 							errorPosition="right"
@@ -132,7 +131,7 @@ export function FloatingLabelMinimalExample() {
 						/>
 
 					</ScrollView>
-				</View>
+				</KeyboardAvoidingView>
 			</ThemeProvider>
 		</>
 	);

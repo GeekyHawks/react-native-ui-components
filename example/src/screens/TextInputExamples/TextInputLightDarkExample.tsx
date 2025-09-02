@@ -11,9 +11,8 @@
  */
 
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, View, Switch } from "react-native";
+import { ScrollView, StyleSheet, View, Switch, KeyboardAvoidingView, Platform } from "react-native";
 import { ThemeProvider, Text, defaultDarkTheme, defaultLightTheme, TextInput } from "@geekyhawks/react-native-ui-components";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export function TextInputLightDarkExample() {
     // For testing/demo purposes, we control dark mode manually here.
@@ -24,17 +23,24 @@ export function TextInputLightDarkExample() {
         <>
             {/* Using default light/dark themes; see Custom Example for theme customization */}
             <ThemeProvider theme={isDarkMode ? defaultDarkTheme : defaultLightTheme}>
-                <SafeAreaView
+                <KeyboardAvoidingView
                     style={[styles.container, {
                         // Set background color based on current theme (light or dark)
                         backgroundColor: isDarkMode ? defaultDarkTheme.colors.background
                             : defaultLightTheme.colors.background,
-                    }]}>
+                    }]}
+                    behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}>
+
                     <View style={styles.toggleContainer}>
                         <Text>Dark Mode:</Text>
                         <Switch value={isDarkMode} onValueChange={setIsDarkMode} />
                     </View>
-                    <ScrollView contentContainerStyle={{ gap: 16 }}>
+
+                    <ScrollView
+                        contentContainerStyle={{ gap: 16 }}
+                        showsVerticalScrollIndicator={false}
+                        keyboardShouldPersistTaps={"handled"}>
 
                         {/* Default TextInput */}
                         <TextInput
@@ -55,8 +61,18 @@ export function TextInputLightDarkExample() {
                             placeholder="Filled Example"
                             variant="filled"
                         />
+
+                        {/* Custom Colors TextInput */}
+                        <TextInput
+                            label="Custom"
+                            placeholder="Custom Example"
+                            placeholderTextColor={isDarkMode ? "red" : "brown"}
+                            labelStyle={{ color: isDarkMode ? "orange" : "slateblue" }}
+                            inputStyle={{ color: isDarkMode ? "tan" : "coral" }}
+                            fontFamily={"Courier"}
+                        />
                     </ScrollView>
-                </SafeAreaView>
+                </KeyboardAvoidingView>
             </ThemeProvider>
         </>
     );

@@ -10,9 +10,8 @@
  */
 
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Switch, View } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, View } from "react-native";
 import { ThemeProvider, Text, TextInput, createTheme, defaultSpacing, defaultLightTheme, TextInputSizeVariants, defaultTextInputSizeVariants } from "@geekyhawks/react-native-ui-components";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 // Example custom font; replace with any font of your choice
 const customFonts = "Courier";
@@ -76,19 +75,24 @@ export function TextInputCustomExample() {
 	return (
 		<ThemeProvider theme={theme}
 			textInputSizeVariants={customTextInputSizeVariants}>
-			<SafeAreaView
+			<KeyboardAvoidingView
 				style={{
 					flex: 1,
 					padding: 16,
 					backgroundColor: theme.colors.background,
 				}}
+				behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+				keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}
 			>
 				<View style={styles.toggleContainer}>
 					<Text>Dark Mode:</Text>
 					<Switch value={isDarkMode} onValueChange={setIsDarkMode} />
 				</View>
 
-				<ScrollView contentContainerStyle={{ gap: 16 }}>
+				<ScrollView
+					contentContainerStyle={{ gap: 16 }}
+					showsVerticalScrollIndicator={false}
+					keyboardShouldPersistTaps={"handled"}>
 
 					{/* Default TextInput with Custom Font */}
 					<TextInput
@@ -111,7 +115,7 @@ export function TextInputCustomExample() {
 						variant="filled"
 					/>
 				</ScrollView>
-			</SafeAreaView>
+			</KeyboardAvoidingView>
 		</ThemeProvider>
 	);
 }

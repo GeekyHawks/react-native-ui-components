@@ -21,7 +21,7 @@
  */
 
 import React from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
 import { ThemeProvider, TextInput } from "@geekyhawks/react-native-ui-components";
 
 export function TextInputMinimalExample() {
@@ -29,16 +29,20 @@ export function TextInputMinimalExample() {
 		<>
 			{/* Wrap components with ThemeProvider to apply default styling */}
 			<ThemeProvider>
-				<View style={styles.container}>
+				<KeyboardAvoidingView
+					style={styles.container}
+					behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+					keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}>
 					<ScrollView
-						showsVerticalScrollIndicator={false}
 						contentContainerStyle={{ gap: 16 }}
-					>
+						showsVerticalScrollIndicator={false}
+						keyboardShouldPersistTaps={"handled"}>
+
 						{/* Default TextInput */}
 						<TextInput
 							label="Default"
 							placeholder="Default InputText"
-							onChangeText={(text) => {}}
+							onChangeText={(text) => { }}
 						/>
 
 						{/* Underline TextInput */}
@@ -154,7 +158,7 @@ export function TextInputMinimalExample() {
 							numberOfLines={4}
 						/>
 					</ScrollView>
-				</View>
+				</KeyboardAvoidingView>
 			</ThemeProvider>
 		</>
 	);

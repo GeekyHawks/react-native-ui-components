@@ -8,7 +8,7 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     ActivityIndicator,
     Animated,
@@ -151,22 +151,13 @@ const TextInput: React.FC<Props> = ({
     const [isFocused, setFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const focusAnim = useRef(new Animated.Value(0)).current;
+    const AnimatedText = Animated.createAnimatedComponent(Text);
 
     const sizeVariant = textInputSizeVariants[size] || textInputSizeVariants.md;
     const styleVariant = textInputStyleVariants[variant] || textInputStyleVariants.outline;
     const isError = !!error;
 
-    const AnimatedText = Animated.createAnimatedComponent(Text);
-
-    // Animate border color
-    React.useEffect(() => {
-        Animated.timing(focusAnim, {
-            toValue: isFocused || isError ? 1 : 0,
-            duration: 200,
-            useNativeDriver: false,
-        }).start();
-    }, [isFocused, isError]);
+    const focusAnim = useRef(new Animated.Value(0)).current;
 
     // Animate border color
     const borderColor = focusAnim.interpolate({
@@ -200,6 +191,14 @@ const TextInput: React.FC<Props> = ({
         fullWidth && { width: "100%" },
         inputContainerStyle,
     ];
+
+    useEffect(() => {
+        Animated.timing(focusAnim, {
+            toValue: isFocused || isError ? 1 : 0,
+            duration: 200,
+            useNativeDriver: false,
+        }).start();
+    }, [isFocused, isError]);
 
     return (
         <View

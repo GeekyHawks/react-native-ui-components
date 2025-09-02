@@ -186,11 +186,7 @@ const TextInput: React.FC<Props> = ({
         ],
     });
 
-    const isFilled = variant === "filled";
-
-    const containerBackgroundColor = isFilled
-        ? theme.colors.background
-        : styleVariant.container?.backgroundColor || "transparent";
+    const containerBackgroundColor = styleVariant.container?.backgroundColor ?? "transparent";
 
     // Animated style
     const containerStyles = [
@@ -240,8 +236,8 @@ const TextInput: React.FC<Props> = ({
                                 : undefined,
                         },
                         styleVariant.input,
-                        inputStyle,
                         multiline && { textAlignVertical: "top" },
+                        inputStyle,
                     ]}
                     secureTextEntry={secureTextEntry && !showPassword}
                     placeholderTextColor={theme.colors.muted}

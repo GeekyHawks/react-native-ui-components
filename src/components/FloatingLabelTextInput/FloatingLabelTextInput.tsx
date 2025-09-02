@@ -81,8 +81,6 @@ export interface Props extends RNTextInputProps {
         hide?: React.ReactNode; // To hide password
         show?: React.ReactNode; // To show password
     };
-    /** Text Color for the Placeholder */
-    placeholderTextColor?: string;
     /** Show text as secure (password) */
     secureTextEntry?: boolean;
     /**
@@ -130,7 +128,6 @@ const FloatingLabelTextInput: React.FC<Props> = ({
     labelStyle,
     loading = false,
     passwordToggleIcons,
-    placeholderTextColor,
     secureTextEntry,
     size = "md",
     style,
@@ -276,7 +273,6 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                     ]}
                     secureTextEntry={secureTextEntry && !showPassword}
                     placeholder={""} // placeholder handled by floating label
-                    placeholderTextColor={placeholderTextColor ?? theme.colors.muted}
                     editable={!disabled && !loading}
                     value={rest.value ?? value}
                     onChangeText={(text) => {

@@ -30,22 +30,20 @@ export default function Example() {
       {/* FloatingLabelTextInput Variants */}
       <FloatingLabelTextInput
         label="Email Address"
-        placeholder="john@doe.com"
         containerStyle={{ marginTop: 10 }}
         onChangeText={(text) => {
           // Do something with text
         }} />
-      <FloatingLabelTextInput variant="underline" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput variant="underline" label="Email Address" containerStyle={{ marginTop: 10 }} />
 
       {/* FloatingLabelTextInput Size Variants */}
-      <FloatingLabelTextInput size="sm" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
-      <FloatingLabelTextInput size="md" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
-      <FloatingLabelTextInput size="lg" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput size="sm" label="Email Address" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput size="md" label="Email Address" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput size="lg" label="Email Address" containerStyle={{ marginTop: 10 }} />
 
       {/* Password FloatingLabelTextInput with toggle */}
       <FloatingLabelTextInput
         label="Password"
-        placeholder="Enter your password"
         secureTextEntry
         passwordToggleIcons={{
           show: (
@@ -69,7 +67,6 @@ export default function Example() {
       {/* FloatingLabelTextInput with helperText and loading state */}
       <FloatingLabelTextInput
         label="Username"
-        placeholder="Username"
         size="md"
         helperText="Validating..."
         value="johndoe"
@@ -80,7 +77,6 @@ export default function Example() {
       {/* Disabled FloatingLabelTextInput */}
       <FloatingLabelTextInput
         label="Email (Disabled)"
-        placeholder="Disabled input"
         helperText="You cannot edit this field"
         disabled
         containerStyle={{ marginTop: 20 }}
@@ -89,7 +85,6 @@ export default function Example() {
       {/* Default FloatingLabelTextInput with Error */}
       <FloatingLabelTextInput
         label="Name"
-        placeholder="Your Name"
         error="This is error"
         errorPosition="right"
         containerStyle={{ marginTop: 20 }}
@@ -119,8 +114,8 @@ export default function Example() {
 
   return (
     <ThemeProvider theme={isDarkMode ? defaultDarkTheme : defaultLightTheme}>
-      <FloatingLabelTextInput label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
-      <FloatingLabelTextInput variant="underline" label="Email Address" placeholder="john@doe.com" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput label="Email Address" containerStyle={{ marginTop: 10 }} />
+      <FloatingLabelTextInput variant="underline" label="Email Address" containerStyle={{ marginTop: 10 }} />
     </ThemeProvider>
   );
 }
@@ -136,31 +131,30 @@ This screen demonstrates how all props work together in a real-world context.
 
 ## Props
 
-| Prop                   | Type                                                                                   | Default             | Description                                                                                                    |
-| ---------------------- | -------------------------------------------------------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `accessible`           | `boolean`                                                                              | `true`              | Whether the input is accessible for screen readers                                                             |
-| `accessibilityLabel`   | `string`                                                                               | —                   | Accessibility label for screen readers                                                                         |
-| `accessibilityState`   | `AccessibilityState` (RN)                                                              | —                   | Accessibility state for screen readers                                                                         |
-| `containerStyle`       | `StyleProp<ViewStyle>`                                                                 | —                   | Style for the outer container                                                                                  |
-| `disabled`             | `boolean`                                                                              | `false`             | Disables the input field                                                                                       |
-| `error`                | `string`                                                                               | —                   | Error message displayed below input                                                                            |
-| `errorPosition`        | `"left"` \| `"center"` \| `"right"`                                                    | `"left"`            | Position of the error message                                                                                  |
-| `fontFamily`           | `string`                                                                               | Theme default       | Optional font family for the input text                                                                        |
-| `fullWidth`            | `boolean`                                                                              | `true`              | Makes the input take full width of its container                                                               |
-| `helperText`           | `string`                                                                               | —                   | Helper text displayed below input                                                                              |
-| `helperTextStyle`      | `StyleProp<TextStyle>`                                                                 | —                   | Style for the helper text                                                                                      |
-| `inputContainerStyle`  | `StyleProp<ViewStyle>`                                                                 | —                   | Style for the input wrapper container                                                                          |
-| `inputStyle`           | `StyleProp<TextStyle>`                                                                 | —                   | Style for the text input                                                                                       |
-| `label`                | `string`                                                                               | —                   | Floating label text                                                                                            |
-| `labelStyle`           | `StyleProp<TextStyle>`                                                                 | —                   | Style for the floating label                                                                                   |
-| `loading`              | `boolean`                                                                              | `false`             | Shows loading state                                                                                            |
-| `passwordToggleIcons`  | `{ show?: React.ReactNode; hide?: React.ReactNode }`                                   | `"Show"` / `"Hide"` | Custom icons for toggling password visibility. If not provided, default text `"Show"` / `"Hide"` is displayed. |
-| `placeholderTextColor` | `string`                                                                               | Theme muted         | Color for the placeholder text                                                                                 |
-| `secureTextEntry`      | `boolean`                                                                              | —                   | Hides input text for password fields                                                                           |
-| `size`                 | `DefaultFloatingLabelTextInputSizes` \| `(string & {})`  <br> *(sm \| md \| lg)*       | `"md"`              | Input size (predefined or custom)                                                                              |
-| `style`                | `StyleProp<ViewStyle>`                                                                 | —                   | Style for the root component                                                                                   |
-| `variant`              | `DefaultFloatingLabelTextInputStyles` \| `(string & {})` <br> *(outline \| underline)* | `"outline"`         | Input style variant (predefined or custom)                                                                     |
-| `...props`             | `TextInputProps` (RN)                                                                  | —                   | All native RN `TextInput` props                                                                                |
+| Prop                  | Type                                                                                   | Default             | Description                                                                                                    |
+| --------------------- | -------------------------------------------------------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `accessible`          | `boolean`                                                                              | `true`              | Whether the input is accessible for screen readers                                                             |
+| `accessibilityLabel`  | `string`                                                                               | —                   | Accessibility label for screen readers                                                                         |
+| `accessibilityState`  | `AccessibilityState` (RN)                                                              | —                   | Accessibility state for screen readers                                                                         |
+| `containerStyle`      | `StyleProp<ViewStyle>`                                                                 | —                   | Style for the outer container                                                                                  |
+| `disabled`            | `boolean`                                                                              | `false`             | Disables the input field                                                                                       |
+| `error`               | `string`                                                                               | —                   | Error message displayed below input                                                                            |
+| `errorPosition`       | `"left"` \| `"center"` \| `"right"`                                                    | `"left"`            | Position of the error message                                                                                  |
+| `fontFamily`          | `string`                                                                               | Theme default       | Optional font family for the input text                                                                        |
+| `fullWidth`           | `boolean`                                                                              | `true`              | Makes the input take full width of its container                                                               |
+| `helperText`          | `string`                                                                               | —                   | Helper text displayed below input                                                                              |
+| `helperTextStyle`     | `StyleProp<TextStyle>`                                                                 | —                   | Style for the helper text                                                                                      |
+| `inputContainerStyle` | `StyleProp<ViewStyle>`                                                                 | —                   | Style for the input wrapper container                                                                          |
+| `inputStyle`          | `StyleProp<TextStyle>`                                                                 | —                   | Style for the text input                                                                                       |
+| `label`               | `string`                                                                               | —                   | Floating label text                                                                                            |
+| `labelStyle`          | `StyleProp<TextStyle>`                                                                 | —                   | Style for the floating label                                                                                   |
+| `loading`             | `boolean`                                                                              | `false`             | Shows loading state                                                                                            |
+| `passwordToggleIcons` | `{ show?: React.ReactNode; hide?: React.ReactNode }`                                   | `"Show"` / `"Hide"` | Custom icons for toggling password visibility. If not provided, default text `"Show"` / `"Hide"` is displayed. |
+| `secureTextEntry`     | `boolean`                                                                              | —                   | Hides input text for password fields                                                                           |
+| `size`                | `DefaultFloatingLabelTextInputSizes` \| `(string & {})`  <br> *(sm \| md \| lg)*       | `"md"`              | Input size (predefined or custom)                                                                              |
+| `style`               | `StyleProp<ViewStyle>`                                                                 | —                   | Style for the root component                                                                                   |
+| `variant`             | `DefaultFloatingLabelTextInputStyles` \| `(string & {})` <br> *(outline \| underline)* | `"outline"`         | Input style variant (predefined or custom)                                                                     |
+| `...props`            | `TextInputProps` (RN)                                                                  | —                   | All native RN `TextInput` props                                                                                |
 
 
 ## 🎨 Variants
@@ -237,7 +231,7 @@ import { TextInput, ThemeProvider } from "@geekyhawks/react-native-ui-components
 export default function Example() {
   return (
     <ThemeProvider floatingLabelTextInputSizeVariants={customFloatingSizeVariants}>
-      <FloatingLabelTextInput size="xl" label="XL Floating Label" placeholder="XL Floating Label" />
+      <FloatingLabelTextInput size="xl" label="XL Floating Label" />
     </ThemeProvider>
   );
 }

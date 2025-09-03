@@ -117,6 +117,9 @@ export interface Props extends RNTextInputProps {
     variant?: DefaultTextInputStyles | (string & {});
 }
 
+/** Animated Text */
+const AnimatedText = Animated.createAnimatedComponent(Text);
+
 /**
  * TextInput
  *
@@ -156,8 +159,6 @@ const TextInput: React.FC<Props> = ({
     const { theme, textInputStyleVariants, textInputSizeVariants } = useTheme();
     const [isFocused, setFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-    const AnimatedText = Animated.createAnimatedComponent(Text);
 
     const sizeVariant = textInputSizeVariants[size] || textInputSizeVariants.md;
     const styleVariant = textInputStyleVariants[variant] || textInputStyleVariants.outline;
@@ -219,6 +220,7 @@ const TextInput: React.FC<Props> = ({
                     style={[
                         { marginBottom: 4, fontWeight: "bold" },
                         { color: labelColor as any },
+                        fontFamily ? { fontFamily } : {},
                         labelStyle,
                     ]}
                 >
@@ -271,7 +273,12 @@ const TextInput: React.FC<Props> = ({
                                 ? passwordToggleIcons.hide || null
                                 : passwordToggleIcons.show || null
                         ) : (
-                            <Text variant="caption" color={theme.colors.primary}>
+                            <Text
+                                variant="caption"
+                                color={theme.colors.primary}
+                                style={[
+                                    fontFamily ? { fontFamily } : {}
+                                ]}>
                                 {showPassword ? "Hide" : "Show"}
                             </Text>
                         )}
@@ -293,7 +300,11 @@ const TextInput: React.FC<Props> = ({
                 <Text
                     variant="caption"
                     color={theme.colors.error}
-                    style={[{ marginTop: 4, textAlign: errorPosition }, errorTextStyle]}
+                    style={[
+                        { marginTop: 4, textAlign: errorPosition },
+                        fontFamily ? { fontFamily } : {},
+                        errorTextStyle
+                    ]}
                 >
                     {error}
                 </Text>
@@ -301,7 +312,11 @@ const TextInput: React.FC<Props> = ({
                 <Text
                     variant="caption"
                     color={theme.colors.muted}
-                    style={[{ marginTop: 4 }, helperTextStyle]}
+                    style={[
+                        { marginTop: 4 },
+                        fontFamily ? { fontFamily } : {},
+                        helperTextStyle
+                    ]}
                 >
                     {helperText}
                 </Text>

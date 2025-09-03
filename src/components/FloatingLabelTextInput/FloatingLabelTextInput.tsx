@@ -34,8 +34,10 @@ import Text from "../Text";
  * - **disabled / loading**: disable input or show loading state
  * - **error**: optional error message to display below the input
  * - **errorPosition**: alignment of error text ("left" | "center" | "right")
+ * - **errorTextStyle**: style for error text
  * - **fullWidth**: make input expand to full width
  * - **helperText**: optional helper text to show below the input
+ * - **helperTextStyle**: style for helper text
  * - **inputContainerStyle**: style for inner input container
  * - **inputStyle**: style for TextInput itself
  * - **label**: text for the floating label
@@ -60,12 +62,16 @@ export interface Props extends RNTextInputProps {
     error?: string;
     /** Error text alignment */
     errorPosition?: "left" | "center" | "right";
+    /** Style for error text */
+    errorTextStyle?: StyleProp<TextStyle>;
     /** Optional font family for the input text */
     fontFamily?: string;
     /** Make input expand to fill parent width */
     fullWidth?: boolean;
     /** Optional helper text below the input */
     helperText?: string;
+    /** Style for helper text */
+    helperTextStyle?: StyleProp<TextStyle>;
     /** Style for the inner input container (border, padding, etc.) */
     inputContainerStyle?: StyleProp<ViewStyle>;
     /** Style for the actual TextInput */
@@ -76,6 +82,10 @@ export interface Props extends RNTextInputProps {
     labelStyle?: StyleProp<TextStyle>;
     /** Show a loading indicator */
     loading?: boolean;
+    /** Support multiple lines */
+    multiline?: boolean;
+    /** Number of lines for multiline input */
+    numberOfLines?: number;
     /** Icons for password toggle, if not passed then Default Text "Show"/"Hide" will be shown */
     passwordToggleIcons?: {
         hide?: React.ReactNode; // To hide password
@@ -104,6 +114,9 @@ export interface Props extends RNTextInputProps {
     variant?: DefaultFloatingLabelTextInputStyles | (string & {});
 }
 
+/** Animated Text */
+const AnimatedText = Animated.createAnimatedComponent(Text);
+
 /**
  * FloatingLabelTextInput
  *
@@ -119,14 +132,18 @@ const FloatingLabelTextInput: React.FC<Props> = ({
     disabled = false,
     error,
     errorPosition = "left",
+    errorTextStyle,
     fontFamily,
     fullWidth = true,
     helperText,
+    helperTextStyle,
     inputContainerStyle,
     inputStyle,
     label,
     labelStyle,
     loading = false,
+    multiline = false,
+    numberOfLines = 1,
     passwordToggleIcons,
     secureTextEntry,
     size = "md",
@@ -139,8 +156,6 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         floatingLabelTextInputStyleVariants,
         floatingLabelTextInputSizeVariants,
     } = useTheme();
-
-    const AnimatedText = Animated.createAnimatedComponent(Text);
 
     const [isFocused, setFocused] = useState(false);
     const [value, setValue] = useState(rest.value?.toString() || "");
@@ -159,13 +174,11 @@ const FloatingLabelTextInput: React.FC<Props> = ({
     const labelAnim = useRef(new Animated.Value(hasText ? 1 : 0)).current;
     const focusAnim = useRef(new Animated.Value(isFocused || isError ? 1 : 0)).current;
 
-    // Animate label position
-    const labelY = labelAnim.interpolate({
+    // Animate label lineHeight so that when shown as placeholder it occupies the full container height
+    // and centers vertically. When floating, lineHeight collapses to labelFontSize.
+    const labelLineHeight = labelAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [
-            (containerHeight / 2 - sizeVariant.fontSize / 2) - (sizeVariant.paddingVertical / 2),
-            -8
-        ],
+        outputRange: [containerHeight, sizeVariant.labelFontSize],
     });
 
     // Animate font size
@@ -219,7 +232,7 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                     {
                         opacity: disabled ? 0.6 : 1,
                         flexDirection: "row",
-                        alignItems: rest.multiline ? "flex-start" : "center",
+                        alignItems: multiline ? "flex-start" : "center",
                         borderColor: variant === "outline" ? borderColor : undefined,
                         borderBottomColor: variant === "underline" ? borderColor : undefined,
                     },
@@ -233,16 +246,25 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                         {
                             position: "absolute",
                             left: 0,
-                            top: labelY,
+                            transform: [
+                                {
+                                    translateY: labelAnim.interpolate({
+                                        inputRange: [0, 1],
+                                        outputRange: [0, multiline ? -8 : -containerHeight / 2],
+                                    }),
+                                },
+                            ],
                             fontSize: labelFontSize as any,
+                            lineHeight: labelLineHeight as any,
                             color: labelColor as any,
-                            ...(variant === "outline"
+                            ...(variant === "outline" && (hasText || isFocused)
                                 ? {
                                     backgroundColor: theme.colors.background,
                                 }
                                 : {}),
                         },
                         styleVariant.label,
+                        fontFamily ? { fontFamily } : {},
                         labelStyle,
                     ]}
                 >
@@ -251,8 +273,6 @@ const FloatingLabelTextInput: React.FC<Props> = ({
 
                 <RNTextInput
                     {...rest}
-                    multiline={rest.multiline}
-                    numberOfLines={rest.numberOfLines}
                     style={[
                         {
                             flex: 1,
@@ -261,9 +281,9 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                             fontSize: sizeVariant.fontSize,
                             paddingVertical: sizeVariant.paddingVertical,
                             paddingHorizontal: 0,
-                            textAlignVertical: rest.multiline ? "top" : "center",
-                            minHeight: rest.multiline
-                                ? (rest.numberOfLines ?? 3) * (sizeVariant.fontSize + sizeVariant.paddingVertical * 1.5)
+                            textAlignVertical: multiline ? "top" : "center",
+                            minHeight: multiline
+                                ? (sizeVariant.fontSize + sizeVariant.paddingVertical * 2) * (numberOfLines || 1)
                                 : undefined,
                         },
                         styleVariant.input,
@@ -274,6 +294,8 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                     secureTextEntry={secureTextEntry && !showPassword}
                     placeholder={""} // placeholder handled by floating label
                     editable={!disabled && !loading}
+                    multiline={multiline}
+                    numberOfLines={numberOfLines}
                     value={rest.value ?? value}
                     onChangeText={(text) => {
                         setValue(text);
@@ -298,7 +320,12 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                                 ? passwordToggleIcons.hide || null
                                 : passwordToggleIcons.show || null
                         ) : (
-                            <Text variant="caption" color={theme.colors.primary}>
+                            <Text
+                                variant="caption"
+                                color={theme.colors.primary}
+                                style={[
+                                    fontFamily ? { fontFamily } : {},
+                                ]}>
                                 {showPassword ? "Hide" : "Show"}
                             </Text>
                         )}
@@ -317,7 +344,11 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                 <Text
                     variant="caption"
                     color={theme.colors.error}
-                    style={{ marginTop: 4, textAlign: errorPosition }}
+                    style={[
+                        { marginTop: 4, textAlign: errorPosition },
+                        fontFamily ? { fontFamily } : {},
+                        errorTextStyle
+                    ]}
                 >
                     {error}
                 </Text>
@@ -325,7 +356,11 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                 <Text
                     variant="caption"
                     color={theme.colors.muted}
-                    style={{ marginTop: 4 }}
+                    style={[
+                        { marginTop: 4 },
+                        fontFamily ? { fontFamily } : {},
+                        helperTextStyle
+                    ]}
                 >
                     {helperText}
                 </Text>

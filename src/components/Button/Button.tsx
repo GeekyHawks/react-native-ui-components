@@ -31,10 +31,14 @@ import Text from "../Text";
  * - **colorScheme**: choose color from theme palette
  * - **containerStyle**: style for the outer container
  * - **disabled**: disable the button
+ * - **fontFamily**: font family for the button text
  * - **fullWidth**: make the button expand to fill its parent’s width
  * - **leftIcon / rightIcon**: optional icons before or after text
  * - **loading**: show loading indicator instead of text
  * - **loadingIndicator**: custom loading indicator node
+ * - **loadingText**: optional loading text
+ * - **loadingTextPosition**: Position of loading text (`left`, `right`)
+ * - **loadingTextStyle**: optional loading text style
  * - **onPress**: callback for button press
  * - **shape**: choose corner radius from theme-defined `buttonShapeVariants`
  * - **size**: choose size from theme-defined `buttonSizeVariants`
@@ -62,6 +66,8 @@ export interface Props extends PressableProps {
     containerStyle?: StyleProp<ViewStyle>;
     /** Disable the button */
     disabled?: boolean;
+    /** Optional font family for the button text */
+    fontFamily?: string;
     /** Make the button expand to fill parent width */
     fullWidth?: boolean;
     /** Icon to show before text */
@@ -72,6 +78,12 @@ export interface Props extends PressableProps {
     loading?: boolean;
     /** Custom loading indicator node */
     loadingIndicator?: React.ReactNode;
+    /** Optional loading text */
+    loadingText?: string;
+    /** Position of loading text (`left`, `right`) */
+    loadingTextPosition?: "left" | "right";
+    /** Loading text style */
+    loadingTextStyle?: StyleProp<TextStyle>;
     /** Callback for button press */
     onPress?: () => void;
     /** Icon to show after text */
@@ -114,11 +126,15 @@ const Button: React.FC<Props> = ({
     colorScheme = "primary",
     containerStyle,
     disabled = false,
+    fontFamily,
     fullWidth = false,
     leftIcon,
     leftIconStyle,
     loading = false,
     loadingIndicator,
+    loadingText,
+    loadingTextPosition = "right",
+    loadingTextStyle,
     onPress,
     rightIcon,
     rightIconStyle,
@@ -128,7 +144,7 @@ const Button: React.FC<Props> = ({
     variant = "solid",
     ...rest
 }) => {
-    const { theme, buttonSizeVariants, buttonShapeVariants } = useTheme();
+    const { theme, buttonSizeVariants, buttonShapeVariants, textVariants } = useTheme();
     const colors = theme.colors;
 
     const backgroundColor =
@@ -143,7 +159,10 @@ const Button: React.FC<Props> = ({
     const sizeVariant = buttonSizeVariants[size] || buttonSizeVariants.md;
     const shapeVariant = buttonShapeVariants[shape] || buttonShapeVariants.md;
 
-    const isIconOnly = !children && (leftIcon || rightIcon);
+    const hasText = !!children;
+    const hasLeft = !!leftIcon;
+    const hasRight = !!rightIcon;
+    const isIconOnly = !hasText && (hasLeft !== hasRight);
 
     const scaleAnim = useRef(new Animated.Value(1)).current;
     const opacityAnim = useRef(new Animated.Value(1)).current;
@@ -247,27 +266,70 @@ const Button: React.FC<Props> = ({
                     buttonStyle,
                 ]}
             >
-                <View style={styles.content}>
-                    {leftIcon && <View style={[styles.icon, leftIconStyle]}>{leftIcon}</View>}
+                <View style={{ justifyContent: "center", alignItems: "center" }}>
                     {loading ? (
-                        loadingIndicator || (
-                            <ActivityIndicator
-                                color={textColor}
-                                style={{ marginHorizontal: 8 }}
-                            />
-                        )
-                    ) : (
-                        !!children && (
+                        <View
+                            style={{
+                                position: "absolute",
+                                flexDirection: loadingTextPosition === "left" ? "row-reverse" : "row",
+                                alignItems: "center",
+                                gap: 8,
+                            }}
+                        >
+                            {loadingIndicator ? (
+                                loadingIndicator
+                            ) : (
+                                <>
+                                    <ActivityIndicator color={textColor} />
+                                    {loadingText ? (
+                                        <Text
+                                            color={textColor}
+                                            style={[
+                                                textVariants.caption,
+                                                fontFamily ? { fontFamily } : {},
+                                                loadingTextStyle
+                                            ]}
+                                        >
+                                            {loadingText}
+                                        </Text>
+                                    ) : null}
+                                </>
+                            )}
+                        </View>
+                    ) : null}
+
+                    <View
+                        style={[
+                            styles.content,
+                            loading && { opacity: 0 },
+                        ]}
+                    >
+                        {leftIcon && (
+                            <View style={leftIconStyle}>
+                                {leftIcon}
+                            </View>
+                        )}
+
+                        {!!children && (
                             <Text
                                 color={textColor}
-                                fontFamily={theme.fontFamily}
-                                style={[styles.text, sizeVariant.text, textStyle]}
+                                style={[
+                                    styles.text,
+                                    sizeVariant.text,
+                                    fontFamily ? { fontFamily } : {},
+                                    textStyle,
+                                ]}
                             >
                                 {children}
                             </Text>
-                        )
-                    )}
-                    {rightIcon && <View style={[styles.icon, rightIconStyle]}>{rightIcon}</View>}
+                        )}
+
+                        {rightIcon && (
+                            <View style={rightIconStyle}>
+                                {rightIcon}
+                            </View>
+                        )}
+                    </View>
                 </View>
             </Animated.View>
         </Pressable>
@@ -284,9 +346,7 @@ const styles = StyleSheet.create({
     content: {
         flexDirection: "row",
         alignItems: "center",
-    },
-    icon: {
-        marginHorizontal: 4,
+        gap: 8,
     },
     text: {
         fontWeight: "600",

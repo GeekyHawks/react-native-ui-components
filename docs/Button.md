@@ -131,29 +131,33 @@ This screen demonstrates how all props work together in a real-world context.
 
 ## 🔧 Props
 
-| Prop                 | Type                                                                   | Default     | Description                                                    |
-| -------------------- | ---------------------------------------------------------------------- | ----------- | -------------------------------------------------------------- |
-| `accessibilityHint`  | `string`                                                               | —           | Accessibility hint for screen readers.                         |
-| `accessibilityLabel` | `string`                                                               | —           | Accessibility label for screen readers.                        |
-| `animation`          | `"scale" \| "opacity" \| "shadow" \| "scaleOpacity" \| "none"`         | `"scale"`   | Animation effect on press.                                     |
-| `buttonStyle`        | `StyleProp<ViewStyle>`                                                 | —           | Style for the inner button surface (background color, border radius, shadow, padding, etc.). |
-| `children`           | `React.ReactNode`                                                      | —           | Button label or content.                                       |
-| `colorScheme`        | `keyof ReturnType<typeof useTheme>["theme"]["colors"]`                 | `"primary"` | Color scheme from theme (extendable via theme).                |
-| `containerStyle`     | `StyleProp<ViewStyle>`                                                 | —           | Custom Style for the outer container (layout-related styles like flex, margin, alignment).                     |
-| `disabled`           | `boolean`                                                              | `false`     | Disables the button.                                           |
-| `fullWidth`          | `boolean`                                                              | `false`     | Makes the button stretch to full container width.              |
-| `leftIcon`           | `React.ReactNode`                                                      | —           | Icon or element on the left.                                   |
-| `leftIconStyle`      | `StyleProp<ViewStyle>`                                                 | —           | Style override for the left icon container.                    |
-| `loading`            | `boolean`                                                              | `false`     | Shows loading state.                                           |
-| `loadingIndicator`   | `React.ReactNode`                                                      | —           | Custom loading indicator (replaces default spinner).           |
-| `onPress`            | `(event: GestureResponderEvent) => void`                               | —           | Callback when button is pressed.                               |
-| `rightIcon`          | `React.ReactNode`                                                      | —           | Icon or element on the right.                                  |
-| `rightIconStyle`     | `StyleProp<ViewStyle>`                                                 | —           | Style override for the right icon container.                   |
-| `shape`              | `DefaultButtonShapes \| (string & {})` <br> *(sm \| md \| lg \| full)* | `"md"`      | Button shape (predefined or custom).                           |
-| `size`               | `DefaultButtonSizes \| (string & {})` <br> *(sm \| md \| lg)*          | `"md"`      | Button size (predefined or custom).                            |
-| `textStyle`          | `StyleProp<TextStyle>`                                                 | —           | Custom style override for the button text.                     |
-| `variant`            | `"solid" \| "outline" \| "ghost"`                                      | `"solid"`   | Button style variant.                                          |
-| `...props`           | `PressableProps`                                                       | —           | All native RN `Pressable` props.                               |
+| Prop                  | Type                                                                   | Default       | Description                                                                                  |
+| --------------------- | ---------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------- |
+| `accessibilityHint`   | `string`                                                               | —             | Accessibility hint for screen readers.                                                       |
+| `accessibilityLabel`  | `string`                                                               | —             | Accessibility label for screen readers.                                                      |
+| `animation`           | `"scale" \| "opacity" \| "shadow" \| "scaleOpacity" \| "none"`         | `"scale"`     | Animation effect on press.                                                                   |
+| `buttonStyle`         | `StyleProp<ViewStyle>`                                                 | —             | Style for the inner button surface (background color, border radius, shadow, padding, etc.). |
+| `children`            | `React.ReactNode`                                                      | —             | Button label or content.                                                                     |
+| `colorScheme`         | `keyof ReturnType<typeof useTheme>["theme"]["colors"]`                 | `"primary"`   | Color scheme from theme (extendable via theme).                                              |
+| `containerStyle`      | `StyleProp<ViewStyle>`                                                 | —             | Custom style for the outer container (layout-related styles like flex, margin, alignment).   |
+| `disabled`            | `boolean`                                                              | `false`       | Disables the button.                                                                         |
+| `fontFamily`          | `string`                                                               | Theme default | Optional font family for the button text.                                                    |
+| `fullWidth`           | `boolean`                                                              | `false`       | Makes the button stretch to full container width.                                            |
+| `leftIcon`            | `React.ReactNode`                                                      | —             | Icon or element on the left.                                                                 |
+| `leftIconStyle`       | `StyleProp<ViewStyle>`                                                 | —             | Style override for the left icon container.                                                  |
+| `loading`             | `boolean`                                                              | `false`       | Shows loading state.                                                                         |
+| `loadingIndicator`    | `React.ReactNode`                                                      | —             | Custom loading indicator (replaces default spinner).                                         |
+| `loadingText`         | `string`                                                               | —             | Optional text displayed alongside the loading indicator.                                     |
+| `loadingTextPosition` | `"left"` \| `"right"`                                                  | `"right"`     | Position of the loading text relative to the loading indicator.                              |
+| `loadingTextStyle`    | `StyleProp<TextStyle>`                                                 | —             | Custom style for the loading text.                                                           |
+| `onPress`             | `(event: GestureResponderEvent) => void`                               | —             | Callback when button is pressed.                                                             |
+| `rightIcon`           | `React.ReactNode`                                                      | —             | Icon or element on the right.                                                                |
+| `rightIconStyle`      | `StyleProp<ViewStyle>`                                                 | —             | Style override for the right icon container.                                                 |
+| `shape`               | `DefaultButtonShapes \| (string & {})` <br> *(sm \| md \| lg \| full)* | `"md"`        | Button shape (predefined or custom).                                                         |
+| `size`                | `DefaultButtonSizes \| (string & {})` <br> *(sm \| md \| lg)*          | `"md"`        | Button size (predefined or custom).                                                          |
+| `textStyle`           | `StyleProp<TextStyle>`                                                 | —             | Custom style override for the button text.                                                   |
+| `variant`             | `"solid" \| "outline" \| "ghost"`                                      | `"solid"`     | Button style variant.                                                                        |
+| `...props`            | `PressableProps`                                                       | —             | All native RN `Pressable` props.                                                             |
 
 
 ## 🎨 Variants & Theming

@@ -49,7 +49,6 @@ import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
  * - **rightIcon / leftIcon**: optional icons
  * - **secureTextEntry**: toggle password visibility
  * - **size**: choose size variant ("sm" | "md" | "lg")
- * - **style**: additional TextStyle
  * - **variant**: choose style variant ("outline" | "underline")
  *
  * All standard React Native `TextInputProps` can also be applied.
@@ -103,8 +102,6 @@ export interface Props extends RNTextInputProps {
      * - "lg": large font, more padding, larger label
      */
     size?: DefaultFloatingLabelTextInputSizes | (string & {});
-    /** Style prop for the TextInput itself */
-    style?: StyleProp<TextStyle>;
     /**
      * Variants
      *
@@ -148,7 +145,6 @@ const FloatingLabelTextInput: React.FC<Props> = ({
     passwordToggleIcons,
     secureTextEntry,
     size = "md",
-    style,
     variant = "outline",
     ...rest
 }) => {
@@ -208,6 +204,13 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         outputRange: [initialBorderColor, focusedBorderColor],
     });
 
+    const containerBackgroundColor =
+        resolveThemeColor(styleVariant.container?.backgroundColor, theme) ??
+        "transparent";
+
+    const inputTextColor = resolveThemeColor(styleVariant.input?.color, theme) ?? theme.colors.text;
+    const { color: _discardColor, ...inputStyleVariant } = styleVariant.input ?? {};
+
     useEffect(() => {
         Animated.parallel([
             Animated.timing(focusAnim, {
@@ -236,8 +239,9 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                         opacity: disabled ? 0.6 : 1,
                         flexDirection: "row",
                         alignItems: multiline ? "flex-start" : "center",
-                        borderColor: variant === "outline" ? borderColor : undefined,
+                        borderColor: ["outline", "filled"].includes(variant) ? borderColor : undefined,
                         borderBottomColor: variant === "underline" ? borderColor : undefined,
+                        backgroundColor: containerBackgroundColor,
                     },
                     fullWidth && { width: "100%" },
                     inputContainerStyle,
@@ -260,7 +264,7 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                             fontSize: labelFontSize as any,
                             lineHeight: labelLineHeight as any,
                             color: labelColor as any,
-                            ...(variant === "outline" && (hasText || isFocused)
+                            ...(["outline", "filled"].includes(variant) && (hasText || isFocused)
                                 ? {
                                     backgroundColor: theme.colors.background,
                                 }
@@ -277,10 +281,8 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                 <RNTextInput
                     {...rest}
                     style={[
+                        { flex: 1, color: theme.colors.text, fontFamily: theme.fontFamily },
                         {
-                            flex: 1,
-                            color: theme.colors.text,
-                            fontFamily: theme.fontFamily,
                             fontSize: sizeVariant.fontSize,
                             paddingVertical: sizeVariant.paddingVertical,
                             paddingHorizontal: 0,
@@ -289,10 +291,10 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                                 ? (sizeVariant.fontSize + sizeVariant.paddingVertical * 2) * (numberOfLines || 1)
                                 : undefined,
                         },
-                        styleVariant.input,
+                        inputStyleVariant,
+                        { color: inputTextColor },
                         fontFamily ? { fontFamily } : {},
                         inputStyle,
-                        style,
                     ]}
                     secureTextEntry={secureTextEntry && !showPassword}
                     placeholder={""} // placeholder handled by floating label

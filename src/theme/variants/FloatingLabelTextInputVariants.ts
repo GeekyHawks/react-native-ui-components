@@ -40,7 +40,7 @@ export type FloatingLabelTextInputStyleVariants = Record<DefaultFloatingLabelTex
  * - "outline": bordered input with rounded corners and floating label
  * - "underline": single bottom border with floating label
  */
-export type DefaultFloatingLabelTextInputStyles = "outline" | "underline";
+export type DefaultFloatingLabelTextInputStyles = "outline" | "underline" | "filled";
 
 /**
  * defaultFloatingLabelTextInputStyleVariants
@@ -73,6 +73,23 @@ export const defaultFloatingLabelTextInputStyleVariants: FloatingLabelTextInputS
         input: {},
         label: {
             left: 0,
+        },
+    },
+    filled: {
+        container: {
+            borderWidth: 1,
+            borderColor: "border",
+            borderRadius: 8,
+            paddingHorizontal: 12,
+            justifyContent: "center",
+            minHeight: 48,
+            backgroundColor: "surface",
+        },
+        input: {
+            color: "onSurface",
+        },
+        label: {
+            left: 12,
         },
     },
 };

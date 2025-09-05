@@ -174,7 +174,6 @@ This screen demonstrates how all props work together in a real-world context.
 | `rightIcon`            | `React.ReactNode`                                                                 | —                   | Icon or element displayed on the right.                                                                   |
 | `secureTextEntry`      | `boolean`                                                                         | —                   | Hides the input text (for passwords).                                                                     |
 | `size`                 | `DefaultTextInputSizes \| (string & {})` <br> *(sm \| md \| lg)*                  | `"md"`              | Input size (predefined or custom).                                                                        |
-| `style`                | `StyleProp<TextStyle>`                                                            | —                   | Custom style for the root `TextInput` element.                                                            |
 | `variant`              | `DefaultTextInputStyles \| (string & {})` <br> *(outline \| filled \| underline)* | `"outline"`         | Input style variant (predefined or custom).                                                               |
 | `...props`             | `TextInputProps` (RN)                                                             | —                   | All native RN `TextInput` props.                                                                          |
 

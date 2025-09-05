@@ -37,6 +37,8 @@ const customLightTheme = createTheme({
         error: "#FF0000",
         border: "#dee2e6",
         muted: "#6c757d",
+        surface: "#4B0082",
+        onSurface: "#FFF0F5",
     },
 });
 
@@ -54,6 +56,8 @@ const customDarkTheme = createTheme({
         error: "#FF6B6B",
         border: "#333333",
         muted: "#AAAAAA",
+        surface: "#FF6B6B",
+        onSurface: "#FFD700",
     },
     spacing: {
         ...defaultSpacing,
@@ -105,6 +109,13 @@ export function FloatingLabelCustomExample() {
                         variant="outline"
                         size="xl"
                         helperText="Styled with custom theme"
+                        containerStyle={{ marginTop: 20 }}
+                    />
+
+                    {/* Filled FloatingLabelTextInput */}
+                    <FloatingLabelTextInput
+                        label="Name"
+                        variant="filled"
                         containerStyle={{ marginTop: 20 }}
                     />
 

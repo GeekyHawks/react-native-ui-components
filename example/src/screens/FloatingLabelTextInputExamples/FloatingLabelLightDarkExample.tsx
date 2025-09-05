@@ -64,6 +64,13 @@ export function FloatingLabelLightDarkExample() {
 							containerStyle={{ marginTop: 20 }}
 						/>
 
+						{/* Filled FloatingLabelTextInput */}
+						<FloatingLabelTextInput
+							label="Name"
+							variant="filled"
+							containerStyle={{ marginTop: 20 }}
+						/>
+
 						{/* Default Multiline FloatingLabelTextInput */}
 						<FloatingLabelTextInput
 							label="Bio"

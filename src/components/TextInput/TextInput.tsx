@@ -45,7 +45,6 @@ import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
  * - **passwordToggleIcons**: icons for password toggle, if not passed then default "Show"/"Hide" will be shown
  * - **secureTextEntry**: show text as secure (password)
  * - **size**: choose size variant ("sm" | "md" | "lg")
- * - **style**: style prop for the TextInput itself
  * - **variant**: choose style variant ("outline" | "filled" | "underline")
  *
  * All standard React Native `TextInputProps` can also be applied.
@@ -105,8 +104,6 @@ export interface Props extends RNTextInputProps {
      * - "lg": large text input (spacious)
      */
     size?: DefaultTextInputSizes | (string & {});
-    /** Style prop for the TextInput itself */
-    style?: StyleProp<TextStyle>;
     /**
      * Variants
      *
@@ -153,7 +150,6 @@ const TextInput: React.FC<Props> = ({
     rightIcon,
     secureTextEntry,
     size = "md",
-    style,
     variant = "outline",
     ...rest
 }) => {
@@ -247,6 +243,7 @@ const TextInput: React.FC<Props> = ({
                         {
                             fontSize: sizeVariant.fontSize,
                             paddingVertical: sizeVariant.paddingVertical,
+                            textAlignVertical: multiline ? "top" : "center",
                             minHeight: multiline
                                 ? (sizeVariant.fontSize + sizeVariant.paddingVertical * 2) * (numberOfLines || 1)
                                 : undefined,
@@ -254,7 +251,6 @@ const TextInput: React.FC<Props> = ({
                         inputStyleVariant,
                         { color: inputTextColor },
                         fontFamily ? { fontFamily } : {},
-                        multiline && { textAlignVertical: "top" },
                         inputStyle,
                     ]}
                     secureTextEntry={secureTextEntry && !showPassword}

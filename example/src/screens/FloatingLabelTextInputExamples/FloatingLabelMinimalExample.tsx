@@ -52,6 +52,13 @@ export function FloatingLabelMinimalExample() {
 							containerStyle={{ marginTop: 20 }}
 						/>
 
+						{/* Filled FloatingLabelTextInput */}
+						<FloatingLabelTextInput
+							label="Name"
+							variant="filled"
+							containerStyle={{ marginTop: 20 }}
+						/>
+
 						{/* Password FloatingLabelTextInput with toggle */}
 						<FloatingLabelTextInput
 							label="Password"

@@ -59,6 +59,8 @@ const customDarkTheme = createTheme({
         error: "#fa5252",        // Override built-in key
         muted: "#ced4da",        // Override built-in key
         secondary: "#adb5bd",    // Override built-in key
+        surface: "#1c1c1e",      // Override built-in key
+        onSurface: "#ffffff",    // Override built-in key
         accent: "#FFFF00",       // 🔑 New custom key (not in default theme)
     },
     spacing: {

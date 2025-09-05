@@ -52,7 +52,7 @@ export const defaultFloatingLabelTextInputStyleVariants: FloatingLabelTextInputS
     outline: {
         container: {
             borderWidth: 1,
-            borderColor: "#ccc",
+            borderColor: "border",
             borderRadius: 8,
             paddingHorizontal: 12,
             justifyContent: "center",
@@ -66,7 +66,7 @@ export const defaultFloatingLabelTextInputStyleVariants: FloatingLabelTextInputS
     underline: {
         container: {
             borderBottomWidth: 1,
-            borderColor: "#ccc",
+            borderColor: "border",
             justifyContent: "center",
             minHeight: 40,
         },

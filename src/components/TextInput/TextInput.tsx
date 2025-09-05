@@ -22,6 +22,7 @@ import {
 } from "react-native";
 import { DefaultTextInputSizes, DefaultTextInputStyles, useTheme } from "../../theme";
 import Text from "../Text";
+import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
 
 /**
  * Props for custom TextInput component
@@ -166,13 +167,23 @@ const TextInput: React.FC<Props> = ({
 
     const focusAnim = useRef(new Animated.Value(0)).current;
 
+    const initialBorderColor =
+        (resolveThemeColor(styleVariant.container?.borderColor, theme) as string) ??
+        (theme.colors.border as string);
+
+    const focusedBorderColor = (isError ? theme.colors.error : theme.colors.primary) as string;
+
+    const containerBackgroundColor =
+        resolveThemeColor(styleVariant.container?.backgroundColor, theme) ??
+        "transparent";
+
+    const inputTextColor = resolveThemeColor(styleVariant.input?.color, theme) ?? theme.colors.text;
+    const { color: _discardColor, ...inputStyleVariant } = styleVariant.input ?? {};
+
     // Animate border color
     const borderColor = focusAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [
-            (styleVariant.container?.borderColor || theme.colors.border) as string,
-            (isError ? theme.colors.error : theme.colors.primary) as string,
-        ],
+        outputRange: [initialBorderColor, focusedBorderColor],
     });
 
     // Animate label color
@@ -183,8 +194,6 @@ const TextInput: React.FC<Props> = ({
             isError ? theme.colors.error : theme.colors.primary,
         ],
     });
-
-    const containerBackgroundColor = styleVariant.container?.backgroundColor ?? "transparent";
 
     // Animated style
     const containerStyles = [
@@ -242,7 +251,8 @@ const TextInput: React.FC<Props> = ({
                                 ? (sizeVariant.fontSize + sizeVariant.paddingVertical * 2) * (numberOfLines || 1)
                                 : undefined,
                         },
-                        styleVariant.input,
+                        inputStyleVariant,
+                        { color: inputTextColor },
                         fontFamily ? { fontFamily } : {},
                         multiline && { textAlignVertical: "top" },
                         inputStyle,

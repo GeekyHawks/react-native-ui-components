@@ -51,7 +51,7 @@ export const defaultTextInputStyleVariants: TextInputStyleVariants = {
     outline: {
         container: {
             borderWidth: 1,
-            borderColor: "#ccc",
+            borderColor: "border",
             borderRadius: 8,
             paddingHorizontal: 12,
         },
@@ -59,20 +59,20 @@ export const defaultTextInputStyleVariants: TextInputStyleVariants = {
     },
     filled: {
         container: {
-            backgroundColor: "#3A3A3A",
+            backgroundColor: "surface",
             borderRadius: 8,
             paddingHorizontal: 12,
             borderWidth: 1,
-            borderColor: "#ccc",
+            borderColor: "border",
         },
         input: {
-            color: "#FFFFFF",
+            color: "onSurface",
         },
     },
     underline: {
         container: {
             borderBottomWidth: 1,
-            borderColor: "#ccc",
+            borderColor: "border",
         },
         input: {},
     },

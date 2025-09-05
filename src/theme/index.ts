@@ -14,8 +14,5 @@
 
 export * from "./Theme";
 export * from "./ThemeContext";
-export * from "./hooks/makeStyles";
-export * from "./variants/TextVariants";
-export * from "./variants/ButtonVariants";
-export * from "./variants/TextInputVariants";
-export * from "./variants/FloatingLabelTextInputVariants";
+export * from "./hooks";
+export * from "./variants";

@@ -1,5 +1,5 @@
 /**
- * Text Component Entry
+ * Text Component Entry Point
  *
  * Re-exports the `Text` component and its props for easier imports.
  * This allows consumers to import from the component directory directly:

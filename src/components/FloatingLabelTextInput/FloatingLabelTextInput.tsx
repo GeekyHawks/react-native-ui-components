@@ -26,6 +26,7 @@ import {
     useTheme,
 } from "../../theme";
 import Text from "../Text";
+import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
 
 /**
  * Props for FloatingLabelTextInput component
@@ -196,13 +197,15 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         ],
     });
 
+    const initialBorderColor =
+        (resolveThemeColor(styleVariant.container?.borderColor, theme) as string) ??
+        (theme.colors.border as string);
+    const focusedBorderColor = (isError ? theme.colors.error : theme.colors.primary) as string;
+
     // Animate border color
     const borderColor = focusAnim.interpolate({
         inputRange: [0, 1],
-        outputRange: [
-            (styleVariant.container?.borderColor || theme.colors.muted) as string,
-            (isError ? theme.colors.error : theme.colors.primary) as string,
-        ],
+        outputRange: [initialBorderColor, focusedBorderColor],
     });
 
     useEffect(() => {

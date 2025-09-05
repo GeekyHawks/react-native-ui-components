@@ -1,5 +1,5 @@
 /**
- * TextInput Component Entry
+ * TextInput Component Entry Point
  *
  * Re-exports the `TextInput` component and its props for easier imports.
  * This allows consumers to import from the component directory directly:

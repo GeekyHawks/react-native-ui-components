@@ -154,8 +154,9 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         floatingLabelTextInputSizeVariants,
     } = useTheme();
 
+    const isControlled = rest.value != null;
     const [isFocused, setFocused] = useState(false);
-    const [value, setValue] = useState(rest.value?.toString() || "");
+    const [uncontrolledValue, setUncontrolledValue] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const sizeVariant =
@@ -164,12 +165,13 @@ const FloatingLabelTextInput: React.FC<Props> = ({
         floatingLabelTextInputStyleVariants[variant] ||
         floatingLabelTextInputStyleVariants.outline;
 
+    const inputValue = isControlled ? rest.value : uncontrolledValue;
     const isError = !!error;
-    const hasText = value.length > 0;
+    const hasText = inputValue.length > 0;
     const containerHeight = Number(styleVariant.container?.minHeight ?? 48);
 
-    const labelAnim = useRef(new Animated.Value(hasText ? 1 : 0)).current;
-    const focusAnim = useRef(new Animated.Value(isFocused || isError ? 1 : 0)).current;
+    const labelAnim = useRef(new Animated.Value(0)).current;
+    const focusAnim = useRef(new Animated.Value(0)).current;
 
     // Animate label lineHeight so that when shown as placeholder it occupies the full container height
     // and centers vertically. When floating, lineHeight collapses to labelFontSize.
@@ -301,9 +303,9 @@ const FloatingLabelTextInput: React.FC<Props> = ({
                     editable={!disabled && !loading}
                     multiline={multiline}
                     numberOfLines={numberOfLines}
-                    value={rest.value ?? value}
+                    value={inputValue}
                     onChangeText={(text) => {
-                        setValue(text);
+                        if (!isControlled) setUncontrolledValue(text);
                         rest.onChangeText?.(text);
                     }}
                     onFocus={(e) => {

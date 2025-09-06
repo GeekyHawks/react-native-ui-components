@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "rm -rf dist && npm run build"
   },
   "files": [
     "dist",

@@ -1,6 +1,6 @@
 {
   "name": "@geekyhawks/react-native-ui-components",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A lightweight and reusable React Native UI components library with customizable Text, TextInput, FloatingLabelTextInput, Button, and more. Built with TypeScript, fully typed, and designed for easy integration into any React Native project.",
   "author": "Geeky Hawks FZE LLC",
   "license": "MIT",

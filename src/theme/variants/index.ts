@@ -13,5 +13,6 @@
 
 export * from "./ButtonVariants";
 export * from "./FloatingLabelTextInputVariants";
+export * from "./StatusBarVariants";
 export * from "./TextInputVariants";
 export * from "./TextVariants";

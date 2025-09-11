@@ -17,6 +17,9 @@ export * from "./Button";
 // FloatingLabelTextInput Component
 export * from "./FloatingLabelTextInput";
 
+// StatusBar Component
+export * from "./StatusBar";
+
 // Text Component
 export * from "./Text";
 

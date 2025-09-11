@@ -11,6 +11,9 @@
  * Author: Geeky Hawks FZE LLC
  */
 
+// AppBar Component
+export * from "./AppBar";
+
 // Button Component
 export * from "./Button";
 

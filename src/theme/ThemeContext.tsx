@@ -11,7 +11,8 @@
 import React, { createContext, useContext } from "react";
 import { Theme, defaultLightTheme } from "./Theme";
 import {
-    ButtonShapeVariants, ButtonSizeVariants, defaultButtonShapeVariants, defaultButtonSizeVariants,
+    AppBarVariants, ButtonShapeVariants, ButtonSizeVariants, defaultAppBarVariants,
+    defaultButtonShapeVariants, defaultButtonSizeVariants,
     defaultFloatingLabelTextInputSizeVariants, defaultFloatingLabelTextInputStyleVariants,
     defaultStatusBarVariants, defaultTextInputSizeVariants, defaultTextInputStyleVariants,
     defaultTextVariants, FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants,
@@ -24,6 +25,7 @@ import {
  * Contains theme and textVariants for consumption in components.
  */
 type ThemeContextType = {
+    appBarVariants: AppBarVariants;
     buttonShapeVariants: ButtonShapeVariants;
     buttonSizeVariants: ButtonSizeVariants;
     floatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants;
@@ -45,6 +47,7 @@ type ThemeContextType = {
  * Default values are `defaultLightTheme` and `defaultTextVariants`.
  */
 const ThemeContext = createContext<ThemeContextType>({
+    appBarVariants: defaultAppBarVariants,
     buttonShapeVariants: defaultButtonShapeVariants,
     buttonSizeVariants: defaultButtonSizeVariants,
     floatingLabelTextInputSizeVariants: defaultFloatingLabelTextInputSizeVariants,
@@ -68,6 +71,7 @@ export const useTheme = (): ThemeContextType => {
 };
 
 type ThemeProviderProps = {
+    appBarVariants?: AppBarVariants,
     buttonShapeVariants?: ButtonShapeVariants;
     buttonSizeVariants?: ButtonSizeVariants;
     children: React.ReactNode;
@@ -88,6 +92,7 @@ type ThemeProviderProps = {
  * If users want defaults, they need to explicitly spread them.
  */
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+    appBarVariants,
     buttonShapeVariants,
     buttonSizeVariants,
     children,
@@ -100,6 +105,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     theme,
 }) => {
     const appliedTheme: ThemeContextType = {
+        appBarVariants: appBarVariants ?? defaultAppBarVariants,
         buttonShapeVariants: buttonShapeVariants ?? defaultButtonShapeVariants,
         buttonSizeVariants: buttonSizeVariants ?? defaultButtonSizeVariants,
         floatingLabelTextInputSizeVariants: floatingLabelTextInputSizeVariants ?? defaultFloatingLabelTextInputSizeVariants,

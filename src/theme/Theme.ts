@@ -18,6 +18,8 @@ export type ThemeColors = {
     border: string;
     error: string;
     muted: string;
+    onPrimary: string;
+    onSecondary: string;
     onSurface: string;
     primary: string;
     secondary: string;
@@ -67,6 +69,8 @@ export type Theme = {
  *     border: "#dee2e6",
  *     error: "#dc3545",
  *     muted: "#6c757d",
+ *     onPrimary: "#ffffff";
+ *     onSecondary: "#ffffff";
  *     onSurface: "#000000",
  *     primary: "#007bff",
  *     secondary: "#6c757d",
@@ -114,6 +118,8 @@ export const defaultLightColors: ThemeColors = {
     border: "#dee2e6",
     error: "#dc3545",
     muted: "#6c757d",
+    onPrimary: "#ffffff",
+    onSecondary: "#ffffff",
     onSurface: "#111111",
     primary: "#007bff",
     secondary: "#6c757d",
@@ -129,6 +135,8 @@ export const defaultDarkColors: ThemeColors = {
     border: "#495057",
     error: "#fa5252",
     muted: "#9ca3af",
+    onPrimary: "#000000",
+    onSecondary: "#000000",
     onSurface: "#ffffff",
     primary: "#339af0",
     secondary: "#adb5bd",

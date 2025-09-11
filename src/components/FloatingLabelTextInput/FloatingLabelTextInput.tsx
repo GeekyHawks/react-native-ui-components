@@ -25,7 +25,7 @@ import {
     DefaultFloatingLabelTextInputSizes,
     useTheme,
 } from "../../theme";
-import Text from "../Text";
+import { Text } from "../Text";
 import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
 
 /**

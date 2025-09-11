@@ -10,5 +10,5 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-export { default } from "./Text";
+export { default as Text } from "./Text";
 export type { Props as TextProps } from "./Text";

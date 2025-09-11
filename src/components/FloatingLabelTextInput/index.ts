@@ -10,5 +10,5 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-export { default } from "./FloatingLabelTextInput";
+export { default as FloatingLabelTextInput } from "./FloatingLabelTextInput";
 export type { Props as FloatingLabelTextInputProps } from "./FloatingLabelTextInput";

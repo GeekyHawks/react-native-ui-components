@@ -21,7 +21,7 @@ import {
     Animated
 } from "react-native";
 import { DefaultButtonShapes, DefaultButtonSizes, useTheme } from "../../theme";
-import Text from "../Text";
+import { Text } from "../Text";
 
 /**
  * Props for custom Button component

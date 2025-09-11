@@ -12,17 +12,13 @@
  */
 
 // Button Component
-export { default as Button } from "./Button";
-export type { ButtonProps } from "./Button";
+export * from "./Button";
 
 // FloatingLabelTextInput Component
-export { default as FloatingLabelTextInput } from "./FloatingLabelTextInput";
-export type { FloatingLabelTextInputProps } from "./FloatingLabelTextInput";
+export * from "./FloatingLabelTextInput";
 
 // Text Component
-export { default as Text } from "./Text";
-export type { TextProps } from "./Text";
+export * from "./Text";
 
 // TextInput Component
-export { default as TextInput } from "./TextInput";
-export type { TextInputProps } from "./TextInput";
+export * from "./TextInput";

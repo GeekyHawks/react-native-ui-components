@@ -122,6 +122,13 @@ export default function Example() {
 ```
 
 
+## 📱 Screenshots
+
+| Buttons | Light Mode | Dark Mode |
+|----------|----------|----------|
+| ![](images/Buttons.png) | ![](images/Buttons-Light.png) | ![](images/Buttons-Dark.png) |
+
+
 ## 📱 Live Example
 
 For a full showcase of all button variants, sizes, shapes, and states, check out the [ButtonDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/ButtonDemoScreen.tsx) inside the **Example App**.

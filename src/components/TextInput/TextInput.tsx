@@ -21,7 +21,7 @@ import {
     View
 } from "react-native";
 import { DefaultTextInputSizes, DefaultTextInputStyles, useTheme } from "../../theme";
-import Text from "../Text";
+import { Text } from "../Text";
 import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
 
 /**

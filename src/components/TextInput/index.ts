@@ -10,5 +10,5 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-export { default } from "./TextInput";
+export { default as TextInput } from "./TextInput";
 export type { Props as TextInputProps } from "./TextInput";

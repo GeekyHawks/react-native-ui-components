@@ -9,12 +9,14 @@
  */
 
 import React, { createContext, useContext } from "react";
-import { TextStyle } from "react-native";
 import { Theme, defaultLightTheme } from "./Theme";
-import { defaultTextVariants } from "./variants/TextVariants";
-import { ButtonShapeVariants, ButtonSizeVariants, defaultButtonShapeVariants, defaultButtonSizeVariants } from "./variants/ButtonVariants";
-import { defaultTextInputSizeVariants, defaultTextInputStyleVariants, TextInputSizeVariants, TextInputStyleVariants } from "./variants/TextInputVariants";
-import { defaultFloatingLabelTextInputSizeVariants, defaultFloatingLabelTextInputStyleVariants, FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants } from "./variants/FloatingLabelTextInputVariants";
+import {
+    ButtonShapeVariants, ButtonSizeVariants, defaultButtonShapeVariants, defaultButtonSizeVariants,
+    defaultFloatingLabelTextInputSizeVariants, defaultFloatingLabelTextInputStyleVariants,
+    defaultStatusBarVariants, defaultTextInputSizeVariants, defaultTextInputStyleVariants,
+    defaultTextVariants, FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants,
+    StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants, TextVariants
+} from "./variants";
 
 /**
  * ThemeContextType
@@ -26,9 +28,10 @@ type ThemeContextType = {
     buttonSizeVariants: ButtonSizeVariants;
     floatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants: FloatingLabelTextInputStyleVariants;
+    statusBarVariants: StatusBarVariants;
     textInputSizeVariants: TextInputSizeVariants;
     textInputStyleVariants: TextInputStyleVariants;
-    textVariants: Record<string, Partial<TextStyle>>;
+    textVariants: TextVariants;
     theme: Theme;
 };
 
@@ -46,6 +49,7 @@ const ThemeContext = createContext<ThemeContextType>({
     buttonSizeVariants: defaultButtonSizeVariants,
     floatingLabelTextInputSizeVariants: defaultFloatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants: defaultFloatingLabelTextInputStyleVariants,
+    statusBarVariants: defaultStatusBarVariants,
     textInputSizeVariants: defaultTextInputSizeVariants,
     textInputStyleVariants: defaultTextInputStyleVariants,
     textVariants: defaultTextVariants,
@@ -64,15 +68,16 @@ export const useTheme = (): ThemeContextType => {
 };
 
 type ThemeProviderProps = {
+    buttonShapeVariants?: ButtonShapeVariants;
+    buttonSizeVariants?: ButtonSizeVariants;
     children: React.ReactNode;
     floatingLabelTextInputSizeVariants?: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants?: FloatingLabelTextInputStyleVariants;
+    statusBarVariants?: StatusBarVariants;
     textInputSizeVariants?: TextInputSizeVariants;
     textInputStyleVariants?: TextInputStyleVariants;
-    textVariants?: Record<string, Partial<TextStyle>>;
+    textVariants?: TextVariants;
     theme?: Theme;
-    buttonShapeVariants?: ButtonShapeVariants;
-    buttonSizeVariants?: ButtonSizeVariants;
 };
 
 /**
@@ -83,21 +88,23 @@ type ThemeProviderProps = {
  * If users want defaults, they need to explicitly spread them.
  */
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+    buttonShapeVariants,
+    buttonSizeVariants,
     children,
     floatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants,
+    statusBarVariants,
     textInputSizeVariants,
     textInputStyleVariants,
     textVariants,
     theme,
-    buttonShapeVariants,
-    buttonSizeVariants,
 }) => {
     const appliedTheme: ThemeContextType = {
         buttonShapeVariants: buttonShapeVariants ?? defaultButtonShapeVariants,
         buttonSizeVariants: buttonSizeVariants ?? defaultButtonSizeVariants,
         floatingLabelTextInputSizeVariants: floatingLabelTextInputSizeVariants ?? defaultFloatingLabelTextInputSizeVariants,
         floatingLabelTextInputStyleVariants: floatingLabelTextInputStyleVariants ?? defaultFloatingLabelTextInputStyleVariants,
+        statusBarVariants: statusBarVariants ?? defaultStatusBarVariants,
         textInputSizeVariants: textInputSizeVariants ?? defaultTextInputSizeVariants,
         textInputStyleVariants: textInputStyleVariants ?? defaultTextInputStyleVariants,
         textVariants: textVariants ?? defaultTextVariants,

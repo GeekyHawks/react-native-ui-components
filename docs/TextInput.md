@@ -138,6 +138,13 @@ export default function Example() {
 ```
 
 
+## 📱 Screenshots
+
+| Light Mode | Dark Mode |
+|----------|----------|
+| ![](images/TextInput-Light.png) | ![](images/TextInput-Dark.png) |
+
+
 ## 📱 Live Example
 
 For a full showcase of all text input variants, states, and configurations, check out the [TextInputDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/TextInputDemoScreen.tsx) inside the **Example App**.

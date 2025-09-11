@@ -55,6 +55,13 @@ export default function Example() {
 ```
 
 
+## 📱 Screenshots
+
+| Light Mode | Dark Mode |
+|----------|----------|
+| ![](images/Text-Light.png) | ![](images/Text-Dark.png) |
+
+
 ## 📱 Live Example
 
 For a full showcase of all text variants, sizes, and weights, check out the [TextDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/TextDemoScreen.tsx) inside the **Example App**.

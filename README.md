@@ -98,6 +98,12 @@ export default function HomeScreen() {
 }
 ```
 
+
+## Demo
+
+![](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/images/Demo.gif)
+
+
 ## Theme & Components
 
 This library provides a growing set of **theme-ready UI components**:

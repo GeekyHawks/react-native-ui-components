@@ -122,6 +122,13 @@ export default function Example() {
 ```
 
 
+## 📱 Screenshots
+
+| Empty | Light Mode | Dark Mode |
+|----------|----------|----------|
+| ![](images/FloatingLabelTextInput-Empty.png) | ![](images/FloatingLabelTextInput-Light.png) | ![](images/FloatingLabelTextInput-Dark.png) |
+
+
 ## 📱 Live Example
 
 For a full showcase of all floating label text input variants, states, and sizes, check out the [FloatingLabelDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/FloatingLabelDemoScreen.tsx) inside the **Example App**.

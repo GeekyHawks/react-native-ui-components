@@ -11,12 +11,13 @@
 import React, { createContext, useContext } from "react";
 import { Theme, defaultLightTheme } from "./Theme";
 import {
-    AppBarVariants, ButtonShapeVariants, ButtonSizeVariants, defaultAppBarVariants,
-    defaultButtonShapeVariants, defaultButtonSizeVariants,
-    defaultFloatingLabelTextInputSizeVariants, defaultFloatingLabelTextInputStyleVariants,
-    defaultStatusBarVariants, defaultTextInputSizeVariants, defaultTextInputStyleVariants,
-    defaultTextVariants, FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants,
-    StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants, TextVariants
+    ActivityIndicatorVariants, AppBarVariants, ButtonShapeVariants, ButtonSizeVariants,
+    defaultActivityIndicatorVariants, defaultAppBarVariants, defaultButtonShapeVariants,
+    defaultButtonSizeVariants, defaultFloatingLabelTextInputSizeVariants,
+    defaultFloatingLabelTextInputStyleVariants, defaultStatusBarVariants, defaultTextInputSizeVariants,
+    defaultTextInputStyleVariants, defaultTextVariants, FloatingLabelTextInputSizeVariants,
+    FloatingLabelTextInputStyleVariants, StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants,
+    TextVariants
 } from "./variants";
 
 /**
@@ -25,6 +26,7 @@ import {
  * Contains theme and textVariants for consumption in components.
  */
 type ThemeContextType = {
+    activityIndicatorVariants: ActivityIndicatorVariants;
     appBarVariants: AppBarVariants;
     buttonShapeVariants: ButtonShapeVariants;
     buttonSizeVariants: ButtonSizeVariants;
@@ -47,6 +49,7 @@ type ThemeContextType = {
  * Default values are `defaultLightTheme` and `defaultTextVariants`.
  */
 const ThemeContext = createContext<ThemeContextType>({
+    activityIndicatorVariants: defaultActivityIndicatorVariants,
     appBarVariants: defaultAppBarVariants,
     buttonShapeVariants: defaultButtonShapeVariants,
     buttonSizeVariants: defaultButtonSizeVariants,
@@ -71,6 +74,7 @@ export const useTheme = (): ThemeContextType => {
 };
 
 type ThemeProviderProps = {
+    activityIndicatorVariants?: ActivityIndicatorVariants,
     appBarVariants?: AppBarVariants,
     buttonShapeVariants?: ButtonShapeVariants;
     buttonSizeVariants?: ButtonSizeVariants;
@@ -92,6 +96,7 @@ type ThemeProviderProps = {
  * If users want defaults, they need to explicitly spread them.
  */
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+    activityIndicatorVariants,
     appBarVariants,
     buttonShapeVariants,
     buttonSizeVariants,
@@ -105,6 +110,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     theme,
 }) => {
     const appliedTheme: ThemeContextType = {
+        activityIndicatorVariants: activityIndicatorVariants ?? defaultActivityIndicatorVariants,
         appBarVariants: appBarVariants ?? defaultAppBarVariants,
         buttonShapeVariants: buttonShapeVariants ?? defaultButtonShapeVariants,
         buttonSizeVariants: buttonSizeVariants ?? defaultButtonSizeVariants,

@@ -11,6 +11,7 @@
  * Author: Geeky Hawks FZE LLC
  */
 
+export * from "./ActivityIndicatorVariants";
 export * from "./AppBarVariants";
 export * from "./ButtonVariants";
 export * from "./FloatingLabelTextInputVariants";

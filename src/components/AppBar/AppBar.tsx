@@ -65,32 +65,26 @@ type HideBackButton = {
  *   or a custom variant defined in the `ThemeProvider`.
  */
 export interface Props {
-    /** Title text to display in the center */
-    heading?: string;
-
-    /** Style for the outer container */
-    containerStyle?: StyleProp<ViewStyle>;
-
-    /** Style for the title text */
-    headerTextStyle?: StyleProp<TextStyle>;
-
     /** Show a back button (true) or hide it (false) */
     backButton: ShowBackButton | HideBackButton;
-
+    /** Style for the outer container */
+    containerStyle?: StyleProp<ViewStyle>;
+    /** Title text to display in the center */
+    heading?: string;
+    /** Style for the title text */
+    headerTextStyle?: StyleProp<TextStyle>;
     /** Custom left icon (before title) */
     leftIcon?: React.ReactNode;
-    /** Click handler for left icon */
-    onLeftIconPress?: () => void;
     /** Style for the left icon container */
     leftIconStyle?: StyleProp<ViewStyle>;
-
+    /** Click handler for left icon */
+    onLeftIconPress?: () => void;
     /** Custom right icon (after title) */
     rightIcon?: React.ReactNode;
-    /** Click handler for right icon */
-    onRightIconPress?: () => void;
     /** Style for the right icon container */
     rightIconStyle?: StyleProp<ViewStyle>;
-
+    /** Click handler for right icon */
+    onRightIconPress?: () => void;
     /** Choose from default or custom app bar variants */
     variant?: DefaultAppBarVariants | (string & {});
 }

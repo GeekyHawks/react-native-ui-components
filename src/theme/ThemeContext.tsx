@@ -14,10 +14,10 @@ import {
     ActivityIndicatorVariants, AppBarVariants, ButtonShapeVariants, ButtonSizeVariants,
     defaultActivityIndicatorVariants, defaultAppBarVariants, defaultButtonShapeVariants,
     defaultButtonSizeVariants, defaultFloatingLabelTextInputSizeVariants,
-    defaultFloatingLabelTextInputStyleVariants, defaultStatusBarVariants, defaultTextInputSizeVariants,
-    defaultTextInputStyleVariants, defaultTextVariants, FloatingLabelTextInputSizeVariants,
-    FloatingLabelTextInputStyleVariants, StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants,
-    TextVariants
+    defaultFloatingLabelTextInputStyleVariants, defaultLoaderModalVariants, defaultStatusBarVariants,
+    defaultTextInputSizeVariants, defaultTextInputStyleVariants, defaultTextVariants,
+    FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants, LoaderModalVariants,
+    StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants, TextVariants
 } from "./variants";
 
 /**
@@ -32,6 +32,7 @@ type ThemeContextType = {
     buttonSizeVariants: ButtonSizeVariants;
     floatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants: FloatingLabelTextInputStyleVariants;
+    loaderModalVariants: LoaderModalVariants;
     statusBarVariants: StatusBarVariants;
     textInputSizeVariants: TextInputSizeVariants;
     textInputStyleVariants: TextInputStyleVariants;
@@ -55,6 +56,7 @@ const ThemeContext = createContext<ThemeContextType>({
     buttonSizeVariants: defaultButtonSizeVariants,
     floatingLabelTextInputSizeVariants: defaultFloatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants: defaultFloatingLabelTextInputStyleVariants,
+    loaderModalVariants: defaultLoaderModalVariants,
     statusBarVariants: defaultStatusBarVariants,
     textInputSizeVariants: defaultTextInputSizeVariants,
     textInputStyleVariants: defaultTextInputStyleVariants,
@@ -81,6 +83,7 @@ type ThemeProviderProps = {
     children: React.ReactNode;
     floatingLabelTextInputSizeVariants?: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants?: FloatingLabelTextInputStyleVariants;
+    loaderModalVariants?: LoaderModalVariants;
     statusBarVariants?: StatusBarVariants;
     textInputSizeVariants?: TextInputSizeVariants;
     textInputStyleVariants?: TextInputStyleVariants;
@@ -103,6 +106,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     children,
     floatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants,
+    loaderModalVariants,
     statusBarVariants,
     textInputSizeVariants,
     textInputStyleVariants,
@@ -116,6 +120,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         buttonSizeVariants: buttonSizeVariants ?? defaultButtonSizeVariants,
         floatingLabelTextInputSizeVariants: floatingLabelTextInputSizeVariants ?? defaultFloatingLabelTextInputSizeVariants,
         floatingLabelTextInputStyleVariants: floatingLabelTextInputStyleVariants ?? defaultFloatingLabelTextInputStyleVariants,
+        loaderModalVariants: loaderModalVariants ?? defaultLoaderModalVariants,
         statusBarVariants: statusBarVariants ?? defaultStatusBarVariants,
         textInputSizeVariants: textInputSizeVariants ?? defaultTextInputSizeVariants,
         textInputStyleVariants: textInputStyleVariants ?? defaultTextInputStyleVariants,

@@ -22,9 +22,10 @@ import { StyleProp, ViewStyle } from "react-native";
  * - `container`: optional wrapper style for the indicator
  */
 export type ActivityIndicatorVariant = {
-    size?: number | "small" | "large";
     color?: string;
     container?: StyleProp<ViewStyle>;
+    size?: number | "small" | "large";
+    textColor?: string;
 };
 
 /**
@@ -62,13 +63,16 @@ export const defaultActivityIndicatorVariants: ActivityIndicatorVariants = {
     default: {
         size: "large",
         color: "primary",
+        textColor: "text",
     },
     small: {
         size: "small",
         color: "primary",
+        textColor: "text",
     },
     large: {
         size: "large",
         color: "primary",
+        textColor: "text",
     },
 };

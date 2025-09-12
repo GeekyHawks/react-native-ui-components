@@ -34,37 +34,54 @@ import { Text } from "../Text";
  *   or a custom variant defined in the `ThemeProvider`.
  */
 export interface Props {
+    /** Override indicator color */
+    color?: ColorValue;
     /** Style for the outer container wrapping the spinner */
     containerStyle?: StyleProp<ViewStyle>;
     /** Override indicator size */
     size?: number | "small" | "large";
-    /** Override indicator color */
-    color?: ColorValue;
-    /** Choose from default or custom variants */
-    variant?: DefaultActivityIndicatorVariants | (string & {});
     /** Optional loading text */
     text?: string;
+    /** Color for loading text */
+    textColor?: ColorValue;
     /** Position of text relative to spinner */
     textPosition?: "left" | "right" | "top" | "bottom";
     /** Style for text */
     textStyle?: StyleProp<TextStyle>;
+    /** Choose from default or custom variants */
+    variant?: DefaultActivityIndicatorVariants | (string & {});
 }
 
+/**
+ * ActivityIndicator
+ *
+ * - A themed wrapper around React Native’s `ActivityIndicator`.
+ * - Renders a spinner with optional loading text positioned around it.
+ * - Supports theme-driven variants for size, color, text color, and container styling.
+ * - Text color is resolved via theme tokens or overridden via `textColor` prop.
+ * - Allows full customization with containerStyle, textStyle, size, and color props.
+ */
 const ActivityIndicator: React.FC<Props> = ({
+    color,
     containerStyle,
     size,
-    color,
-    variant = "default",
     text,
+    textColor,
     textPosition = "right",
     textStyle,
+    variant = "default",
 }) => {
     const { theme, activityIndicatorVariants } = useTheme();
     const variantConfig = activityIndicatorVariants[variant] || {};
 
-    // Resolve theme-driven color
-    const resolvedColor = resolveThemeColor(
+    // Resolve theme-driven colors
+    const resolvedSpinnerColor = resolveThemeColor(
         color ?? variantConfig.color ?? "primary",
+        theme
+    );
+
+    const resolvedTextColor = resolveThemeColor(
+        textColor ?? variantConfig.textColor ?? "text",
         theme
     );
 
@@ -84,16 +101,42 @@ const ActivityIndicator: React.FC<Props> = ({
                 <>
                     <RNActivityIndicator
                         size={size ?? variantConfig.size ?? "large"}
-                        color={resolvedColor}
+                        color={resolvedSpinnerColor}
                     />
-                    {text ? <Text style={[{ marginLeft: isHorizontal ? 8 : 0, marginTop: !isHorizontal ? 4 : 0 }, textStyle]}>{text}</Text> : null}
+                    {text ? (
+                        <Text
+                            style={[
+                                {
+                                    color: resolvedTextColor,
+                                    marginLeft: isHorizontal ? 8 : 0,
+                                    marginTop: !isHorizontal ? 4 : 0,
+                                },
+                                textStyle,
+                            ]}
+                        >
+                            {text}
+                        </Text>
+                    ) : null}
                 </>
             ) : (
                 <>
-                    {text ? <Text style={[{ marginRight: isHorizontal ? 8 : 0, marginBottom: !isHorizontal ? 4 : 0 }, textStyle]}>{text}</Text> : null}
+                    {text ? (
+                        <Text
+                            style={[
+                                {
+                                    color: resolvedTextColor,
+                                    marginRight: isHorizontal ? 8 : 0,
+                                    marginBottom: !isHorizontal ? 4 : 0,
+                                },
+                                textStyle,
+                            ]}
+                        >
+                            {text}
+                        </Text>
+                    ) : null}
                     <RNActivityIndicator
                         size={size ?? variantConfig.size ?? "large"}
-                        color={resolvedColor}
+                        color={resolvedSpinnerColor}
                     />
                 </>
             )}

@@ -23,6 +23,9 @@ export * from "./Button";
 // FloatingLabelTextInput Component
 export * from "./FloatingLabelTextInput";
 
+// LoaderModal Component
+export * from "./LoaderModal";
+
 // StatusBar Component
 export * from "./StatusBar";
 

@@ -11,6 +11,9 @@
  * Author: Geeky Hawks FZE LLC
  */
 
+// ActivityIndicator Component
+export * from "./ActivityIndicator";
+
 // AppBar Component
 export * from "./AppBar";
 

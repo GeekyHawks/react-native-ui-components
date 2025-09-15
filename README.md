@@ -4,7 +4,7 @@
 
 A lightweight and reusable React Native UI components library — providing not just components, but also a full theming system (colors, spacing, typography) for building consistent designs in your React Native apps.  
 
-Includes `Text`, `TextInput`, `FloatingLabelTextInput`, `Button`, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.  
+Includes **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**, **StatusBar**, **AppBar**, **ActivityIndicator**, **LoaderModal**, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.  
 
 ✨ Developed & Maintained by [Geeky Hawks](https://www.geekyhawks.com).
 
@@ -20,10 +20,13 @@ Includes `Text`, `TextInput`, `FloatingLabelTextInput`, `Button`, and more — f
   - Customize and extend themes for your brand.  
 
 - 🧩 **Pre-styled, customizable components**  
-  Includes **Text**, **Button**, **TextInput**, **FloatingLabelTextInput** (and more components coming soon).  
+  Includes:  
+  - **Text**, **Button**, **TextInput**, **FloatingLabelTextInput**  
+  - **StatusBar**, **AppBar**, **ActivityIndicator**, **LoaderModal**  
+  (with more components coming soon).  
 
-- 📱 **Custom StatusBar** (coming soon)  
-  Works consistently across iOS and Android — no hacks required.  
+- 📱 **Consistent cross-platform UI**  
+  Components work seamlessly on both iOS and Android with a unified design language.  
 
 - 🔒 **TypeScript-first**  
   Strongly typed for safer and faster development.  
@@ -65,12 +68,20 @@ export default function App() {
 ### 3. Use a component
 
 ```tsx
-import { Text, TextInput, FloatingLabelTextInput, Button } from "@geekyhawks/react-native-ui-components";
+import { ActivityIndicator, AppBar, Button, FloatingLabelTextInput, StatusBar, Text, TextInput } from "@geekyhawks/react-native-ui-components";
 
 export default function HomeScreen() {
   return (
     <>
+      <StatusBar />
+
+      <AppBar
+        heading="Home"
+        backButton={{ showBackButton: false }}
+      />
+
       <Text>Hello, World! 👋</Text>
+
       <Text variant="h1">Heading Text</Text>
 
       <TextInput
@@ -89,6 +100,12 @@ export default function HomeScreen() {
           // Do something with text
         }}
       />
+
+      <ActivityIndicator
+        text="Please wait..."
+        textPosition="right"
+        textColor={"primary"}
+        variant="large" />
 
       <Button onPress={() => console.log("Pressed!")}>
         Default Button
@@ -109,10 +126,14 @@ export default function HomeScreen() {
 This library provides a growing set of **theme-ready UI components**:
 
 - [Theme](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Theme.md) – Global theming system (colors, typography, spacing, light/dark).
+- [StatusBar](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/StatusBar.md) – Theme-aware wrapper for the native status bar with predefined variants.
+- [AppBar](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/AppBar.md) – Customizable, theme-ready top app bar with back, left, and right icons.
 - [Text](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Text.md) – Customizable wrapper around React Native's `Text`.
 - [Button](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Button.md) – Enhanced button with default styles, theme support and much more.
 - [TextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/TextInput.md) – Styled input field with theme integration.
-- [FloatingLabelTextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/FloatingLabelTextInput.md) – TextInput with floating label.  
+- [FloatingLabelTextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/FloatingLabelTextInput.md) – TextInput with floating label.
+- [ActivityIndicator](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/ActivityIndicator.md) – Flexible loading spinner with text, size, and position options.
+- [LoaderModal](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/LoaderModal.md) – Full-screen modal loader with spinner, text, and theme variants.  
 _(more coming soon)_
 
 > 🖌️ All components support style overrides, theming, and common React Native props. Customize fonts, colors, and variants globally using the [ThemeProvider](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Theme.md).

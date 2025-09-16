@@ -39,6 +39,8 @@ const customLightTheme = createTheme({
         muted: "#6c757d",
         surface: "#4B0082",
         onSurface: "#FFF0F5",
+        onPrimary: "#ffffff",
+        onSecondary: "#ffffff",
     },
 });
 
@@ -58,6 +60,8 @@ const customDarkTheme = createTheme({
         muted: "#AAAAAA",
         surface: "#FF6B6B",
         onSurface: "#FFD700",
+        onPrimary: "#2F4F4F",
+        onSecondary: "#2F4F4F",
     },
     spacing: {
         ...defaultSpacing,

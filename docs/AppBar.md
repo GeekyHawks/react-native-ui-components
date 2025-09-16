@@ -29,7 +29,7 @@ export default function App() {
   return (
     <>
       <StatusBar variant="default" />
-      <AppBar heading="Home" />
+      <AppBar title="Title" subTitle="Sub Title" />
       <View>
         <Text>Welcome to the app!</Text>
       </View>
@@ -42,7 +42,7 @@ export default function App() {
 
 ```tsx
 <AppBar
-  heading="Dashboard"
+  title="Dashboard"
   leftIcon={<CustomMenuIcon />}
   onLeftIconPress={() => console.log("Menu pressed")}
   rightIcon={<CustomSettingsIcon />}
@@ -60,7 +60,7 @@ Otherwise, the bar may overlap with your content.
 ```tsx
 <>
   <StatusBar variant="default" />
-  <AppBar heading="Profile" />
+  <AppBar title="Profile" />
   <SafeAreaView>
     <Text>Inside SafeAreaView</Text>
   </SafeAreaView>
@@ -72,7 +72,7 @@ Otherwise, the bar may overlap with your content.
 ```tsx
 <SafeAreaView>
   <StatusBar variant="default" />
-  <AppBar heading="Profile" />
+  <AppBar title="Profile" />
   <Text>This may overlap!</Text>
 </SafeAreaView>
 ```
@@ -83,14 +83,16 @@ Otherwise, the bar may overlap with your content.
 | Prop                | Type                                                                 | Default     | Description                                                                 |
 | ------------------- | -------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
 | `containerStyle`    | `StyleProp<ViewStyle>`                                               | —           | Style for the outer container.                                              |
-| `heading`           | `string`                                                             | —           | Title text to display in the center.                                        |
-| `headerTextStyle`   | `StyleProp<TextStyle>`                                               | —           | Style for the title text.                                                   |
 | `leftIcon`          | `React.ReactNode`                                                    | —           | Custom left icon (before title).                                            |
 | `leftIconStyle`     | `StyleProp<ViewStyle>`                                               | —           | Style for the left icon container.                                          |
 | `onLeftIconPress`   | `() => void`                                                         | —           | Click handler for left icon.                                                |
+| `onRightIconPress`  | `() => void`                                                         | —           | Click handler for right icon.                                               |
 | `rightIcon`         | `React.ReactNode`                                                    | —           | Custom right icon (after title).                                            |
 | `rightIconStyle`    | `StyleProp<ViewStyle>`                                               | —           | Style for the right icon container.                                         |
-| `onRightIconPress`  | `() => void`                                                         | —           | Click handler for right icon.                                               |
+| `subTitle`          | `string`                                                             | —           | Subtitle text to display below the title (centered).                        |
+| `subTitleTextStyle` | `StyleProp<TextStyle>`                                               | —           | Style for the subtitle text.                                                |
+| `title`             | `string`                                                             | —           | Title text to display in the center.                                        |
+| `titleTextStyle`    | `StyleProp<TextStyle>`                                               | —           | Style for the title text.                                                   |
 | `variant`           | `DefaultAppBarVariants \| (string & {})` <br> *(default \| transparent \| elevated)* | `"default"` | Choose from default or custom app bar variants.                             |
 
 
@@ -153,9 +155,9 @@ export const defaultAppBarVariants: AppBarVariants = {
 You can use them directly:
 
 ```tsx
-<AppBar variant="default" heading="Home" />
-<AppBar variant="transparent" heading="Profile" />
-<AppBar variant="elevated" heading="Dashboard" />
+<AppBar variant="default" title="Home" />
+<AppBar variant="transparent" title="Profile" />
+<AppBar variant="elevated" title="Dashboard" />
 ```
 
 ## 📓 Notes

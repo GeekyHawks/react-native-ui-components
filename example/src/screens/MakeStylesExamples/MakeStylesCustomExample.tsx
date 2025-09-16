@@ -87,6 +87,8 @@ const customDarkTheme = createTheme({
         secondary: "#adb5bd",    // Override built-in key
         surface: "#1c1c1e",      // Override built-in key
         onSurface: "#ffffff",    // Override built-in key
+        onPrimary: "#2F4F4F",    // Override built-in key
+        onSecondary: "#2F4F4F",  // Override built-in key
         accent: "#FF0000",       // 🔑 New custom key (not in default theme)
     },
     spacing: {

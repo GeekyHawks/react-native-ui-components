@@ -11,7 +11,7 @@
  * Author: Geeky Hawks FZE LLC
  */
 
-import { ViewStyle, TextStyle, ImageStyle } from "react-native";
+import { ViewStyle, TextStyle } from "react-native";
 
 /**
  * AppBarVariant
@@ -19,18 +19,12 @@ import { ViewStyle, TextStyle, ImageStyle } from "react-native";
  * Represents the configuration for a single AppBar variant.
  * - `container`: styles for the AppBar wrapper (background, height, layout)
  * - `title`: styles for the AppBar title text
- * - `backButton`: styles for the optional back button
  * - `leftIcon`: styles for an optional custom left icon
  * - `rightIcon`: styles for an optional custom right icon
  */
 export type AppBarVariant = {
     container?: ViewStyle;
     title?: TextStyle;
-    backButton?: {
-        container?: ViewStyle;
-        icon?: ImageStyle;
-        text?: TextStyle;
-    };
     leftIcon?: {
         container?: ViewStyle;
     };
@@ -80,11 +74,6 @@ export const defaultAppBarVariants: AppBarVariants = {
             paddingHorizontal: 16,
         },
         title: { fontSize: 18, fontWeight: "bold", color: "onPrimary" },
-        backButton: {
-            container: { padding: 8 },
-            icon: { width: 24, height: 24, tintColor: "onPrimary" },
-            text: { fontSize: 16, color: "onPrimary" },
-        },
         leftIcon: { container: { padding: 8 } },
         rightIcon: { container: { padding: 8 } },
     },
@@ -98,11 +87,6 @@ export const defaultAppBarVariants: AppBarVariants = {
             backgroundColor: "transparent",
         },
         title: { fontSize: 18, fontWeight: "bold", color: "text" },
-        backButton: {
-            container: { padding: 8 },
-            icon: { width: 24, height: 24, tintColor: "text" },
-            text: { fontSize: 16, color: "text" },
-        },
         leftIcon: { container: { padding: 8 } },
         rightIcon: { container: { padding: 8 } },
     },
@@ -121,11 +105,6 @@ export const defaultAppBarVariants: AppBarVariants = {
             shadowRadius: 4,
         },
         title: { fontSize: 18, fontWeight: "bold", color: "onSurface" },
-        backButton: {
-            container: { padding: 8 },
-            icon: { width: 24, height: 24, tintColor: "onSurface" },
-            text: { fontSize: 16, color: "onSurface" },
-        },
         leftIcon: { container: { padding: 8 } },
         rightIcon: { container: { padding: 8 } },
     },

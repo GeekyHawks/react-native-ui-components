@@ -19,12 +19,14 @@ import { ViewStyle, TextStyle } from "react-native";
  * Represents the configuration for a single AppBar variant.
  * - `container`: styles for the AppBar wrapper (background, height, layout)
  * - `title`: styles for the AppBar title text
+ * - `subTitle`: styles for the AppBar sub title text
  * - `leftIcon`: styles for an optional custom left icon
  * - `rightIcon`: styles for an optional custom right icon
  */
 export type AppBarVariant = {
     container?: ViewStyle;
     title?: TextStyle;
+    subTitle?: TextStyle;
     leftIcon?: {
         container?: ViewStyle;
     };
@@ -74,6 +76,7 @@ export const defaultAppBarVariants: AppBarVariants = {
             paddingHorizontal: 16,
         },
         title: { fontSize: 18, fontWeight: "bold", color: "onPrimary" },
+        subTitle: { fontSize: 14, color: "onPrimary" },
         leftIcon: { container: { padding: 8 } },
         rightIcon: { container: { padding: 8 } },
     },
@@ -87,6 +90,7 @@ export const defaultAppBarVariants: AppBarVariants = {
             backgroundColor: "transparent",
         },
         title: { fontSize: 18, fontWeight: "bold", color: "text" },
+        subTitle: { fontSize: 14, color: "text" },
         leftIcon: { container: { padding: 8 } },
         rightIcon: { container: { padding: 8 } },
     },
@@ -105,6 +109,7 @@ export const defaultAppBarVariants: AppBarVariants = {
             shadowRadius: 4,
         },
         title: { fontSize: 18, fontWeight: "bold", color: "onSurface" },
+        subTitle: { fontSize: 14, color: "onSurface" },
         leftIcon: { container: { padding: 8 } },
         rightIcon: { container: { padding: 8 } },
     },

@@ -4,9 +4,8 @@
  * A customizable application top bar component.
  * - Supports theme-based variants (`default`, `transparent`, `elevated`)
  *   or custom variants defined in the `ThemeProvider`.
- * - Provides optional left icon, right icon, and centered title.
- * - Ensures the title always remains horizontally centered regardless
- *   of whether icons are displayed.
+ * - Provides optional left icon, right icon, centered title and optional subTitle.
+ * - Ensures title (+ subTitle if provided) always remain horizontally centered regardless of icons.
  *
  * Author: Geeky Hawks FZE LLC
  */
@@ -34,6 +33,8 @@ import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
  * - **onRightIconPress**: callback when right icon is pressed.
  * - **rightIcon**: custom icon to display on the right.
  * - **rightIconStyle**: override styles for right icon container.
+ * - **subTitle**: optional text displayed below the title.
+ * - **subTitleTextStyle**: optional override styles for the subtitle text.
  * - **title**: text to display as the title (centered by default).
  * - **titleTextStyle**: optional override styles for the title text.
  * - **variant**: choose from default (`default`, `transparent`, `elevated`)
@@ -54,6 +55,10 @@ export interface Props {
     rightIcon?: React.ReactNode;
     /** Style for the right icon container */
     rightIconStyle?: StyleProp<ViewStyle>;
+    /** Optional Sub Title text to display in the center */
+    subTitle?: string;
+    /** Style for the sub title text */
+    subTitleTextStyle?: StyleProp<TextStyle>;
     /** Title text to display in the center */
     title?: string;
     /** Style for the title text */
@@ -81,6 +86,8 @@ const AppBar: React.FC<Props> = ({
     onRightIconPress,
     rightIcon,
     rightIconStyle,
+    subTitle,
+    subTitleTextStyle,
     title,
     titleTextStyle,
     variant = "default",
@@ -97,6 +104,11 @@ const AppBar: React.FC<Props> = ({
     const resolvedTitle = {
         ...variantConfig.title,
         color: resolveThemeColor(variantConfig.title?.color, theme),
+    };
+
+    const resolvedSubTitle = {
+        ...variantConfig.subTitle,
+        color: resolveThemeColor(variantConfig.subTitle?.color, theme),
     };
 
     return (
@@ -117,26 +129,45 @@ const AppBar: React.FC<Props> = ({
                 ) : null}
             </View>
 
-            {/* Title (Always Centered) */}
+            {/* Title + SubTitle */}
             <View
                 style={{
                     position: "absolute",
                     left: 0,
                     right: 0,
+                    top: 0,
+                    bottom: 0,
                     alignItems: "center",
                     justifyContent: "center",
                 }}
                 pointerEvents="none"
             >
-                <Text
-                    style={[
-                        { fontFamily: theme.fontFamily },
-                        resolvedTitle,
-                        titleTextStyle,
-                    ]}
-                >
-                    {title ?? ""}
-                </Text>
+                {(title || subTitle) ? (
+                    <View style={{ alignItems: "center" }}>
+                        {title ? (
+                            <Text
+                                style={[
+                                    { fontFamily: theme.fontFamily },
+                                    resolvedTitle,
+                                    titleTextStyle,
+                                ]}
+                            >
+                                {title}
+                            </Text>
+                        ) : null}
+                        {subTitle ? (
+                            <Text
+                                style={[
+                                    { fontFamily: theme.fontFamily },
+                                    resolvedSubTitle,
+                                    subTitleTextStyle,
+                                ]}
+                            >
+                                {subTitle}
+                            </Text>
+                        ) : null}
+                    </View>
+                ) : null}
             </View>
 
             {/* Right Section */}

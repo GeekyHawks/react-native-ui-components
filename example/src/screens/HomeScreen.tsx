@@ -13,6 +13,8 @@
  *   - Button Component Demo
  *   - TextInput Component Demo
  *   - FloatingLabelTextInput Component Demo
+ *   - ActivityIndicator Component Demo
+ *   - LoaderModal Component Demo
  * - Uses the library's `Button` component for navigation.
  *
  * Purpose:
@@ -93,6 +95,13 @@ export default function HomeScreen() {
                 onPress={() => navigation.navigate("ActivityIndicator")}
             >
                 ActivityIndicator
+            </Button>
+
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("LoaderModal")}
+            >
+                LoaderModal
             </Button>
         </ScrollView>
     );

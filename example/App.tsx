@@ -11,10 +11,14 @@
  *   - Home Screen (overview)
  *   - Theme Demo
  *   - Make Styles Demo
+ * 	 - StatusBar Component Demo
+ * 	 - AppBar Component Demo
  *   - Text Component Demo
  *   - Button Component Demo
  *   - TextInput Component Demo
  *   - FloatingLabelTextInput Component Demo
+ * 	 - ActivityIndicator Component Demo
+ *   - LoaderModal Component Demo
  *
  * Author: Geeky Hawks FZE LLC
  */
@@ -38,6 +42,7 @@ import { LightStatusBarExample } from "./src/screens/StatusBarExamples/LightStat
 import { CustomStatusBarExample } from "./src/screens/StatusBarExamples/CustomStatusBarExample";
 import { TranslucentStatusBarExample } from "./src/screens/StatusBarExamples/TranslucentStatusBarExample";
 import ActivityIndicatorDemoScreen from "./src/screens/ActivityIndicatorDemoScreen";
+import LoaderModalDemoScreen from "./src/screens/LoaderModalDemoScreen";
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -56,6 +61,7 @@ export type RootStackParamList = {
 	CustomStatusBar: undefined;
 	TranslucentStatusBar: undefined;
 	ActivityIndicator: undefined;
+	LoaderModal: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -82,6 +88,7 @@ export default function App() {
 				<Stack.Screen name="CustomStatusBar" component={CustomStatusBarExample} options={{ headerShown: false }} />
 				<Stack.Screen name="TranslucentStatusBar" component={TranslucentStatusBarExample} options={{ headerShown: false }} />
 				<Stack.Screen name="ActivityIndicator" component={ActivityIndicatorDemoScreen} />
+				<Stack.Screen name="LoaderModal" component={LoaderModalDemoScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

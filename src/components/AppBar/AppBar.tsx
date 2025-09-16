@@ -4,9 +4,9 @@
  * A customizable application top bar component.
  * - Supports theme-based variants (`default`, `transparent`, `elevated`)
  *   or custom variants defined in the `ThemeProvider`.
- * - Provides optional back button, left icon, right icon, and centered title.
+ * - Provides optional left icon, right icon, and centered title.
  * - Ensures the title always remains horizontally centered regardless
- *   of whether icons or back button are displayed.
+ *   of whether icons are displayed.
  *
  * Author: Geeky Hawks FZE LLC
  */
@@ -25,37 +25,12 @@ import { Text } from "../Text";
 import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
 
 /**
- * ShowBackButton
- *
- * Configuration for displaying a back button on the AppBar.
- * - `showBackButton`: set to `true` to enable back button.
- * - `onBackPress`: callback triggered when back button is pressed.
- * - `backIcon`: optional custom React node (e.g., icon component).
- */
-type ShowBackButton = {
-    showBackButton: true;
-    onBackPress: () => void;
-    backIcon?: React.ReactNode;
-};
-
-/**
- * HideBackButton
- *
- * Configuration for hiding the back button from the AppBar.
- * - `showBackButton`: set to `false` to hide.
- */
-type HideBackButton = {
-    showBackButton: false;
-};
-
-/**
  * Props for custom AppBar component
  *
  * - **heading**: text to display as the title (centered by default).
  * - **containerStyle**: optional override styles for the app bar container.
  * - **headerTextStyle**: optional override styles for the title text.
- * - **backButton**: control back button visibility and behavior.
- * - **leftIcon**: custom icon to display on the left (ignored if back button is shown).
+ * - **leftIcon**: custom icon to display on the left.
  * - **onLeftIconPress**: callback when left icon is pressed.
  * - **leftIconStyle**: override styles for left icon container.
  * - **rightIcon**: custom icon to display on the right.
@@ -65,8 +40,6 @@ type HideBackButton = {
  *   or a custom variant defined in the `ThemeProvider`.
  */
 export interface Props {
-    /** Show a back button (true) or hide it (false) */
-    backButton: ShowBackButton | HideBackButton;
     /** Style for the outer container */
     containerStyle?: StyleProp<ViewStyle>;
     /** Title text to display in the center */
@@ -93,7 +66,7 @@ export interface Props {
  * AppBar
  *
  * Renders a themed top application bar.
- * - Left section: back button (if enabled) or left icon.
+ * - Left section: optional left icon.
  * - Center section: title, always horizontally centered.
  * - Right section: optional right icon.
  *
@@ -104,7 +77,6 @@ const AppBar: React.FC<Props> = ({
     heading,
     containerStyle,
     headerTextStyle,
-    backButton,
     leftIcon,
     onLeftIconPress,
     leftIconStyle,
@@ -115,13 +87,6 @@ const AppBar: React.FC<Props> = ({
 }) => {
     const { theme, appBarVariants } = useTheme();
     const variantConfig = appBarVariants[variant] || {};
-
-    // Dev warning if user passes both backButton and leftIcon
-    if (__DEV__ && backButton.showBackButton && leftIcon) {
-        console.warn(
-            "[AppBar] Both `showBackButton` and `leftIcon` provided. `showBackButton` takes precedence."
-        );
-    }
 
     // Resolve theme-driven colors
     const resolvedContainer = {
@@ -134,32 +99,11 @@ const AppBar: React.FC<Props> = ({
         color: resolveThemeColor(variantConfig.title?.color, theme),
     };
 
-    const resolvedBackText = {
-        ...variantConfig.backButton?.text,
-        color: resolveThemeColor(variantConfig.backButton?.text?.color, theme),
-    };
-
     return (
         <View style={[resolvedContainer, containerStyle]}>
-            {/* Left Section (Back or Left Icon) */}
-            <View style={{ minWidth: 48, justifyContent: "center" }}>
-                {backButton.showBackButton ? (
-                    <Pressable
-                        onPress={backButton.onBackPress}
-                        style={({ pressed }) => [
-                            variantConfig.backButton?.container,
-                            pressed && { opacity: 0.6 },
-                        ]}
-                    >
-                        {backButton.backIcon ? (
-                            backButton.backIcon
-                        ) : (
-                            <Text style={[{ fontFamily: theme.fontFamily }, resolvedBackText]}>
-                                {"< Back"}
-                            </Text>
-                        )}
-                    </Pressable>
-                ) : leftIcon ? (
+            {/* Left Section */}
+            <View style={{ minWidth: 48, justifyContent: "center", alignItems: "flex-start" }}>
+                {leftIcon ? (
                     <Pressable
                         onPress={onLeftIconPress}
                         style={({ pressed }) => [

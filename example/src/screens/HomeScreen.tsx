@@ -87,6 +87,13 @@ export default function HomeScreen() {
             >
                 FloatingLabelTextInput
             </Button>
+
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("ActivityIndicator")}
+            >
+                ActivityIndicator
+            </Button>
         </ScrollView>
     );
 }

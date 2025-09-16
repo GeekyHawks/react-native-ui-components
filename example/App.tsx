@@ -37,6 +37,7 @@ import { TransparentStatusBarExample } from "./src/screens/StatusBarExamples/Tra
 import { LightStatusBarExample } from "./src/screens/StatusBarExamples/LightStatusBarExample";
 import { CustomStatusBarExample } from "./src/screens/StatusBarExamples/CustomStatusBarExample";
 import { TranslucentStatusBarExample } from "./src/screens/StatusBarExamples/TranslucentStatusBarExample";
+import ActivityIndicatorDemoScreen from "./src/screens/ActivityIndicatorDemoScreen";
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -54,6 +55,7 @@ export type RootStackParamList = {
 	TransparentStatusBar: undefined;
 	CustomStatusBar: undefined;
 	TranslucentStatusBar: undefined;
+	ActivityIndicator: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -79,6 +81,7 @@ export default function App() {
 				<Stack.Screen name="TransparentStatusBar" component={TransparentStatusBarExample} options={{ headerShown: false }} />
 				<Stack.Screen name="CustomStatusBar" component={CustomStatusBarExample} options={{ headerShown: false }} />
 				<Stack.Screen name="TranslucentStatusBar" component={TranslucentStatusBarExample} options={{ headerShown: false }} />
+				<Stack.Screen name="ActivityIndicator" component={ActivityIndicatorDemoScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

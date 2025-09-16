@@ -75,10 +75,7 @@ export default function HomeScreen() {
     <>
       <StatusBar />
 
-      <AppBar
-        heading="Home"
-        backButton={{ showBackButton: false }}
-      />
+      <AppBar heading="Home" />
 
       <Text>Hello, World! 👋</Text>
 
@@ -127,7 +124,7 @@ This library provides a growing set of **theme-ready UI components**:
 
 - [Theme](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Theme.md) – Global theming system (colors, typography, spacing, light/dark).
 - [StatusBar](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/StatusBar.md) – Theme-aware wrapper for the native status bar with predefined variants.
-- [AppBar](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/AppBar.md) – Customizable, theme-ready top app bar with back, left, and right icons.
+- [AppBar](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/AppBar.md) – Customizable, theme-ready top app bar with left, and right icons.
 - [Text](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Text.md) – Customizable wrapper around React Native's `Text`.
 - [Button](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Button.md) – Enhanced button with default styles, theme support and much more.
 - [TextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/TextInput.md) – Styled input field with theme integration.

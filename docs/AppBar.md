@@ -11,7 +11,7 @@ Our `AppBar` component solves this by:
 
 ✅ **Theme Integration** – Uses your theme’s colors, typography, and spacing automatically.  
 ✅ **Predefined Variants** – Common styles like `default`, `transparent`, and `elevated`.  
-✅ **Navigation Ready** – Built-in support for back buttons and icon click handlers.  
+✅ **Navigation Ready** – Built-in support for icons and icon click handlers.  
 ✅ **Customizable** – Easily override icons, text styles, or container styles.  
 ✅ **Cross-Platform Consistency** – Works the same across iOS and Android.  
 
@@ -29,7 +29,7 @@ export default function App() {
   return (
     <>
       <StatusBar variant="default" />
-      <AppBar heading="Home" backButton={{ showBackButton: false }} />
+      <AppBar heading="Home" />
       <View>
         <Text>Welcome to the app!</Text>
       </View>
@@ -38,19 +38,7 @@ export default function App() {
 }
 ```
 
-**With Back Button**
-
-```tsx
-<AppBar
-  heading="Details"
-  backButton={{
-    showBackButton: true,
-    onBackPress: () => console.log("Back pressed"),
-  }}
-/>
-```
-
-***With Custom Icons***
+**With Custom Icons**
 
 ```tsx
 <AppBar
@@ -72,7 +60,7 @@ Otherwise, the bar may overlap with your content.
 ```tsx
 <>
   <StatusBar variant="default" />
-  <AppBar heading="Profile" backButton={{ showBackButton: false }} />
+  <AppBar heading="Profile" />
   <SafeAreaView>
     <Text>Inside SafeAreaView</Text>
   </SafeAreaView>
@@ -84,7 +72,7 @@ Otherwise, the bar may overlap with your content.
 ```tsx
 <SafeAreaView>
   <StatusBar variant="default" />
-  <AppBar heading="Profile" backButton={{ showBackButton: false }} />
+  <AppBar heading="Profile" />
   <Text>This may overlap!</Text>
 </SafeAreaView>
 ```
@@ -94,7 +82,6 @@ Otherwise, the bar may overlap with your content.
 
 | Prop                | Type                                                                 | Default     | Description                                                                 |
 | ------------------- | -------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
-| `backButton`        | `ShowBackButton \| HideBackButton`                                   | —           | Show or hide a back button. If shown, requires `onBackPress`.                |
 | `containerStyle`    | `StyleProp<ViewStyle>`                                               | —           | Style for the outer container.                                              |
 | `heading`           | `string`                                                             | —           | Title text to display in the center.                                        |
 | `headerTextStyle`   | `StyleProp<TextStyle>`                                               | —           | Style for the title text.                                                   |
@@ -105,21 +92,6 @@ Otherwise, the bar may overlap with your content.
 | `rightIconStyle`    | `StyleProp<ViewStyle>`                                               | —           | Style for the right icon container.                                         |
 | `onRightIconPress`  | `() => void`                                                         | —           | Click handler for right icon.                                               |
 | `variant`           | `DefaultAppBarVariants \| (string & {})` <br> *(default \| transparent \| elevated)* | `"default"` | Choose from default or custom app bar variants.                             |
-
-
-### 🔀 Back Button Types
-
-```tsx
-type ShowBackButton = {
-  showBackButton: true;
-  onBackPress: () => void;
-  backIcon?: React.ReactNode;
-};
-
-type HideBackButton = {
-  showBackButton: false;
-};
-```
 
 
 ## 🎨 Variants
@@ -141,11 +113,6 @@ export const defaultAppBarVariants: AppBarVariants = {
       paddingHorizontal: 16,
     },
     title: { fontSize: 18, fontWeight: "bold", color: "onPrimary" },
-    backButton: {
-      container: { padding: 8 },
-      icon: { width: 24, height: 24, tintColor: "onPrimary" },
-      text: { fontSize: 16, color: "onPrimary" },
-    },
     leftIcon: { container: { padding: 8 } },
     rightIcon: { container: { padding: 8 } },
   },
@@ -159,11 +126,6 @@ export const defaultAppBarVariants: AppBarVariants = {
       backgroundColor: "transparent",
     },
     title: { fontSize: 18, fontWeight: "bold", color: "text" },
-    backButton: {
-      container: { padding: 8 },
-      icon: { width: 24, height: 24, tintColor: "text" },
-      text: { fontSize: 16, color: "text" },
-    },
     leftIcon: { container: { padding: 8 } },
     rightIcon: { container: { padding: 8 } },
   },
@@ -182,11 +144,6 @@ export const defaultAppBarVariants: AppBarVariants = {
       shadowRadius: 4,
     },
     title: { fontSize: 18, fontWeight: "bold", color: "onSurface" },
-    backButton: {
-      container: { padding: 8 },
-      icon: { width: 24, height: 24, tintColor: "onSurface" },
-      text: { fontSize: 16, color: "onSurface" },
-    },
     leftIcon: { container: { padding: 8 } },
     rightIcon: { container: { padding: 8 } },
   },
@@ -196,9 +153,9 @@ export const defaultAppBarVariants: AppBarVariants = {
 You can use them directly:
 
 ```tsx
-<AppBar variant="default" heading="Home" backButton={{ showBackButton: false }} />
-<AppBar variant="transparent" heading="Profile" backButton={{ showBackButton: false }} />
-<AppBar variant="elevated" heading="Dashboard" backButton={{ showBackButton: false }} />
+<AppBar variant="default" heading="Home" />
+<AppBar variant="transparent" heading="Profile" />
+<AppBar variant="elevated" heading="Dashboard" />
 ```
 
 ## 📓 Notes

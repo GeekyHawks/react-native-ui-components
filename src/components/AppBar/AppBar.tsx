@@ -27,37 +27,37 @@ import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
 /**
  * Props for custom AppBar component
  *
- * - **heading**: text to display as the title (centered by default).
  * - **containerStyle**: optional override styles for the app bar container.
- * - **headerTextStyle**: optional override styles for the title text.
  * - **leftIcon**: custom icon to display on the left.
- * - **onLeftIconPress**: callback when left icon is pressed.
  * - **leftIconStyle**: override styles for left icon container.
- * - **rightIcon**: custom icon to display on the right.
+ * - **onLeftIconPress**: callback when left icon is pressed.
  * - **onRightIconPress**: callback when right icon is pressed.
+ * - **rightIcon**: custom icon to display on the right.
  * - **rightIconStyle**: override styles for right icon container.
+ * - **title**: text to display as the title (centered by default).
+ * - **titleTextStyle**: optional override styles for the title text.
  * - **variant**: choose from default (`default`, `transparent`, `elevated`)
  *   or a custom variant defined in the `ThemeProvider`.
  */
 export interface Props {
     /** Style for the outer container */
     containerStyle?: StyleProp<ViewStyle>;
-    /** Title text to display in the center */
-    heading?: string;
-    /** Style for the title text */
-    headerTextStyle?: StyleProp<TextStyle>;
     /** Custom left icon (before title) */
     leftIcon?: React.ReactNode;
     /** Style for the left icon container */
     leftIconStyle?: StyleProp<ViewStyle>;
     /** Click handler for left icon */
     onLeftIconPress?: () => void;
+    /** Click handler for right icon */
+    onRightIconPress?: () => void;
     /** Custom right icon (after title) */
     rightIcon?: React.ReactNode;
     /** Style for the right icon container */
     rightIconStyle?: StyleProp<ViewStyle>;
-    /** Click handler for right icon */
-    onRightIconPress?: () => void;
+    /** Title text to display in the center */
+    title?: string;
+    /** Style for the title text */
+    titleTextStyle?: StyleProp<TextStyle>;
     /** Choose from default or custom app bar variants */
     variant?: DefaultAppBarVariants | (string & {});
 }
@@ -74,15 +74,15 @@ export interface Props {
  * into actual color values from the active theme.
  */
 const AppBar: React.FC<Props> = ({
-    heading,
     containerStyle,
-    headerTextStyle,
     leftIcon,
-    onLeftIconPress,
     leftIconStyle,
-    rightIcon,
+    onLeftIconPress,
     onRightIconPress,
+    rightIcon,
     rightIconStyle,
+    title,
+    titleTextStyle,
     variant = "default",
 }) => {
     const { theme, appBarVariants } = useTheme();
@@ -132,10 +132,10 @@ const AppBar: React.FC<Props> = ({
                     style={[
                         { fontFamily: theme.fontFamily },
                         resolvedTitle,
-                        headerTextStyle,
+                        titleTextStyle,
                     ]}
                 >
-                    {heading ?? ""}
+                    {title ?? ""}
                 </Text>
             </View>
 

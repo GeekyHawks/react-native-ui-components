@@ -30,16 +30,30 @@ import ButtonDemoScreen from "./src/screens/ButtonDemoScreen";
 import TextInputDemoScreen from "./src/screens/TextInputDemoScreen";
 import FloatingLabelDemoScreen from "./src/screens/FloatingLabelDemoScreen";
 import AppBarDemoScreen from "./src/screens/AppBarDemoScreen";
+import StatusBarDemoScreen from "./src/screens/StatusBarDemoScreen";
+import { DefaultStatusBarExample } from "./src/screens/StatusBarExamples/DefaultStatusBarExample";
+import { DarkStatusBarExample } from "./src/screens/StatusBarExamples/DarkStatusBarExample";
+import { TransparentStatusBarExample } from "./src/screens/StatusBarExamples/TransparentStatusBarExample";
+import { LightStatusBarExample } from "./src/screens/StatusBarExamples/LightStatusBarExample";
+import { CustomStatusBarExample } from "./src/screens/StatusBarExamples/CustomStatusBarExample";
+import { TranslucentStatusBarExample } from "./src/screens/StatusBarExamples/TranslucentStatusBarExample";
 
 export type RootStackParamList = {
 	Home: undefined;
 	Theme: undefined;
 	Styles: undefined;
+	StatusBar: undefined;
 	AppBar: undefined;
 	Text: undefined;
 	Button: undefined;
 	TextInput: undefined;
 	FloatingLabelTextInput: undefined;
+	DefaultStatusBar: undefined;
+	LightStatusBar: undefined;
+	DarkStatusBar: undefined;
+	TransparentStatusBar: undefined;
+	CustomStatusBar: undefined;
+	TranslucentStatusBar: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -53,11 +67,18 @@ export default function App() {
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Theme" component={ThemeDemoScreen} />
 				<Stack.Screen name="Styles" component={MakeStylesDemoScreen} />
+				<Stack.Screen name="StatusBar" component={StatusBarDemoScreen} />
 				<Stack.Screen name="AppBar" component={AppBarDemoScreen} />
 				<Stack.Screen name="Text" component={TextDemoScreen} />
 				<Stack.Screen name="Button" component={ButtonDemoScreen} />
 				<Stack.Screen name="TextInput" component={TextInputDemoScreen} />
 				<Stack.Screen name="FloatingLabelTextInput" component={FloatingLabelDemoScreen} />
+				<Stack.Screen name="DefaultStatusBar" component={DefaultStatusBarExample} options={{ headerShown: false }} />
+				<Stack.Screen name="LightStatusBar" component={LightStatusBarExample} options={{ headerShown: false }} />
+				<Stack.Screen name="DarkStatusBar" component={DarkStatusBarExample} options={{ headerShown: false }} />
+				<Stack.Screen name="TransparentStatusBar" component={TransparentStatusBarExample} options={{ headerShown: false }} />
+				<Stack.Screen name="CustomStatusBar" component={CustomStatusBarExample} options={{ headerShown: false }} />
+				<Stack.Screen name="TranslucentStatusBar" component={TranslucentStatusBarExample} options={{ headerShown: false }} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

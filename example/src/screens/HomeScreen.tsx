@@ -7,6 +7,8 @@
  * - Provides navigation buttons to the different component demo screens:
  *   - Theme Demo
  *   - Make Styles Demo
+ *   - StatusBar Demo
+ *   - AppBar Demo
  *   - Text Component Demo
  *   - Button Component Demo
  *   - TextInput Component Demo
@@ -42,6 +44,13 @@ export default function HomeScreen() {
                 onPress={() => navigation.navigate("Styles")}
             >
                 Make Styles
+            </Button>
+
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("StatusBar")}
+            >
+                StatusBar
             </Button>
 
             <Button

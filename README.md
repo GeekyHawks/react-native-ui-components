@@ -75,7 +75,7 @@ export default function HomeScreen() {
     <>
       <StatusBar />
 
-      <AppBar heading="Home" />
+      <AppBar title="Home" />
 
       <Text>Hello, World! 👋</Text>
 

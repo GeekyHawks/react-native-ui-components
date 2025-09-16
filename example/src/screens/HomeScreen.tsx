@@ -46,6 +46,13 @@ export default function HomeScreen() {
 
             <Button
                 style={styles.button}
+                onPress={() => navigation.navigate("AppBar")}
+            >
+                AppBar
+            </Button>
+
+            <Button
+                style={styles.button}
                 onPress={() => navigation.navigate("Text")}
             >
                 Text

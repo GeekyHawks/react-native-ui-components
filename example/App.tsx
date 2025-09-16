@@ -29,11 +29,13 @@ import TextDemoScreen from "./src/screens/TextDemoScreen";
 import ButtonDemoScreen from "./src/screens/ButtonDemoScreen";
 import TextInputDemoScreen from "./src/screens/TextInputDemoScreen";
 import FloatingLabelDemoScreen from "./src/screens/FloatingLabelDemoScreen";
+import AppBarDemoScreen from "./src/screens/AppBarDemoScreen";
 
 export type RootStackParamList = {
 	Home: undefined;
 	Theme: undefined;
 	Styles: undefined;
+	AppBar: undefined;
 	Text: undefined;
 	Button: undefined;
 	TextInput: undefined;
@@ -51,6 +53,7 @@ export default function App() {
 				<Stack.Screen name="Home" component={HomeScreen} />
 				<Stack.Screen name="Theme" component={ThemeDemoScreen} />
 				<Stack.Screen name="Styles" component={MakeStylesDemoScreen} />
+				<Stack.Screen name="AppBar" component={AppBarDemoScreen} />
 				<Stack.Screen name="Text" component={TextDemoScreen} />
 				<Stack.Screen name="Button" component={ButtonDemoScreen} />
 				<Stack.Screen name="TextInput" component={TextInputDemoScreen} />

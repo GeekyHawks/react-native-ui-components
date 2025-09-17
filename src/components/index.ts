@@ -26,6 +26,9 @@ export * from "./FloatingLabelTextInput";
 // LoaderModal Component
 export * from "./LoaderModal";
 
+// Radio Component
+export * from "./Radio";
+
 // StatusBar Component
 export * from "./StatusBar";
 

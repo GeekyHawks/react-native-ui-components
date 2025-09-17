@@ -14,10 +14,12 @@ import {
     ActivityIndicatorVariants, AppBarVariants, ButtonShapeVariants, ButtonSizeVariants,
     defaultActivityIndicatorVariants, defaultAppBarVariants, defaultButtonShapeVariants,
     defaultButtonSizeVariants, defaultFloatingLabelTextInputSizeVariants,
-    defaultFloatingLabelTextInputStyleVariants, defaultLoaderModalVariants, defaultStatusBarVariants,
+    defaultFloatingLabelTextInputStyleVariants, defaultLoaderModalVariants, defaultRadioColorVariants,
+    defaultRadioSizeVariants, defaultStatusBarVariants,
     defaultTextInputSizeVariants, defaultTextInputStyleVariants, defaultTextVariants,
     FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants, LoaderModalVariants,
-    StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants, TextVariants
+    RadioColorVariants, RadioSizeVariants, StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants,
+    TextVariants
 } from "./variants";
 
 /**
@@ -33,6 +35,8 @@ type ThemeContextType = {
     floatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants: FloatingLabelTextInputStyleVariants;
     loaderModalVariants: LoaderModalVariants;
+    radioColorVariants: RadioColorVariants;
+    radioSizeVariants: RadioSizeVariants;
     statusBarVariants: StatusBarVariants;
     textInputSizeVariants: TextInputSizeVariants;
     textInputStyleVariants: TextInputStyleVariants;
@@ -57,6 +61,8 @@ const ThemeContext = createContext<ThemeContextType>({
     floatingLabelTextInputSizeVariants: defaultFloatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants: defaultFloatingLabelTextInputStyleVariants,
     loaderModalVariants: defaultLoaderModalVariants,
+    radioColorVariants: defaultRadioColorVariants,
+    radioSizeVariants: defaultRadioSizeVariants,
     statusBarVariants: defaultStatusBarVariants,
     textInputSizeVariants: defaultTextInputSizeVariants,
     textInputStyleVariants: defaultTextInputStyleVariants,
@@ -84,6 +90,8 @@ type ThemeProviderProps = {
     floatingLabelTextInputSizeVariants?: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants?: FloatingLabelTextInputStyleVariants;
     loaderModalVariants?: LoaderModalVariants;
+    radioColorVariants?: RadioColorVariants;
+    radioSizeVariants?: RadioSizeVariants;
     statusBarVariants?: StatusBarVariants;
     textInputSizeVariants?: TextInputSizeVariants;
     textInputStyleVariants?: TextInputStyleVariants;
@@ -107,6 +115,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     floatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants,
     loaderModalVariants,
+    radioColorVariants,
+    radioSizeVariants,
     statusBarVariants,
     textInputSizeVariants,
     textInputStyleVariants,
@@ -121,6 +131,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         floatingLabelTextInputSizeVariants: floatingLabelTextInputSizeVariants ?? defaultFloatingLabelTextInputSizeVariants,
         floatingLabelTextInputStyleVariants: floatingLabelTextInputStyleVariants ?? defaultFloatingLabelTextInputStyleVariants,
         loaderModalVariants: loaderModalVariants ?? defaultLoaderModalVariants,
+        radioColorVariants: radioColorVariants ?? defaultRadioColorVariants,
+        radioSizeVariants: radioSizeVariants ?? defaultRadioSizeVariants,
         statusBarVariants: statusBarVariants ?? defaultStatusBarVariants,
         textInputSizeVariants: textInputSizeVariants ?? defaultTextInputSizeVariants,
         textInputStyleVariants: textInputStyleVariants ?? defaultTextInputStyleVariants,

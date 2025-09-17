@@ -16,6 +16,7 @@ export * from "./AppBarVariants";
 export * from "./ButtonVariants";
 export * from "./FloatingLabelTextInputVariants";
 export * from "./LoaderModalVariants";
+export * from "./RadioVariants";
 export * from "./StatusBarVariants";
 export * from "./TextInputVariants";
 export * from "./TextVariants";

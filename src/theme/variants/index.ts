@@ -19,5 +19,6 @@ export * from "./FloatingLabelTextInputVariants";
 export * from "./LoaderModalVariants";
 export * from "./RadioVariants";
 export * from "./StatusBarVariants";
+export * from "./SwitchVariants";
 export * from "./TextInputVariants";
 export * from "./TextVariants";

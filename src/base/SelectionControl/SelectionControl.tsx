@@ -1,9 +1,9 @@
 /**
  * SelectionControl
  *
- * A base component for selection-based UI controls such as Radio, Checkbox, and Switch.
+ * A base component for selection-based UI controls such as Radio and Checkbox.
  * - Supports theme-based size and color variants for consistent styling.
- * - Provides shape flexibility (`circle`, `square`, `switch`) to adapt to different control types.
+ * - Provides shape flexibility (`circle`, `square`) to adapt to different control types.
  * - Handles selected, disabled, and label states with built-in styling logic.
  *
  * Author: Geeky Hawks FZE LLC
@@ -23,14 +23,14 @@ import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
  * Props for the base SelectionControl component
  *
  * - **color**: theme-based or custom color variant name.
- * - **colorVariants**: collection of color variant styles, injected from parent (Radio, Checkbox, Switch).
+ * - **colorVariants**: collection of color variant styles, injected from parent (Radio, Checkbox).
  * - **disabled**: disables user interaction and visually reduces opacity.
  * - **label**: optional text label displayed alongside the control.
  * - **onPress**: callback triggered when the control is pressed.
  * - **selected**: indicates whether the control is currently selected.
- * - **shape**: visual shape of the control (`circle`, `square`, `switch`).
+ * - **shape**: visual shape of the control (`circle`, `square`).
  * - **size**: theme-based or custom size variant name.
- * - **sizeVariants**: collection of size variant styles, injected from parent (Radio, Checkbox, Switch).
+ * - **sizeVariants**: collection of size variant styles, injected from parent (Radio, Checkbox).
  * - **style**: optional override style for the outer container.
  * - **theme**: full theme object for resolving colors.
  */
@@ -47,8 +47,8 @@ export interface SelectionControlProps {
     onPress: () => void;
     /** Whether the control is currently selected */
     selected: boolean;
-    /** Shape of the control (`circle`, `square`, `switch`) */
-    shape?: "circle" | "square" | "switch";
+    /** Shape of the control (`circle`, `square`) */
+    shape?: "circle" | "square";
     /** Theme-based or custom size variant name */
     size?: DefaultSelectionControlSizes | (string & {});
     /** Collection of size variant styles */
@@ -62,8 +62,8 @@ export interface SelectionControlProps {
 /**
  * SelectionControl
  *
- * Renders a themed base control used by Radio, Checkbox, and Switch.
- * - Visual shape: supports `circle`, `square`, and `switch`.
+ * Renders a themed base control used by Radio and Checkbox.
+ * - Visual shape: supports `circle` and `square`.
  * - Selection state: toggles between selected and unselected.
  * - Label: optional text displayed next to the control.
  *

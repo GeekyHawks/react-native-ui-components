@@ -14,6 +14,7 @@
 export * from "./ActivityIndicatorVariants";
 export * from "./AppBarVariants";
 export * from "./ButtonVariants";
+export * from "./CheckBoxVariants";
 export * from "./FloatingLabelTextInputVariants";
 export * from "./LoaderModalVariants";
 export * from "./RadioVariants";

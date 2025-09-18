@@ -20,6 +20,9 @@ export * from "./AppBar";
 // Button Component
 export * from "./Button";
 
+// CheckBox Component
+export * from "./CheckBox";
+
 // FloatingLabelTextInput Component
 export * from "./FloatingLabelTextInput";
 

@@ -12,8 +12,10 @@ import React, { createContext, useContext } from "react";
 import { Theme, defaultLightTheme } from "./Theme";
 import {
     ActivityIndicatorVariants, AppBarVariants, ButtonShapeVariants, ButtonSizeVariants,
+    CheckBoxColorVariants,
+    CheckBoxSizeVariants,
     defaultActivityIndicatorVariants, defaultAppBarVariants, defaultButtonShapeVariants,
-    defaultButtonSizeVariants, defaultFloatingLabelTextInputSizeVariants,
+    defaultButtonSizeVariants, defaultCheckBoxColorVariants, defaultCheckBoxSizeVariants, defaultFloatingLabelTextInputSizeVariants,
     defaultFloatingLabelTextInputStyleVariants, defaultLoaderModalVariants, defaultRadioColorVariants,
     defaultRadioSizeVariants, defaultStatusBarVariants,
     defaultTextInputSizeVariants, defaultTextInputStyleVariants, defaultTextVariants,
@@ -32,6 +34,8 @@ type ThemeContextType = {
     appBarVariants: AppBarVariants;
     buttonShapeVariants: ButtonShapeVariants;
     buttonSizeVariants: ButtonSizeVariants;
+    checkBoxColorVariants: CheckBoxColorVariants;
+    checkBoxSizeVariants: CheckBoxSizeVariants;
     floatingLabelTextInputSizeVariants: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants: FloatingLabelTextInputStyleVariants;
     loaderModalVariants: LoaderModalVariants;
@@ -58,6 +62,8 @@ const ThemeContext = createContext<ThemeContextType>({
     appBarVariants: defaultAppBarVariants,
     buttonShapeVariants: defaultButtonShapeVariants,
     buttonSizeVariants: defaultButtonSizeVariants,
+    checkBoxColorVariants: defaultCheckBoxColorVariants,
+    checkBoxSizeVariants: defaultCheckBoxSizeVariants,
     floatingLabelTextInputSizeVariants: defaultFloatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants: defaultFloatingLabelTextInputStyleVariants,
     loaderModalVariants: defaultLoaderModalVariants,
@@ -86,6 +92,8 @@ type ThemeProviderProps = {
     appBarVariants?: AppBarVariants,
     buttonShapeVariants?: ButtonShapeVariants;
     buttonSizeVariants?: ButtonSizeVariants;
+    checkBoxColorVariants?: CheckBoxColorVariants;
+    checkBoxSizeVariants?: CheckBoxSizeVariants;
     children: React.ReactNode;
     floatingLabelTextInputSizeVariants?: FloatingLabelTextInputSizeVariants;
     floatingLabelTextInputStyleVariants?: FloatingLabelTextInputStyleVariants;
@@ -111,6 +119,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     appBarVariants,
     buttonShapeVariants,
     buttonSizeVariants,
+    checkBoxColorVariants,
+    checkBoxSizeVariants,
     children,
     floatingLabelTextInputSizeVariants,
     floatingLabelTextInputStyleVariants,
@@ -128,6 +138,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         appBarVariants: appBarVariants ?? defaultAppBarVariants,
         buttonShapeVariants: buttonShapeVariants ?? defaultButtonShapeVariants,
         buttonSizeVariants: buttonSizeVariants ?? defaultButtonSizeVariants,
+        checkBoxColorVariants: checkBoxColorVariants ?? defaultCheckBoxColorVariants,
+        checkBoxSizeVariants: checkBoxSizeVariants ?? defaultCheckBoxSizeVariants,
         floatingLabelTextInputSizeVariants: floatingLabelTextInputSizeVariants ?? defaultFloatingLabelTextInputSizeVariants,
         floatingLabelTextInputStyleVariants: floatingLabelTextInputStyleVariants ?? defaultFloatingLabelTextInputStyleVariants,
         loaderModalVariants: loaderModalVariants ?? defaultLoaderModalVariants,

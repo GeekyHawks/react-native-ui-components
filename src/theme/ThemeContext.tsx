@@ -12,16 +12,15 @@ import React, { createContext, useContext } from "react";
 import { Theme, defaultLightTheme } from "./Theme";
 import {
     ActivityIndicatorVariants, AppBarVariants, ButtonShapeVariants, ButtonSizeVariants,
-    CheckBoxColorVariants,
-    CheckBoxSizeVariants,
-    defaultActivityIndicatorVariants, defaultAppBarVariants, defaultButtonShapeVariants,
-    defaultButtonSizeVariants, defaultCheckBoxColorVariants, defaultCheckBoxSizeVariants, defaultFloatingLabelTextInputSizeVariants,
+    CheckBoxColorVariants, CheckBoxSizeVariants, defaultActivityIndicatorVariants, defaultAppBarVariants,
+    defaultButtonShapeVariants, defaultButtonSizeVariants, defaultCheckBoxColorVariants,
+    defaultCheckBoxSizeVariants, defaultFloatingLabelTextInputSizeVariants,
     defaultFloatingLabelTextInputStyleVariants, defaultLoaderModalVariants, defaultRadioColorVariants,
-    defaultRadioSizeVariants, defaultStatusBarVariants,
+    defaultRadioSizeVariants, defaultStatusBarVariants, defaultSwitchColorVariants,
     defaultTextInputSizeVariants, defaultTextInputStyleVariants, defaultTextVariants,
     FloatingLabelTextInputSizeVariants, FloatingLabelTextInputStyleVariants, LoaderModalVariants,
-    RadioColorVariants, RadioSizeVariants, StatusBarVariants, TextInputSizeVariants, TextInputStyleVariants,
-    TextVariants
+    RadioColorVariants, RadioSizeVariants, StatusBarVariants, SwitchColorVariants,
+    TextInputSizeVariants, TextInputStyleVariants, TextVariants
 } from "./variants";
 
 /**
@@ -42,6 +41,7 @@ type ThemeContextType = {
     radioColorVariants: RadioColorVariants;
     radioSizeVariants: RadioSizeVariants;
     statusBarVariants: StatusBarVariants;
+    switchColorVariants: SwitchColorVariants;
     textInputSizeVariants: TextInputSizeVariants;
     textInputStyleVariants: TextInputStyleVariants;
     textVariants: TextVariants;
@@ -70,6 +70,7 @@ const ThemeContext = createContext<ThemeContextType>({
     radioColorVariants: defaultRadioColorVariants,
     radioSizeVariants: defaultRadioSizeVariants,
     statusBarVariants: defaultStatusBarVariants,
+    switchColorVariants: defaultSwitchColorVariants,
     textInputSizeVariants: defaultTextInputSizeVariants,
     textInputStyleVariants: defaultTextInputStyleVariants,
     textVariants: defaultTextVariants,
@@ -101,6 +102,7 @@ type ThemeProviderProps = {
     radioColorVariants?: RadioColorVariants;
     radioSizeVariants?: RadioSizeVariants;
     statusBarVariants?: StatusBarVariants;
+    switchColorVariants?: SwitchColorVariants;
     textInputSizeVariants?: TextInputSizeVariants;
     textInputStyleVariants?: TextInputStyleVariants;
     textVariants?: TextVariants;
@@ -128,6 +130,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     radioColorVariants,
     radioSizeVariants,
     statusBarVariants,
+    switchColorVariants,
     textInputSizeVariants,
     textInputStyleVariants,
     textVariants,
@@ -146,6 +149,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         radioColorVariants: radioColorVariants ?? defaultRadioColorVariants,
         radioSizeVariants: radioSizeVariants ?? defaultRadioSizeVariants,
         statusBarVariants: statusBarVariants ?? defaultStatusBarVariants,
+        switchColorVariants: switchColorVariants ?? defaultSwitchColorVariants,
         textInputSizeVariants: textInputSizeVariants ?? defaultTextInputSizeVariants,
         textInputStyleVariants: textInputStyleVariants ?? defaultTextInputStyleVariants,
         textVariants: textVariants ?? defaultTextVariants,

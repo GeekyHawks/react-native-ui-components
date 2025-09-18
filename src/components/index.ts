@@ -35,6 +35,9 @@ export * from "./Radio";
 // StatusBar Component
 export * from "./StatusBar";
 
+// Switch Component
+export * from "./Switch";
+
 // Text Component
 export * from "./Text";
 

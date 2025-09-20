@@ -45,16 +45,17 @@ export default function Example() {
 
 ## 🔧 Props
 
-| Prop              | Type                                           | Default       | Description                                                                                   |
-| ----------------- | --------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------- |
-| `color`           | `DefaultSwitchColors \| (string & {})`       | `"primary"`   | Theme-based or custom color variant name for the switch track and thumb.                     |
-| `colorVariants`   | `SwitchColorVariants`                         | —             | Optional collection of color variant styles. Allows custom color definitions per theme.      |
-| `containerStyle`  | `StyleProp<ViewStyle>`                        | —             | Optional style for the outer container of the switch.                                         |
-| `disabled`        | `boolean`                                     | `false`       | Disables the switch and reduces opacity for a disabled look.                                  |
-| `label`           | `string`                                      | —             | Optional text label displayed next to the switch.                                             |
-| `labelTextStyle`  | `StyleProp<TextStyle>`                        | —             | Optional override style for the label text.                                                  |
-| `onValueChange`   | `(value: boolean) => void`                    | —             | Callback triggered when the switch is toggled. Receives the new boolean value.               |
-| `value`           | `boolean`                                     | —             | Current boolean state of the switch.                                                         |
+| Prop                 | Type                                   | Default     | Description                                                                             |
+| -------------------- | -------------------------------------- | ----------- | --------------------------------------------------------------------------------------- |
+| `accessibilityLabel` | `string`                               | —           | Accessibility label for screen readers. Defaults to the `label` if not provided.        |
+| `color`              | `DefaultSwitchColors \| (string & {})` | `"primary"` | Theme-based or custom color variant name for the switch track and thumb.                |
+| `colorVariants`      | `SwitchColorVariants`                  | —           | Optional collection of color variant styles. Allows custom color definitions per theme. |
+| `containerStyle`     | `StyleProp<ViewStyle>`                 | —           | Optional style for the outer container of the switch.                                   |
+| `disabled`           | `boolean`                              | `false`     | Disables the switch and reduces opacity for a disabled look.                            |
+| `label`              | `string`                               | —           | Optional text label displayed next to the switch.                                       |
+| `labelTextStyle`     | `StyleProp<TextStyle>`                 | —           | Optional override style for the label text.                                             |
+| `onValueChange`      | `(value: boolean) => void`             | —           | Callback triggered when the switch is toggled. Receives the new boolean value.          |
+| `value`              | `boolean`                              | —           | Current boolean state of the switch.                                                    |
 
 
 ## 🎨 Variants & Theming
@@ -97,5 +98,6 @@ const customSwitchColorVariants = {
 ## 📓 Notes
 
 - Fully theme-aware: extend color variants globally or per component.
-- Labels automatically align with the switch, spacing can be customized via `labelTextStyle`.
 - Recommended for simple boolean toggles in forms, settings, or preferences.
+- Accessibility-ready with label support and `accessibilityLabel`.
+- You can still pass standard View/Text props via `containerStyle` and `labelTextStyle`.

@@ -60,15 +60,18 @@ export default function Example() {
 
 ## 🔧 Props
 
-| Prop            | Type                                                                         | Default     | Description                                                        |
-| --------------- | ---------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------ |
-| `color`         | `DefaultRadioColors \| (string & {})` <br> *(primary \| secondary \| error)* | `"primary"` | Theme-based or custom color variant.                               |
-| `disabled`      | `boolean`                                                                    | `false`     | Disables the radio (reduces opacity and disables interaction).     |
-| `label`         | `string`                                                                     | —           | Optional text label displayed next to the radio.                   |
-| `onChange`      | `(value: string \| number) => void`                                          | —           | Callback triggered when the radio is selected.                     |
-| `size`          | `DefaultRadioSizes \| (string & {})` <br> *(sm \| md \| lg)*                 | `"md"`      | Theme-based or custom size variant.                                |
-| `selectedValue` | `string \| number`                                                           | —           | Currently selected value in the radio group (to mark as selected). |
-| `value`         | `string \| number`                                                           | —           | Unique value associated with this radio button.                    |
+| Prop                 | Type                                                                         | Default     | Description                                                                      |
+| -------------------- | ---------------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
+| `accessibilityLabel` | `string`                                                                     | —           | Accessibility label for screen readers. Defaults to the `label` if not provided. |
+| `color`              | `DefaultRadioColors \| (string & {})` <br> *(primary \| secondary \| error)* | `"primary"` | Theme-based or custom color variant.                                             |
+| `containerStyle`     | `StyleProp<ViewStyle>`                                                       | —           | Optional override style for the outer container of the radio.                    |
+| `disabled`           | `boolean`                                                                    | `false`     | Disables the radio (reduces opacity and disables interaction).                   |
+| `label`              | `string`                                                                     | —           | Optional text label displayed next to the radio.                                 |
+| `labelTextStyle`     | `StyleProp<TextStyle>`                                                       | —           | Optional style override for the label text.                                      |
+| `onChange`           | `(value: string \| number) => void`                                          | —           | Callback triggered when the radio is selected.                                   |
+| `size`               | `DefaultRadioSizes \| (string & {})` <br> *(sm \| md \| lg)*                 | `"md"`      | Theme-based or custom size variant.                                              |
+| `selectedValue`      | `string \| number`                                                           | —           | Currently selected value in the radio group (to mark as selected).               |
+| `value`              | `string \| number`                                                           | —           | Unique value associated with this radio button.                                  |
 
 
 ## 🎨 Variants & Theming
@@ -132,3 +135,5 @@ const customRadioSizeVariants = {
 
 - Works best inside `RadioGroup` for managing state.
 - Fully theme-aware: extend color/size variants globally or per component.
+- Accessibility-ready with label support and `accessibilityLabel`.
+- You can still pass standard View/Text props via `containerStyle` and `labelTextStyle`.

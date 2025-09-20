@@ -10,7 +10,7 @@
  */
 
 import React from "react";
-import { StyleProp, TouchableOpacity, View, ViewStyle } from "react-native";
+import { StyleProp, TouchableOpacity, View, ViewStyle, TextStyle } from "react-native";
 import { Text } from "../../components";
 import {
     DefaultSelectionControlColors, DefaultSelectionControlSizes, SelectionControlColorVariants,
@@ -22,27 +22,35 @@ import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
 /**
  * Props for the base SelectionControl component
  *
+ * - **accessibilityLabel**: Accessibility label for screen readers
  * - **color**: theme-based or custom color variant name.
  * - **colorVariants**: collection of color variant styles, injected from parent (Radio, Checkbox).
+ * - **containerStyle**: optional override style for the outer container.
  * - **disabled**: disables user interaction and visually reduces opacity.
  * - **label**: optional text label displayed alongside the control.
+ * - **labelTextStyle**: optional override style for the label text.
  * - **onPress**: callback triggered when the control is pressed.
  * - **selected**: indicates whether the control is currently selected.
  * - **shape**: visual shape of the control (`circle`, `square`).
  * - **size**: theme-based or custom size variant name.
  * - **sizeVariants**: collection of size variant styles, injected from parent (Radio, Checkbox).
- * - **style**: optional override style for the outer container.
  * - **theme**: full theme object for resolving colors.
  */
 export interface SelectionControlProps {
+    /** Accessibility label for screen readers */
+    accessibilityLabel?: string;
     /** Theme-based or custom color variant name */
     color?: DefaultSelectionControlColors | (string & {});
     /** Collection of color variant styles */
     colorVariants: SelectionControlColorVariants;
+    /** Optional override style for the container */
+    containerStyle?: StyleProp<ViewStyle>;
     /** Disable interaction and reduce opacity */
     disabled?: boolean;
     /** Optional text label displayed with the control */
     label?: string;
+    /** Optional override style for the label text */
+    labelTextStyle?: StyleProp<TextStyle>;
     /** Callback when the control is pressed */
     onPress: () => void;
     /** Whether the control is currently selected */
@@ -53,8 +61,6 @@ export interface SelectionControlProps {
     size?: DefaultSelectionControlSizes | (string & {});
     /** Collection of size variant styles */
     sizeVariants: SelectionControlSizeVariants;
-    /** Optional override style for the container */
-    style?: StyleProp<ViewStyle>;
     /** Full theme object for resolving colors */
     theme: Theme;
 }
@@ -73,16 +79,18 @@ export interface SelectionControlProps {
  * (e.g., Radio passes `radioSizeVariants` and `radioColorVariants`).
  */
 export const SelectionControl: React.FC<SelectionControlProps> = ({
-    selected,
-    onPress,
+    accessibilityLabel,
+    color = "primary",
+    colorVariants,
+    containerStyle,
     disabled,
     label,
+    labelTextStyle,
+    onPress,
+    selected,
     shape = "circle",
-    style,
     size = "md",
-    color = "primary",
     sizeVariants,
-    colorVariants,
     theme,
 }) => {
     const sizeVariant = sizeVariants[size] || sizeVariants.md;
@@ -94,9 +102,10 @@ export const SelectionControl: React.FC<SelectionControlProps> = ({
 
     return (
         <TouchableOpacity
+            accessibilityLabel={accessibilityLabel ?? label}
             onPress={onPress}
             disabled={disabled}
-            style={[{ flexDirection: "row", alignItems: "center" }, style]}
+            style={[{ flexDirection: "row", alignItems: "center" }, containerStyle]}
         >
             <View
                 style={[
@@ -128,7 +137,7 @@ export const SelectionControl: React.FC<SelectionControlProps> = ({
                     />
                 )}
             </View>
-            {label && <Text style={{ marginLeft: 8 }}>{label}</Text>}
+            {label && <Text style={[{ marginLeft: 8 }, labelTextStyle]}>{label}</Text>}
         </TouchableOpacity>
     );
 };

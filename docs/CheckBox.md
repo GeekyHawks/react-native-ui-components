@@ -60,15 +60,18 @@ export default function Example() {
 
 ## 🔧 Props
 
-| Prop             | Type                                                       | Default     | Description                                                           |
-| ---------------- | ---------------------------------------------------------- | ----------- | --------------------------------------------------------------------- |
-| `color`          | `DefaultCheckBoxColors \| (string & {})`                   | `"primary"` | Theme-based or custom color variant.                                  |
-| `disabled`       | `boolean`                                                  | `false`     | Disables interaction and reduces opacity.                             |
-| `label`          | `string`                                                   | —           | Optional text label displayed with the checkbox.                      |
-| `onChange`       | `(value: string \| number, checked: boolean) => void`      | —           | Callback triggered when checkbox is toggled.                          |
-| `selectedValues` | `Array<string \| number>`                                  | —           | Array of selected values, useful for multi-checkbox state management. |
-| `size`           | `DefaultCheckBoxSizes \| (string & {})` *(sm \| md \| lg)* | `"md"`      | Theme-based or custom size variant.                                   |
-| `value`          | `string \| number`                                         | —           | Unique value associated with this checkbox.                           |
+| Prop                 | Type                                                       | Default     | Description                                                                      |
+| -------------------- | ---------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
+| `accessibilityLabel` | `string`                                                   | —           | Accessibility label for screen readers. Defaults to the `label` if not provided. |
+| `color`              | `DefaultCheckBoxColors \| (string & {})`                   | `"primary"` | Theme-based or custom color variant.                                             |
+| `containerStyle`     | `StyleProp<ViewStyle>`                                     | —           | Optional override style for the outer container of the checkbox.                 |
+| `disabled`           | `boolean`                                                  | `false`     | Disables interaction and reduces opacity.                                        |
+| `label`              | `string`                                                   | —           | Optional text label displayed next to the checkbox.                              |
+| `labelTextStyle`     | `StyleProp<TextStyle>`                                     | —           | Optional style override for the label text.                                      |
+| `onChange`           | `(value: string \| number, checked: boolean) => void`      | —           | Callback triggered when the checkbox is toggled.                                 |
+| `selectedValues`     | `Array<string \| number>`                                  | —           | Array of selected values, useful for multi-checkbox state management.            |
+| `size`               | `DefaultCheckBoxSizes \| (string & {})` *(sm \| md \| lg)* | `"md"`      | Theme-based or custom size variant.                                              |
+| `value`              | `string \| number`                                         | —           | Unique value associated with this checkbox.                                      |
 
 
 ## 🎨 Variants & Theming
@@ -154,3 +157,5 @@ const customCheckBoxSizeVariants = {
 - Designed for **multi-select** use cases.
 - Fully theme-aware: extend color/size variants globally or per component.
 - Can be used standalone or in a group (by managing `selectedValues`).
+- Accessibility-ready with label support and `accessibilityLabel`.
+- You can still pass standard View/Text props via `containerStyle` and `labelTextStyle`.

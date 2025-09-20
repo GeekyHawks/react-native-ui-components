@@ -4,7 +4,7 @@
 
 A lightweight and reusable React Native UI components library — providing not just components, but also a full theming system (colors, spacing, typography) for building consistent designs in your React Native apps.  
 
-Includes **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**, **StatusBar**, **AppBar**, **ActivityIndicator**, **LoaderModal**, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.  
+Includes **StatusBar**, **AppBar**, **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**, **Radio**, **CheckBox**, **Switch**, **ActivityIndicator**, **LoaderModal**, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.  
 
 ✨ Developed & Maintained by [Geeky Hawks](https://www.geekyhawks.com).
 
@@ -21,8 +21,10 @@ Includes **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**, **Stat
 
 - 🧩 **Pre-styled, customizable components**  
   Includes:  
-  - **Text**, **Button**, **TextInput**, **FloatingLabelTextInput**  
-  - **StatusBar**, **AppBar**, **ActivityIndicator**, **LoaderModal**  
+  - **StatusBar**, **AppBar**  
+  - **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**  
+  - **Radio**, **CheckBox**, **Switch**  
+  - **ActivityIndicator**, **LoaderModal**  
   (with more components coming soon).  
 
 - 📱 **Consistent cross-platform UI**  
@@ -68,9 +70,14 @@ export default function App() {
 ### 3. Use a component
 
 ```tsx
-import { ActivityIndicator, AppBar, Button, FloatingLabelTextInput, StatusBar, Text, TextInput } from "@geekyhawks/react-native-ui-components";
+import { useState } from "react";
+import { ActivityIndicator, AppBar, Button, CheckBox, FloatingLabelTextInput, Radio, RadioGroup, StatusBar, Switch, Text, TextInput } from "@geekyhawks/react-native-ui-components";
 
 export default function HomeScreen() {
+  const [selectedValue, setSelectedValue] = useState<string | number>("apple");
+  const [checked, setChecked] = useState(false);
+  const [allowed, setAllowed] = useState(false);
+
   return (
     <>
       <StatusBar />
@@ -96,6 +103,25 @@ export default function HomeScreen() {
         onChangeText={(text) => {
           // Do something with text
         }}
+      />
+
+      <RadioGroup selectedValue={selectedValue} onValueChange={setSelectedValue}>
+        <Radio value="apple" label="Apple" />
+        <Radio value="banana" label="Banana" />
+        <Radio value="orange" label="Orange" />
+      </RadioGroup>
+
+      <CheckBox
+        value="terms"
+        label="I agree to the Terms & Conditions"
+        selectedValues={checked ? ["terms"] : []}
+        onChange={(_, isChecked) => setChecked(isChecked)}
+      />
+
+      <Switch
+        value={allowed}
+        onValueChange={setAllowed}
+        label="Enable notifications"
       />
 
       <ActivityIndicator
@@ -126,9 +152,12 @@ This library provides a growing set of **theme-ready UI components**:
 - [StatusBar](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/StatusBar.md) – Theme-aware wrapper for the native status bar with predefined variants.
 - [AppBar](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/AppBar.md) – Customizable, theme-ready top app bar with left, and right icons.
 - [Text](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Text.md) – Customizable wrapper around React Native's `Text`.
-- [Button](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Button.md) – Enhanced button with default styles, theme support and much more.
 - [TextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/TextInput.md) – Styled input field with theme integration.
 - [FloatingLabelTextInput](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/FloatingLabelTextInput.md) – TextInput with floating label.
+- [Button](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Button.md) – Enhanced button with default styles, theme support and much more.
+- [Radio](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Radio.md) – Themed radio button for single-choice selection, with group support and variant styling.
+- [CheckBox](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/CheckBox.md) – Themed checkbox for multi-choice selection, supporting groups and custom variants.
+- [Switch](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Switch.md) – Themed toggle control with color variants and optional labeling.
 - [ActivityIndicator](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/ActivityIndicator.md) – Flexible loading spinner with text, size, and position options.
 - [LoaderModal](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/LoaderModal.md) – Full-screen modal loader with spinner, text, and theme variants.  
 _(more coming soon)_

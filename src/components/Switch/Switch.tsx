@@ -18,6 +18,7 @@ import { Text } from "../Text";
 /**
  * Props for the Switch component
  *
+ * - **accessibilityLabel**: Accessibility label for screen readers
  * - **color**: theme-based or custom color variant name.
  * - **colorVariants**: optional collection of color variant styles, injected from parent if needed.
  * - **containerStyle**: optional style for the outer container.
@@ -27,7 +28,9 @@ import { Text } from "../Text";
  * - **onValueChange**: callback triggered when the switch is toggled.
  * - **value**: boolean state of the switch.
  */
-export interface SwitchProps {
+export interface Props {
+    /** Accessibility label for screen readers */
+    accessibilityLabel?: string;
     /** Theme-based or custom color variant name */
     color?: DefaultSwitchColors | (string & {});
     /** Optional collection of color variant styles */
@@ -57,15 +60,16 @@ export interface SwitchProps {
  *
  * Built on top of React Native's `Switch` component with additional theming and label support.
  */
-const Switch: React.FC<SwitchProps> = ({
-    value,
-    onValueChange,
-    disabled = false,
+const Switch: React.FC<Props> = ({
+    accessibilityLabel,
     color = "primary",
-    label,
     colorVariants,
     containerStyle,
+    disabled = false,
+    label,
     labelTextStyle,
+    onValueChange,
+    value,
 }) => {
     const { theme, switchColorVariants } = useTheme();
 
@@ -88,6 +92,7 @@ const Switch: React.FC<SwitchProps> = ({
                 disabled={disabled}
                 trackColor={trackColor}
                 thumbColor={thumbColor}
+                accessibilityLabel={accessibilityLabel ?? label}
             />
             {label && <Text style={[{ marginLeft: 16 }, labelTextStyle]}>{label}</Text>}
         </View>

@@ -11,6 +11,7 @@
  */
 
 import React from "react";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { useRadioGroupContext } from "./RadioContext";
 import { SelectionControl } from "../../base/SelectionControl/SelectionControl";
 import { DefaultRadioColors, DefaultRadioSizes, useTheme } from "../../theme";
@@ -18,33 +19,42 @@ import { DefaultRadioColors, DefaultRadioSizes, useTheme } from "../../theme";
 /**
  * Props for the Radio component
  *
+ * - **accessibilityLabel**: Accessibility label for screen readers
  * - **color**: theme-based or custom color variant name.
+ * - **containerStyle**: optional override style for the outer container.
  * - **disabled**: disables user interaction and visually reduces opacity.
  * - **label**: optional text label displayed alongside the radio button.
+ * - **labelTextStyle**: optional override style for the label text.
  * - **onChange**: callback triggered when the radio button is selected.
- * - **size**: theme-based or custom size variant name.
  * - **selectedValue**: currently selected value; used to determine selection state.
+ * - **size**: theme-based or custom size variant name.
  * - **value**: unique value associated with this radio button.
  */
 export interface Props {
+    /** Accessibility label for screen readers */
+    accessibilityLabel?: string;
     /** Theme-based or custom color variant name */
     color?: DefaultRadioColors | (string & {});
+    /** Optional override style for the container */
+    containerStyle?: StyleProp<ViewStyle>;
     /** Disable interaction and reduce opacity */
     disabled?: boolean;
     /** Optional text label displayed with the radio button */
     label?: string;
+    /** Optional override style for the label text */
+    labelTextStyle?: StyleProp<TextStyle>;
     /**
      * Callback triggered when the radio button is selected.
      * Receives the `value` of this radio.
      */
     onChange?: (value: string | number) => void;
-    /** Theme-based or custom size variant name */
-    size?: DefaultRadioSizes | (string & {});
     /**
      * Currently selected value.
      * Should match this radio’s `value` to mark it as selected.
      */
     selectedValue?: string | number;
+    /** Theme-based or custom size variant name */
+    size?: DefaultRadioSizes | (string & {});
     /** Unique value associated with this radio button */
     value: string | number;
 }
@@ -61,13 +71,16 @@ export interface Props {
  * Built on the `SelectionControl` base component with `circle` shape.
  */
 const Radio: React.FC<Props> = ({
-    value,
-    label,
-    selectedValue,
-    onChange,
-    disabled,
-    size = "md",
+    accessibilityLabel,
     color = "primary",
+    containerStyle,
+    disabled,
+    label,
+    labelTextStyle,
+    onChange,
+    selectedValue,
+    size = "md",
+    value,
 }) => {
     const { theme, radioSizeVariants, radioColorVariants } = useTheme();
     const group = useRadioGroupContext();
@@ -82,15 +95,18 @@ const Radio: React.FC<Props> = ({
 
     return (
         <SelectionControl
-            selected={isSelected}
-            onPress={handlePress}
+            accessibilityLabel={accessibilityLabel ?? label}
+            color={color}
+            colorVariants={radioColorVariants}
+            containerStyle={containerStyle}
             disabled={disabled}
             label={label}
+            labelTextStyle={labelTextStyle}
+            onPress={handlePress}
+            selected={isSelected}
             shape="circle"
             size={size}
-            color={color}
             sizeVariants={radioSizeVariants}
-            colorVariants={radioColorVariants}
             theme={theme}
         />
     );

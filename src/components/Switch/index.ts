@@ -13,7 +13,7 @@
  */
 
 export { default as Switch } from "./Switch";
-export type { SwitchProps } from "./Switch";
+export type { Props as SwitchProps } from "./Switch";
 
 export { SwitchGroup } from "./SwitchGroup";
 export type { SwitchGroupProps } from "./SwitchGroup";

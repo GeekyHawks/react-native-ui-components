@@ -11,6 +11,7 @@
  */
 
 import React from "react";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { useCheckBoxGroupContext } from "./CheckBoxContext";
 import { SelectionControl } from "../../base/SelectionControl/SelectionControl";
 import { DefaultCheckBoxColors, DefaultCheckBoxSizes, useTheme } from "../../theme";
@@ -18,21 +19,30 @@ import { DefaultCheckBoxColors, DefaultCheckBoxSizes, useTheme } from "../../the
 /**
  * Props for the CheckBox component
  *
+ * - **accessibilityLabel**: Accessibility label for screen readers
  * - **color**: theme-based or custom color variant name.
+ * - **containerStyle**: optional override style for the outer container.
  * - **disabled**: disables user interaction and visually reduces opacity.
  * - **label**: optional text label displayed alongside the checkbox.
+ * - **labelTextStyle**: optional override style for the label text.
  * - **onChange**: callback triggered when the checkbox is toggled.
  * - **selectedValues**: array of currently selected values (for standalone use).
  * - **size**: theme-based or custom size variant name.
  * - **value**: unique value associated with this checkbox.
  */
 export interface Props {
+    /** Accessibility label for screen readers */
+    accessibilityLabel?: string;
     /** Theme-based or custom color variant name */
     color?: DefaultCheckBoxColors | (string & {});
+    /** Optional override style for the outer container */
+    containerStyle?: StyleProp<ViewStyle>;
     /** Disable interaction and reduce opacity */
     disabled?: boolean;
     /** Optional text label displayed with the checkbox */
     label?: string;
+    /** Optional override style for the label text */
+    labelTextStyle?: StyleProp<TextStyle>;
     /**
      * Callback triggered when the checkbox is toggled.
      * Receives the `value` of this checkbox and the new checked state.
@@ -61,13 +71,16 @@ export interface Props {
  * Built on the `SelectionControl` base component with `square` shape.
  */
 const CheckBox: React.FC<Props> = ({
-    value,
-    label,
-    selectedValues,
-    onChange,
-    disabled,
-    size = "md",
+    accessibilityLabel,
     color = "primary",
+    containerStyle,
+    disabled,
+    label,
+    labelTextStyle,
+    onChange,
+    selectedValues,
+    size = "md",
+    value,
 }) => {
     const { theme, checkBoxSizeVariants, checkBoxColorVariants } = useTheme();
     const group = useCheckBoxGroupContext();
@@ -89,15 +102,18 @@ const CheckBox: React.FC<Props> = ({
 
     return (
         <SelectionControl
-            selected={isSelected}
-            onPress={handlePress}
+            accessibilityLabel={accessibilityLabel ?? label}
+            color={color}
+            colorVariants={checkBoxColorVariants}
+            containerStyle={containerStyle}
             disabled={disabled}
             label={label}
+            labelTextStyle={labelTextStyle}
+            onPress={handlePress}
+            selected={isSelected}
             shape="square"
             size={size}
-            color={color}
             sizeVariants={checkBoxSizeVariants}
-            colorVariants={checkBoxColorVariants}
             theme={theme}
         />
     );

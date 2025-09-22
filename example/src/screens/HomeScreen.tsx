@@ -110,6 +110,13 @@ export default function HomeScreen() {
             >
                 Radio
             </Button>
+
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("CheckBox")}
+            >
+                CheckBox
+            </Button>
         </ScrollView>
     );
 }

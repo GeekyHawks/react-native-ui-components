@@ -117,6 +117,13 @@ export default function HomeScreen() {
             >
                 CheckBox
             </Button>
+
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("Switch")}
+            >
+                Switch
+            </Button>
         </ScrollView>
     );
 }

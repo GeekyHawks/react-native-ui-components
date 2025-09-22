@@ -45,6 +45,7 @@ import ActivityIndicatorDemoScreen from "./src/screens/ActivityIndicatorDemoScre
 import LoaderModalDemoScreen from "./src/screens/LoaderModalDemoScreen";
 import RadioDemoScreen from "./src/screens/RadioDemoScreen";
 import CheckBoxDemoScreen from "./src/screens/CheckBoxDemoScreen";
+import SwitchDemoScreen from "./src/screens/SwitchDemoScreen";
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -66,6 +67,7 @@ export type RootStackParamList = {
 	LoaderModal: undefined;
 	Radio: undefined;
 	CheckBox: undefined;
+	Switch: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -95,6 +97,7 @@ export default function App() {
 				<Stack.Screen name="LoaderModal" component={LoaderModalDemoScreen} />
 				<Stack.Screen name="Radio" component={RadioDemoScreen} />
 				<Stack.Screen name="CheckBox" component={CheckBoxDemoScreen} />
+				<Stack.Screen name="Switch" component={SwitchDemoScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

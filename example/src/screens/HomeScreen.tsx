@@ -103,6 +103,13 @@ export default function HomeScreen() {
             >
                 LoaderModal
             </Button>
+
+            <Button
+                style={styles.button}
+                onPress={() => navigation.navigate("Radio")}
+            >
+                Radio
+            </Button>
         </ScrollView>
     );
 }

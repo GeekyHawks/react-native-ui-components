@@ -32,6 +32,13 @@ export default function Example() {
 ```
 
 
+## 📱 Live Example
+
+For a full showcase of all LoaderModal variants and props, check out the [LoaderModalDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/LoaderModalDemoScreen.tsx) inside the **Example App**.
+
+This screen demonstrates how all props work together in a real-world context.
+
+
 ## 🔧 Props
 
 | Prop             |                                                                            Type |               Default              | Description                                    |

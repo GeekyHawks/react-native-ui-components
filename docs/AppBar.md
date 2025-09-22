@@ -78,6 +78,13 @@ Otherwise, the bar may overlap with your content.
 ```
 
 
+## 📱 Live Example
+
+For a full showcase of all AppBar variants and props, check out the [AppBarDemoScreen](https://github.com/GeekyHawks/react-native-ui-components/blob/main/example/src/screens/AppBarDemoScreen.tsx) inside the **Example App**.
+
+This screen demonstrates how all props work together in a real-world context.
+
+
 ## 🔧 Props
 
 | Prop                | Type                                                                 | Default     | Description                                                                 |

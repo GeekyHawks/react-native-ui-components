@@ -44,6 +44,7 @@ import { TranslucentStatusBarExample } from "./src/screens/StatusBarExamples/Tra
 import ActivityIndicatorDemoScreen from "./src/screens/ActivityIndicatorDemoScreen";
 import LoaderModalDemoScreen from "./src/screens/LoaderModalDemoScreen";
 import RadioDemoScreen from "./src/screens/RadioDemoScreen";
+import CheckBoxDemoScreen from "./src/screens/CheckBoxDemoScreen";
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -64,6 +65,7 @@ export type RootStackParamList = {
 	ActivityIndicator: undefined;
 	LoaderModal: undefined;
 	Radio: undefined;
+	CheckBox: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -92,6 +94,7 @@ export default function App() {
 				<Stack.Screen name="ActivityIndicator" component={ActivityIndicatorDemoScreen} />
 				<Stack.Screen name="LoaderModal" component={LoaderModalDemoScreen} />
 				<Stack.Screen name="Radio" component={RadioDemoScreen} />
+				<Stack.Screen name="CheckBox" component={CheckBoxDemoScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

@@ -2,24 +2,28 @@
 
 **Build consistent, theme-aware React Native apps faster.**
 
-A lightweight and reusable React Native UI components library — providing not just components, but also a full theming system (colors, spacing, typography) for building consistent designs in your React Native apps.  
+A lightweight and reusable React Native UI components library — providing not just components, but also an optional theming system (colors, spacing, typography) for building consistent designs in your React Native apps.  
 
-Includes **StatusBar**, **AppBar**, **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**, **Radio**, **CheckBox**, **Switch**, **ActivityIndicator**, **LoaderModal**, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.  
+All components can be used **individually without the ThemeProvider** — just pass your own colors, styles, or props directly.  
+The **Theme System** is entirely optional but helps maintain a unified look and easily supports light/dark modes.
+
+Includes **StatusBar**, **AppBar**, **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**, **Radio**, **CheckBox**, **Switch**, **ActivityIndicator**, **LoaderModal**, and more — fully typed with TypeScript, theme-ready, and easy to integrate into any React Native project.
 
 ✨ Developed & Maintained by [Geeky Hawks](https://www.geekyhawks.com).
 
 [![npm version](https://img.shields.io/npm/v/@geekyhawks/react-native-ui-components.svg)](https://www.npmjs.com/package/@geekyhawks/react-native-ui-components)
+[![npm](https://img.shields.io/npm/dt/@geekyhawks/react-native-ui-components.svg)](https://www.npmjs.com/package/@geekyhawks/react-native-ui-components)
 [![License](https://img.shields.io/npm/l/@geekyhawks/react-native-ui-components.svg)](LICENSE)
 
 
-## Features
+## ✨ Features
 
-- 🎨 **Theming system out of the box**  
+- **Theming system out of the box**  
   Define global colors, spacing, and typography to ensure consistent design across your app.  
   - Full **light/dark mode** support.  
   - Customize and extend themes for your brand.  
 
-- 🧩 **Pre-styled, customizable components**  
+- **Pre-styled, customizable components**  
   Includes:  
   - **StatusBar**, **AppBar**  
   - **Text**, **TextInput**, **FloatingLabelTextInput**, **Button**  
@@ -27,13 +31,13 @@ Includes **StatusBar**, **AppBar**, **Text**, **TextInput**, **FloatingLabelText
   - **ActivityIndicator**, **LoaderModal**  
   (with more components coming soon).  
 
-- 📱 **Consistent cross-platform UI**  
+- **Consistent cross-platform UI**  
   Components work seamlessly on both iOS and Android with a unified design language.  
 
-- 🔒 **TypeScript-first**  
+- **TypeScript-first**  
   Strongly typed for safer and faster development.  
 
-- ⚡ **Lightweight & easy to integrate**  
+- **Lightweight & easy to integrate**  
   Add to new or existing React Native projects with minimal setup.  
 
 
@@ -49,7 +53,15 @@ npm install @geekyhawks/react-native-ui-components
 yarn add @geekyhawks/react-native-ui-components
 ```
 
-### 2. Wrap your app with ThemeProvider
+### 2. Wrap your app with ThemeProvider (optional, but recommended)
+
+Using the `ThemeProvider` is **optional** — all components can be used directly and styled via props.
+
+However, wrapping your app with the `ThemeProvider` allows you to:
+
+- Define theme colors, fonts, and spacing in one place  
+- Easily [switch between light and dark modes](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Theme.md#with-light--dark-mode)  
+- Ensure consistent styling across all components  
 
 ```tsx
 import React from "react";
@@ -65,7 +77,9 @@ export default function App() {
 }
 ```
 
-⚠️ **Important:** The `ThemeProvider` should wrap your entire app (usually in `App.tsx`), so that all components can access the theme consistently.
+If you choose to use the `ThemeProvider`, make sure it wraps your entire app (usually in `App.tsx`), so that all components can access the theme consistently.
+
+If you don’t use the `ThemeProvider`, simply pass custom styles or colors directly to each component.
 
 ### 3. Use a component
 
@@ -139,12 +153,12 @@ export default function HomeScreen() {
 ```
 
 
-## Demo
+## 🎯 Demo
 
 ![](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/images/Demo.gif)
 
 
-## Theme & Components
+## 🎨 Theme & Components
 
 This library provides a growing set of **theme-ready UI components**:
 
@@ -164,7 +178,7 @@ _(more coming soon)_
 
 > 🖌️ All components support style overrides, theming, and common React Native props. Customize fonts, colors, and variants globally using the [ThemeProvider](https://github.com/GeekyHawks/react-native-ui-components/blob/main/docs/Theme.md).
 
-### 📘 Documentation
+## 📘 Documentation
 
 Comprehensive documentation for each component lives in the [**docs**](https://github.com/GeekyHawks/react-native-ui-components/tree/main/docs) folder.  
 
@@ -176,7 +190,7 @@ Each doc file includes:
 
 👉 Dive into the docs to learn each component’s features and how to adapt them to your app with ease.
 
-### 📱 Example App
+## 📱 Example App
 
 A fully working [**example app**](https://github.com/GeekyHawks/react-native-ui-components/tree/main/example) is included in the repo to help you explore the components in action.  
 
@@ -187,14 +201,28 @@ A fully working [**example app**](https://github.com/GeekyHawks/react-native-ui-
 👉 Try the example app to see components in action and quickly understand how they fit into a real-world React Native setup.
 
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository  
 2. Create a new branch for your feature or fix  
 3. Commit your changes with clear messages  
 4. Push to your branch and create a Pull Request  
 
+## 💬 Feedback
 
-## License
+We’d love to hear from you!
+
+Whether you’re using our components in production or just trying them out, your feedback helps us improve `@geekyhawks/react-native-ui-components`.
+
+- What do you like about the library?  
+- What could be improved?  
+- Any components or features you’d like to see next?
+
+📩 Send your thoughts and suggestions to **feedback@geekyhawks.com**
+
+We read every message and really appreciate your time in helping us make this library better for the React Native community. ❤️
+
+
+## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.

@@ -1,7 +1,7 @@
 {
   "name": "@geekyhawks/react-native-ui-components",
   "version": "0.2.3",
-  "description": "A lightweight and reusable React Native UI components library with customizable Text, TextInput, FloatingLabelTextInput, Button, and more. Built with TypeScript, fully typed, and designed for easy integration into any React Native project.",
+  "description": "Lightweight, reusable React Native UI components with built-in theming — including Text, TextInput, FloatingLabelTextInput, Button, and more. Fully typed with TypeScript and easy to integrate into any project.",
   "author": "Geeky Hawks FZE LLC",
   "license": "MIT",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/GeekyHawks/react-native-ui-components/issues"
   },
-  "homepage": "https://github.com/GeekyHawks/react-native-ui-components#readme",
+  "homepage": "https://www.geekyhawks.com/open-source/react-native-ui-components/",
   "directories": {
     "example": "example"
   },
@@ -33,20 +33,17 @@
   "keywords": [
     "react-native",
     "react-native-components",
-    "ui-components",
     "react-native-ui",
-    "text",
-    "textinput",
-    "button",
-    "activityindicator",
-    "statusbar",
-    "typescript",
-    "react",
-    "rn",
+    "react-native-library",
+    "ui-components",
+    "rn-components",
+    "react-native-ui-kit",
+    "react-native-textinput",
+    "react-native-button",
     "floating-label",
-    "floating-label-text-input",
-    "floatinglabeltextinput",
-    "floating label text input"
+    "floating-label-input",
+    "typescript",
+    "tsx"
   ],
   "peerDependencies": {
     "react": ">=17.0.0",

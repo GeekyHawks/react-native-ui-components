@@ -31,7 +31,7 @@ export type StatusBarVariant = {
  * StatusBarVariants
  *
  * Collection of named status bar variants.
- * Keys are variant names (e.g., "default", "light", or custom names),
+ * Keys are variant names (e.g., "default", "primary", "secondary", or custom names),
  * and values are the corresponding StatusBarVariant configurations.
  */
 export type StatusBarVariants = Record<DefaultStatusBarVariants, StatusBarVariant> & Record<string, StatusBarVariant>;
@@ -39,13 +39,28 @@ export type StatusBarVariants = Record<DefaultStatusBarVariants, StatusBarVarian
 /**
  * DefaultStatusBarVariants
  *
- * Predefined status bar configuration options available out-of-the-box:
- * - "default": primary color background with light content
- * - "transparent": fully transparent background, overlays content
- * - "light": light background with dark content (good for light themes)
- * - "dark": dark background with light content (good for dark themes)
+ * Predefined status bar configuration options available out of the box.
+ *
+ * Semantic variants (recommended):
+ * - "default": uses the theme `background` color with dark-content icons
+ * - "primary": uses the theme `primary` color with light-content icons
+ * - "secondary": uses the theme `secondary` color with light-content icons
+ * - "surface": uses the theme `surface` color with dark-content icons
+ * - "transparent": transparent background; overlays screen content
+ *
+ * Deprecated (kept for backward compatibility):
+ * - "light": maps to background + dark-content
+ * - "dark": maps to text + light-content
  */
-export type DefaultStatusBarVariants = "default" | "transparent" | "light" | "dark";
+export type DefaultStatusBarVariants =
+    | "default"
+    | "primary"
+    | "secondary"
+    | "surface"
+    | "transparent"
+    // deprecated
+    | "light"
+    | "dark";
 
 /**
  * defaultStatusBarVariants
@@ -57,16 +72,34 @@ export type DefaultStatusBarVariants = "default" | "transparent" | "light" | "da
  * - Developers can extend or override them through the ThemeProvider.
  */
 export const defaultStatusBarVariants: StatusBarVariants = {
+    // Semantic / recommended variants
     default: {
-        backgroundColor: "primary",
-        barStyle: "light-content",
+        backgroundColor: "background", // screen background
+        barStyle: "dark-content",      // suitable for light screen bg
+        translucent: true,
+    },
+    primary: {
+        backgroundColor: "primary",    // main accent (buttons, headers)
+        barStyle: "light-content",     // white icons/text on dark accent
+        translucent: true,
+    },
+    secondary: {
+        backgroundColor: "secondary",  // secondary accent (gray headers, buttons)
+        barStyle: "light-content",     // adjust if secondary is light
+        translucent: true,
+    },
+    surface: {
+        backgroundColor: "surface",    // cards / elevated surfaces
+        barStyle: "dark-content",      // dark text/icons on light surface
         translucent: true,
     },
     transparent: {
         backgroundColor: "transparent",
-        barStyle: "light-content",
+        barStyle: "light-content",     // default overlay icons
         translucent: true,
     },
+
+    // Deprecated variants (for backward compatibility)
     light: {
         backgroundColor: "background",
         barStyle: "dark-content",

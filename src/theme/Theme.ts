@@ -227,3 +227,10 @@ export const defaultDarkTheme = createTheme({
     colors: defaultDarkColors,
     spacing: defaultSpacing,
 });
+
+/**
+ * All color keys available in the default theme.
+ *
+ * Derived from `defaultLightColors` to provide autocomplete for colorScheme.
+ */
+export type ThemeColorKeys = keyof typeof defaultLightColors;

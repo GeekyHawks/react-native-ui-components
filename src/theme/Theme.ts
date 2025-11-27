@@ -14,17 +14,71 @@
  * Required color tokens for the theme.
  */
 export type ThemeColors = {
+    /**
+     * The main background color of the app.
+     * Examples: screen backgrounds, large containers.
+     * Typically very light (light mode) or very dark (dark mode).
+     */
     background: string;
-    border: string;
-    error: string;
-    muted: string;
-    onPrimary: string;
-    onSecondary: string;
-    onSurface: string;
-    primary: string;
-    secondary: string;
-    surface: string;
+
+    /**
+     * Primary text color for reading.
+     * Applied to body text, headings, etc.
+     */
     text: string;
+
+    /**
+     * Color for muted or secondary text/icons.
+     * Example: timestamps, secondary labels.
+     */
+    muted: string;
+
+    /**
+     * The main accent / brand color.
+     * Used for buttons, highlights, active states.
+     */
+    primary: string;
+
+    /**
+     * Text/icon color that appears on top of the `primary` color.
+     * Example: text inside a primary button.
+     */
+    onPrimary: string;
+
+    /**
+     * Secondary accent color.
+     * Used for secondary buttons, chips, or contrast accents.
+     */
+    secondary: string;
+
+    /**
+     * Text/icon color that appears on top of the `secondary` color.
+     */
+    onSecondary: string;
+
+    /**
+     * Surface/elevated color.
+     * Used for cards, sheets, modals, elevated sections.
+     * Typically white/light in light mode, near-black in dark mode.
+     */
+    surface: string;
+
+    /**
+     * Text/icon color that appears on top of `surface` elements.
+     * Example: text on cards.
+     */
+    onSurface: string;
+
+    /**
+     * Color used for borders, separators, dividers.
+     * Usually a subtle gray.
+     */
+    border: string;
+
+    /**
+     * Color for errors, destructive actions, alerts.
+     */
+    error: string;
 };
 
 /**
@@ -66,16 +120,20 @@ export type Theme = {
  *   fontFamily: "Inter",
  *   colors: {
  *     background: "#fff",
+ *     text: "#111",
+ *     muted: "#6c757d",
+ *
+ *     primary: "#007bff",
+ *     onPrimary: "#ffffff",
+ *
+ *     secondary: "#6c757d",
+ *     onSecondary: "#ffffff",
+ *
+ *     surface: "#f8f9fa",
+ *     onSurface: "#000000",
+ *
  *     border: "#dee2e6",
  *     error: "#dc3545",
- *     muted: "#6c757d",
- *     onPrimary: "#ffffff";
- *     onSecondary: "#ffffff";
- *     onSurface: "#000000",
- *     primary: "#007bff",
- *     secondary: "#6c757d",
- *     surface: "#f8f9fa",
- *     text: "#111",
  *   },
  *   spacing: {
  *     none: 0,
@@ -89,7 +147,7 @@ export type Theme = {
  */
 export function createTheme<T extends Theme>(theme: T): T {
     return theme;
-}
+};
 
 /**
  * Default Font Family
@@ -115,34 +173,42 @@ export const defaultSpacing: ThemeSpacing = {
  */
 export const defaultLightColors: ThemeColors = {
     background: "#ffffff",
+    text: "#212529",
+    muted: "#6c757d",
+
+    primary: "#007bff",
+    onPrimary: "#ffffff",
+
+    secondary: "#6c757d",
+    onSecondary: "#ffffff",
+
+    surface: "#f2f2f7",
+    onSurface: "#111111",
+
     border: "#dee2e6",
     error: "#dc3545",
-    muted: "#6c757d",
-    onPrimary: "#ffffff",
-    onSecondary: "#ffffff",
-    onSurface: "#111111",
-    primary: "#007bff",
-    secondary: "#6c757d",
-    surface: "#f2f2f7",
-    text: "#212529",
-}
+};
 
 /**
  * Default dark colors
  */
 export const defaultDarkColors: ThemeColors = {
     background: "#000000",
+    text: "#e5e5e5",
+    muted: "#9ca3af",
+
+    primary: "#339af0",
+    onPrimary: "#000000",
+
+    secondary: "#adb5bd",
+    onSecondary: "#000000",
+
+    surface: "#1c1c1e",
+    onSurface: "#ffffff",
+
     border: "#495057",
     error: "#fa5252",
-    muted: "#9ca3af",
-    onPrimary: "#000000",
-    onSecondary: "#000000",
-    onSurface: "#ffffff",
-    primary: "#339af0",
-    secondary: "#adb5bd",
-    surface: "#1c1c1e",
-    text: "#e5e5e5",
-}
+};
 
 /**
  * Default light theme

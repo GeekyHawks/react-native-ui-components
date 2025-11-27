@@ -20,7 +20,7 @@ import {
     ActivityIndicator,
     Animated
 } from "react-native";
-import { DefaultButtonShapes, DefaultButtonSizes, useTheme } from "../../theme";
+import { DefaultButtonShapes, DefaultButtonSizes, ThemeColorKeys, useTheme } from "../../theme";
 import { Text } from "../Text";
 
 /**
@@ -48,7 +48,7 @@ import { Text } from "../Text";
  * All standard React Native `PressableProps` can also be applied.
  */
 export interface Props extends PressableProps {
-    /** Press feedback animation (`scale`, `opacity`, `shadow`, `scaleOpacity`, `none`) */
+    /** Press feedback animation (`scale` | `opacity` | `shadow` | `scaleOpacity` | `none`) */
     animation?: "scale" | "opacity" | "shadow" | "scaleOpacity" | "none";
     /**
      * buttonStyle - Style for the inner button surface
@@ -58,7 +58,7 @@ export interface Props extends PressableProps {
     /** Content of the button (text) */
     children?: string;
     /** Optional color from theme palette */
-    colorScheme?: keyof ReturnType<typeof useTheme>["theme"]["colors"];
+    colorScheme?: ThemeColorKeys;
     /** 
      * containerStyle - Style for the outer container
      * Example: layout-related styles like flex, margin, alignment
@@ -80,7 +80,7 @@ export interface Props extends PressableProps {
     loadingIndicator?: React.ReactNode;
     /** Optional loading text */
     loadingText?: string;
-    /** Position of loading text (`left`, `right`) */
+    /** Position of loading text (`left` | `right`) */
     loadingTextPosition?: "left" | "right";
     /** Loading text style */
     loadingTextStyle?: StyleProp<TextStyle>;
@@ -147,14 +147,38 @@ const Button: React.FC<Props> = ({
     const { theme, buttonSizeVariants, buttonShapeVariants, textVariants } = useTheme();
     const colors = theme.colors;
 
-    const backgroundColor =
-        variant === "solid" ? colors[colorScheme] : "transparent";
+    let backgroundColor: string;
+    let borderColor: string;
+    let textColor: string;
 
-    const borderColor =
-        variant === "outline" ? colors[colorScheme] : "transparent";
+    switch (variant) {
+        case "solid":
+            backgroundColor = colors[colorScheme] ?? colors.primary;
+            textColor =
+                colorScheme === "primary" ? colors.onPrimary :
+                    colorScheme === "secondary" ? colors.onSecondary :
+                        colorScheme === "surface" ? colors.onSurface :
+                            colors.text;
+            borderColor = backgroundColor;
+            break;
 
-    const textColor =
-        variant === "solid" ? colors.background : colors[colorScheme];
+        case "outline":
+            backgroundColor = "transparent";
+            borderColor = colors[colorScheme] ?? colors.primary;
+            textColor = borderColor;
+            break;
+
+        case "ghost":
+            backgroundColor = "transparent";
+            borderColor = "transparent";
+            textColor = colors[colorScheme] ?? colors.primary;
+            break;
+
+        default:
+            backgroundColor = colors.primary;
+            textColor = colors.onPrimary;
+            borderColor = "transparent";
+    }
 
     const sizeVariant = buttonSizeVariants[size] || buttonSizeVariants.md;
     const shapeVariant = buttonShapeVariants[shape] || buttonShapeVariants.md;

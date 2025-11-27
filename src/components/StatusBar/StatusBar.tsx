@@ -2,8 +2,11 @@
  * StatusBar
  *
  * A customizable wrapper around React Native's `StatusBar`.
- * Supports theme-based variants (`default`, `transparent`, `light`, `dark`)
- * and allows overriding background color, bar style, and translucency.
+ * Supports theme-based variants:
+ * - Semantic: `default`, `primary`, `secondary`, `surface`, `transparent`
+ * - Deprecated: `light`, `dark`
+ *
+ * You may override background color, bar style, and translucency directly.
  * Optionally renders an app bar spacer for consistent layout across platforms.
  *
  * Author: Geeky Hawks FZE LLC
@@ -22,7 +25,9 @@ import { resolveThemeColor } from "../../theme/utils/resolveThemeColor";
  * - **barStyle**: override bar style (`default`, `light-content`, `dark-content`)
  * - **hideAppBar**: hide the app bar spacer (default: false)
  * - **translucent**: control translucency (default taken from variant or true)
- * - **variant**: choose from default variants (`default` | `transparent` | `light` | `dark`)
+ * - **variant**: choose from semantic variants
+ *   (`default` | `primary` | `secondary` | `surface` | `transparent`)
+ *   or deprecated variants (`light` | `dark`)
  *   or a custom variant defined in ThemeProvider
  */
 export interface Props {
@@ -48,6 +53,8 @@ export interface Props {
  */
 const APPBAR_HEIGHT = Platform.OS === "ios" ? 56 : 0;
 
+const DEPRECATED_VARIANTS = ["light", "dark"] as const;
+
 /**
  * StatusBar
  *
@@ -64,16 +71,25 @@ const StatusBar: React.FC<Props> = ({
     hideAppBar,
 }) => {
     const { theme, statusBarVariants } = useTheme();
+
+    // --- DEPRECATION WARNING ------------------------
+    if (DEPRECATED_VARIANTS.includes(variant as any)) {
+        console.warn(
+            `StatusBar Variant "${variant}" is deprecated and will be removed in an upcoming release. ` +
+            `Please migrate to "default", "primary", "secondary", "surface", or "transparent".`
+        );
+    }
+    // ------------------------------------------------
+
     const variantConfig = statusBarVariants[variant] || {};
 
     // Resolve backgroundColor: theme token or direct value
     const resolvedBg = resolveThemeColor(
         backgroundColor ??
         variantConfig.backgroundColor ??
-        "primary",
+        "background",
         theme
-    ) ?? theme.colors.primary;
-
+    ) ?? theme.colors.background;
 
     return (
         <View>

@@ -36,6 +36,7 @@ export default function Example() {
         }} />
       <TextInput variant="underline" label="Underline" placeholder="Underline Example" />
       <TextInput variant="filled" label="Filled" placeholder="Filled Example" />
+      <TextInput variant="ghost" placeholder="Ghost Example" />
 
       {/* TextInput Size Variants */}
       <TextInput size="sm" label="Small" placeholder="Small" />
@@ -132,6 +133,7 @@ export default function Example() {
       <TextInput label="Default" placeholder="Defaut TextInput" />
       <TextInput variant="underline" label="Underline" placeholder="Underline Example" />
       <TextInput variant="filled" label="Filled" placeholder="Filled Example" />
+      <TextInput variant="ghost" placeholder="Ghost Example" />
     </ThemeProvider>
   );
 }
@@ -181,7 +183,7 @@ This screen demonstrates how all props work together in a real-world context.
 | `rightIcon`            | `React.ReactNode`                                                                 | —                   | Icon or element displayed on the right.                                                                   |
 | `secureTextEntry`      | `boolean`                                                                         | —                   | Hides the input text (for passwords).                                                                     |
 | `size`                 | `DefaultTextInputSizes \| (string & {})` <br> *(sm \| md \| lg)*                  | `"md"`              | Input size (predefined or custom).                                                                        |
-| `variant`              | `DefaultTextInputStyles \| (string & {})` <br> *(outline \| filled \| underline)* | `"outline"`         | Input style variant (predefined or custom).                                                               |
+| `variant`              | `DefaultTextInputStyles \| (string & {})` <br> *(outline \| filled \| underline \| ghost)* | `"outline"`         | Input style variant (predefined or custom).                                                               |
 | `...props`             | `TextInputProps` (RN)                                                             | —                   | All native RN `TextInput` props.                                                                          |
 
 
@@ -196,6 +198,7 @@ Control the visual style of the TextInput itself. Available options are:
 - **outline** → Text input with a visible border (default gray or themed color), transparent background.
 - **underline** → Text input with only a bottom border/underline, giving a lightweight look.
 - **filled** → Text input with a solid background fill (usually light gray or themed surface color) and no border.
+- **ghost** → Text input with a fully transparent background and no borders, ideal for minimal or seamless UI layouts.
 
 Example
 
@@ -203,6 +206,7 @@ Example
 <TextInput variant="outline" />
 <TextInput variant="underline" />
 <TextInput variant="filled" />
+<TextInput variant="ghost" />
 ```
 
 ### 2 Size Variants

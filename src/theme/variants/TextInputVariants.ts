@@ -39,7 +39,7 @@ export type TextInputStyleVariants = Record<DefaultTextInputStyles, TextInputSty
  * - "filled": filled background with border
  * - "underline": single bottom border only
  */
-export type DefaultTextInputStyles = "outline" | "filled" | "underline";
+export type DefaultTextInputStyles = "outline" | "filled" | "underline" | "ghost";
 
 /**
  * defaultTextInputStyleVariants
@@ -71,8 +71,19 @@ export const defaultTextInputStyleVariants: TextInputStyleVariants = {
     },
     underline: {
         container: {
+            backgroundColor: "transparent",
             borderBottomWidth: 1,
             borderColor: "border",
+            paddingHorizontal: 0,
+        },
+        input: {},
+    },
+    ghost: {
+        container: {
+            backgroundColor: "transparent",
+            borderWidth: 0,
+            borderColor: "transparent",
+            paddingHorizontal: 0,
         },
         input: {},
     },

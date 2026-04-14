@@ -208,6 +208,17 @@ A fully working [**example app**](https://github.com/GeekyHawks/react-native-ui-
 3. Commit your changes with clear messages  
 4. Push to your branch and create a Pull Request  
 
+## ❤️ Support our Open Source Work
+
+**They say AI is writing the code now.** While AI is incredible at generating snippets, it often struggles with the high-stakes reality of React Native: **consistent theming, design-system integrity, and scalable UI architecture.** At **Geeky Hawks**, we don't just build components; we build the **standardized foundations** that AI needs to be truly effective. This library ensures your UI remains consistent, theme-aware, and production-ready—no matter how the code was generated.
+
+If this library has helped you **standardize your UI or saved you the tedious work of manual styling**, consider supporting our mission. Your sponsorship fuels the development of the next generation of AI-native developer tools.
+
+- [Sponsor us on GitHub](https://github.com/sponsors/GeekyHawks)
+- [One-time donation via Stripe](https://buy.stripe.com/5kAdREa4C1032m4288)
+
+*By sponsoring you get featured in our "Built with" showcase.*
+
 ## 💬 Feedback
 
 We’d love to hear from you!
